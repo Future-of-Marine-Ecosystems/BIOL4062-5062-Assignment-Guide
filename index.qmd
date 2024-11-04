@@ -1,0 +1,7 @@
+# Introduction {.unnumbered}
+
+Welcome to the assignment guide for BIOL4062/5062: Analysis of Biological Data.
+
+This book is designed to walk you through the assignments for this class. It is a resource to help you figure out how to code for your assignments, and bring attention to key questions to ask yourself as you interpret your results, both statistically and biologically. Keep in mind that there are always different ways do get to the right answer with coding. This book is not a monolith, and you do not need to follow it if you don't want to, but make sure what you are doing is clear and sufficiently analogous to this guide, else you lose marks for being unclear, or running the wrong analyses.
+
+Without further ado, let's get into it!

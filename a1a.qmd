@@ -1,0 +1,453 @@
+# Assignment 1a: Principal Components Analysis
+
+Assignment 1a focuses on Principal Components Analysis (PCA). Think of PCA as a method of finding associations between data series.
+
+## Looking at the Data
+
+With any data analysis, step 1 is always to look at your data:
+
+```{r}
+# Load in data
+data = read.csv('fishcatch.csv')
+
+# View data structure
+head(data)
+dim(data)
+```
+
+Our data is a 25 row, 6 column data frame, describing catch of 5 different fisheries species (columns 2-6) caught across 25 hauls (column 1). We want to know if certain species are associated with each other. Lets look a little deeper at the data:
+
+```{r}
+# Generate boxplots
+boxplot(data[,-1]) # Exclude haul
+
+# look at data distribution
+par(mfrow = c(3,2)) # 1 column 5 row grid plot
+hist(data$mackerel, breaks = 10)
+hist(data$bluefin, breaks = 10)
+hist(data$sardine, breaks = 10)
+hist(data$squid, breaks = 10)
+hist(data$limpet, breaks = 10)
+```
+
+A few things are immediately obvious from looking at our data:
+
+1\. There are some large outliers
+
+2\. The species data scales vary greatly across variables
+
+3\. The species all have relatively different distributions, none of which are normal.
+
+Are these issues? How do we fix them?
+
+## Transformations
+
+Look back at the PCA lecture. What are potential problems with PCA? 1. Covariance Matrix PCA requires data to be in the same units 2. Normality is desirable, but not essential 3. Precision is desireable, but not essential 4. Many zeroes in the data
+
+We can fix issue 1 by logging our data:
+
+```{r}
+# Create a new data object so we can log the data
+data_log = data
+
+# Log data
+data_log[,-1] = log(data_log[,-1]) # Remember to exclude haul
+```
+
+Now that we've transformed the data, let's check for normality again:
+
+```{r}
+# Generate histograms
+par(mfrow = c(3,2)) # 1 column 5 row grid plot
+hist(data_log$mackerel, breaks = 10)
+hist(data_log$bluefin, breaks = 10)
+hist(data_log$sardine, breaks = 10)
+hist(data_log$squid, breaks = 10)
+hist(data_log$limpet, breaks = 10)
+```
+
+These look much better. We can also confirm this statistically:
+
+```{r}
+# Generate histograms
+shapiro.test(data_log$mackerel)
+shapiro.test(data_log$bluefin)
+shapiro.test(data_log$sardine)
+shapiro.test(data_log$squid)
+shapiro.test(data_log$limpet)
+```
+
+All 5 species fail to reject the null hypothesis that the data are normally distributed. Logging the data also helps deal with the outliers:
+
+```{r}
+# Generate boxplots
+boxplot(data_log[,-1])
+```
+
+Note that we can only log the data if there are no zeroes:
+
+```{r}
+# Generate test data
+data_test = data; data_test[1,6] = 0 # Change the first limpet value to 0
+
+# Try to log the data
+data_test[1,] # Print first row
+log(data_test[,-1])[1,] # Print logs of the first row
+
+```
+
+log(0) returnes negative infinity. That's going to be a problem later in our analysis. We can fix that by adding a small increment. Keep in mind though that each species has a very different data scale in this dataset, and adding an inappropriate increment could cause us trouble later:
+
+```{r}
+# Test variance effects of different increments
+var(log(data_test$limpet)[-1])
+var(log(data_test$limpet + 1))
+var(log(data_test$limpet + 0.001))
+var(log(data_test$limpet + 0.000000001))
+
+# Test boxplots of different increments
+boxplot(log(data_test$limpet),
+        log(data_test$limpet + 1),
+        log(data_test$limpet + 0.001),
+        log(data_test$limpet + 0.000000001))
+
+```
+
+If the increment is too big, we eliminate the variance in our data. If the increment is to small, we create an outlier.
+
+## Running PCA
+
+Now that we've checked and transformed our data, we're ready to run PCA. There are two kinds of PCA: We can run PCA on the Covariance Matrix, or the Correlation Matrix.
+
+### Covariance Matrix
+
+We can run PCA on the covariance matrix as follows:
+
+```{r}
+# Run PCA - Covariance
+pca_1 = princomp(data_log[,-1]) # We don't want haul in our PCA!
+summary(pca_1)
+```
+
+Running a summary on our PCA gives us the standard deviation of each principal component, the proportion of variance explained by each principal component, and the cumulative variance explained as we add each component. Here, we see the first principal component explains 66% of the variance. The second explains 16%, which adds up to 82% with the first component, and so on up to component 5. We can visualize the cumulative variance explained with a scree plot:
+
+```{r}
+# Generate scree plot
+plot(pca_1, type = 'l') # Scree is built into the plot for PCA
+```
+
+We see most of the variance is explained by component 1, then a similar lesser amount is explained by 2 and 3, followed by another drop to 4 and 5.
+
+```{r}
+# Print loadings
+print(loadings(pca_1),cutoff=0.00) #all loadings!
+```
+
+The PCA loadings are the correlation between the variables and each component. Here, we see bluefin and squid are negatively correlated with component 1, while mackerel, sardine, and limpet are weakly correlated with component 1. We can continue this type of interpretation through the other components as well.
+
+Our PCA object also contains the PCA scores for each individual data point:
+
+```{r}
+# Print PCA scores
+head(pca_1$scores)
+```
+
+Scores are the value of each data point on each principle component. Lets try plotting them:
+
+```{r}
+# Plot scores - components 1 and 2
+plot(pca_1$scores[,1], # Scores on component 1
+     pca_1$scores[,2], # Scores on component 3
+     pch=16, # Point 16 (colored circle)
+     xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
+```
+
+This generates a scatterplot showing us the value of each data point in principal components 1 (x) and 2 (y). Now lets add on the loadings:
+
+```{r}
+# Plot scores - components 1 and 2
+plot(pca_1$scores[,1], # Scores on component 1
+     pca_1$scores[,2], # Scores on component 3
+     pch=16, # Point 16 (colored circle)
+     xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
+
+# Add loadings to plot
+arrows(0,0, # Draw arrows from zero
+       pca_1$loadings[,1], # Draw to PC1 loading in X
+       pca_1$loadings[,2], # Draw to PC2 loading in Y
+       col="black", length = 0.1) # Arrow color and arrowhead length
+text(pca_1$loadings[,1],pca_1$loadings[,2],names(data_log[,-1]),cex=1.0 ,col="black") # Add text labels for each variable
+
+```
+
+The arrows are a little small, so let's add a scaling factor:
+
+```{r}
+# Plot scores - components 1 and 2
+plot(pca_1$scores[,1], # Scores on component 1
+     pca_1$scores[,2], # Scores on component 3
+     pch=16, # Point 16 (colored circle)
+     xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
+
+# Add loadings to plot
+sf = 3 # Scaling factor
+sft = 3.2 # Scaling factor for text
+arrows(0,0, # Draw arrows from zero
+       pca_1$loadings[,1]*sf, # Draw to PC1 * scaling factor loading in X
+       pca_1$loadings[,2]*sf, # Draw to PC2 * scaling factor loading in Y
+       col="black", length = 0.1) # Arrow color and arrowhead length
+text(pca_1$loadings[,1]*sft,pca_1$loadings[,2]*sft, names(data_log[,-1]), cex=1.0, col="black") # Add text labels for each variable
+```
+
+What about the haul number? Does that have an effect? Let's try adding that on as well:
+
+```{r}
+# Create a color palette
+colfunc = colorRampPalette(c('orangered1', 'turquoise2'))
+
+# Plot scores - components 1 and 2
+plot(pca_1$scores[,1], # Scores on component 1
+     pca_1$scores[,2], # Scores on component 3
+     pch=16, # Point 16 (colored circle)
+     col = colfunc(nrow(pca_1$scores)), # Color points by haul using our color palette
+     xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
+
+# Add loadings to plot
+sf = 3 # Scaling factor
+sft = 3.2 # Scaling factor for text
+arrows(0,0, # Draw arrows from zero
+       pca_1$loadings[,1]*sf, # Draw to PC1 * scaling factor loading in X
+       pca_1$loadings[,2]*sf, # Draw to PC2 * scaling factor loading in Y
+       col="black", length = 0.1) # Arrow color and arrowhead length
+text(pca_1$loadings[,1]*sft,pca_1$loadings[,2]*sft, names(data_log[,-1]), cex=1.0, col="black") # Add text labels for each variable
+```
+
+Since we used color for haul, we need to add a legend:
+
+```{r}
+# Set plot layout
+layout(matrix(1:2,ncol=2), # 1 row, 2 columns
+       width = c(2,1), # Width
+       height = c(1,1)) # Height
+
+# Create a color palette
+colfunc = colorRampPalette(c('orangered1', 'turquoise2'))
+
+# Plot scores - components 1 and 2
+plot(pca_1$scores[,1], # Scores on component 1
+     pca_1$scores[,2], # Scores on component 3
+     pch=16, # Point 16 (colored circle)
+     col = colfunc(nrow(pca_1$scores)), # Color points by haul using our color palette
+     xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
+
+# Add loadings to plot
+sf = 3 # Scaling factor
+sft = 3.2 # Scaling factor for text
+arrows(0,0, # Draw arrows from zero
+       pca_1$loadings[,1]*sf, # Draw to PC1 * scaling factor loading in X
+       pca_1$loadings[,2]*sf, # Draw to PC2 * scaling factor loading in Y
+       col="black", length = 0.1) # Arrow color and arrowhead length
+text(pca_1$loadings[,1]*sft,pca_1$loadings[,2]*sft, names(data_log[,-1]), cex=1.0, col="black") # Add text labels for each variable
+
+# Generate legend
+legend_image <- as.raster(matrix(colfunc(nrow(pca_1$scores)), ncol=1))
+plot(c(0,2),c(0,1),type = 'n', axes = F,xlab = '', ylab = '', main = 'Haul')
+text(x=1.5, y =seq(0,1,l=5), labels = seq(1,25,l=5))
+rasterImage(legend_image, 0, 0, 1,1)
+```
+
+Now we have a completed scores plot with loadings arrows. How would you interpret this plot?
+
+### Correlation Matrix
+
+Now let's try the correlation matrix. The correlation matrix performs the same analysis, but on standardized data. The princomp() function does this for us if we set cor = T:
+
+```{r}
+# Run PCA - Correlation
+pca_2 = princomp(data_log[,-1], cor = T)
+summary(pca_2)
+
+# In case you don't believe me, heres the covariance matrix if we pre-standardize the data
+pca_test = princomp(scale(data_log[-1]))
+summary(pca_test)
+```
+
+Now we can go through the same pattern of analyses as we did for covariance:
+
+```{r}
+# Generate scree plot
+plot(pca_2, type = 'l') # Scree is built into the plot for PCA
+
+# Print loadings
+print(loadings(pca_2),cutoff=0.00) #all loadings!
+
+# Set plot layout
+layout(matrix(1:2,ncol=2), # 1 row, 2 columns
+       width = c(2,1), # Width
+       height = c(1,1)) # Height
+
+# Create a color palette
+colfunc = colorRampPalette(c('orangered1', 'turquoise2'))
+
+# Plot scores - components 1 and 2
+plot(pca_2$scores[,1], # Scores on component 1
+     pca_2$scores[,2], # Scores on component 3
+     pch=16, # Point 16 (colored circle)
+     col = colfunc(nrow(pca_2$scores)), # Color points by haul using our color palette
+     xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
+
+# Add loadings to plot
+sf = 3 # Scaling factor
+sft = 3.2 # Scaling factor for text
+arrows(0,0, # Draw arrows from zero
+       pca_2$loadings[,1]*sf, # Draw to PC1 * scaling factor loading in X
+       pca_2$loadings[,2]*sf, # Draw to PC2 * scaling factor loading in Y
+       col="black", length = 0.1) # Arrow color and arrowhead length
+text(pca_2$loadings[,1]*sft,pca_2$loadings[,2]*sft, names(data_log[,-1]), cex=1.0, col="black") # Add text labels for each variable
+
+# Generate legend
+legend_image <- as.raster(matrix(colfunc(nrow(pca_2$scores)), ncol=1))
+plot(c(0,2),c(0,1),type = 'n', axes = F,xlab = '', ylab = '', main = 'Haul')
+text(x=1.5, y =seq(0,1,l=5), labels = seq(1,25,l=5))
+rasterImage(legend_image, 0, 0, 1,1)
+```
+How would you interpret this plot? Does it differ from the covariance plot?
+
+### Alternative Methods
+
+There are a few other ways you can generate, and/or plot your PCAs if you prefer.
+\. Biplot:
+
+```{r}
+# Exploring biplot
+biplot(pca_1) # Covariance
+biplot(pca_2) # Correlation
+```
+
+ggplot:
+
+```{r}
+library(ggplot2)
+
+# ggplot version - Covariance
+
+# turn PCA scores into data frame
+pca_1_plot = data.frame(Haul = data_log$Haul, pca_1$scores) 
+
+# Turn PCA loadings into data frame (This gets a little complicated)
+pca_1_loadings = as.data.frame(matrix(as.numeric(pca_1$loadings), 
+                                      dim(pca_1$loadings)[1], dim(pca_1$loadings)[2]))
+colnames(pca_1_loadings) = colnames(pca_1_plot)[-1]
+
+# Plot
+ggplot(pca_1_plot, aes(x = Comp.1, y = Comp.2, color = Haul)) +
+  
+  # Scores
+  geom_point() + scale_colour_distiller(palette = 15) + 
+  
+  # Loadings
+  geom_segment(data = pca_1_loadings, aes(x = 0, y = 0,xend = Comp.1 , yend = Comp.2), 
+    arrow = arrow(length = unit(0.3, "cm"), type = "open", angle = 25), 
+    size = 1, color = "darkblue") + 
+  
+  # Labels
+  geom_text(data = pca_1_loadings, color = 'darkblue', nudge_x = 0.2, nudge_y = 0.2, # Labels
+                aes(x = Comp.1, y = Comp.2, label = colnames(data_log)[-1]))
+
+
+##########################################################################################
+
+
+# ggplot version - Correlation
+
+# turn PCA scores into data frame
+pca_2_plot = data.frame(Haul = data_log$Haul, pca_2$scores) 
+
+# Turn PCA loadings into data frame
+pca_2_loadings = as.data.frame(matrix(as.numeric(pca_2$loadings), 
+                                      dim(pca_2$loadings)[1], dim(pca_2$loadings)[2]))
+colnames(pca_2_loadings) = colnames(pca_2_plot)[-1]
+
+# Plot
+ggplot(pca_2_plot, aes(x = Comp.1, y = Comp.2, color = Haul)) +
+  
+  # Scores
+  geom_point() + scale_colour_distiller(palette = 15) + 
+  
+  # Loadings
+  geom_segment(data = pca_2_loadings, aes(x = 0, y = 0,xend = Comp.1 , yend = Comp.2), 
+               arrow = arrow(length = unit(0.3, "cm"), type = "open", angle = 25), 
+               size = 1, color = "darkblue") + 
+  
+  # Labels
+  geom_text(data = pca_2_loadings, color = 'darkblue', nudge_x = 0.2, nudge_y = 0.2, # Labels
+            aes(x = Comp.1, y = Comp.2, label = colnames(data_log)[-1]))
+```
+You can also run PCA using the prcomp() function instead of princomp(), setting scale = T if you want the correlation matrix. You can then use autoplot() with the ggfortify package to plot the results.
+
+```{r}
+# ggplot v2
+library(ggfortify)
+
+# Run PCA - Covariance
+pca_1a = prcomp(data_log[,-1])
+
+# Run autoplot
+autoplot(pca_1a, data = data_log, color = 'Hauls', loadings = T, loadings.label = T)
+
+##########################################################################################
+
+# Run PCA - Correlation
+pca_2a = prcomp(data_log[,-1], scale = T)
+
+# Run autoplot
+autoplot(pca_2a, data = data_log, color = 'Hauls', loadings = T, loadings.label = T)
+```
+
+
+## Varimax Rotation (Optional)
+
+Varimax rotation attempts to improve the interpretability of PCA results by lining up loadings with the axes. This can be useful, particularly with large numbers of variables.
+
+```{r}
+# Scaling factors
+sf = 2.5
+sft = 2.8
+
+# Varimax rotation - Covariance
+v1 = varimax(pca_1$loadings[,1:2])
+v1_scores = pca_1$scores[,1:2]%*%v1$rotmat
+
+# Plot scores - components 1 and 2
+plot(v1_scores[,1],v1_scores[,2],pch=15, col = colfunc(nrow(v1_scores)),
+     xlab="1st varimax component",ylab="2nd varimax component",main="varimax scores plot")
+
+# Add loadings
+arrows(0,0,v1$loadings[,1]*sf,v1$loadings[,2]*sf,col="black")
+text(v1$loadings[,1]*sft,v1$loadings[,2]*sft,names(data_log[,-1]),asp=1,cex=1.0 ,col="black")
+
+##########################################################################################
+
+# Varimax rotation - Correlation
+v2 = varimax(pca_2$loadings[,1:2])
+v2_scores = pca_2$scores[,1:2]%*%v2$rotmat
+
+# Plot scores - components 1 and 2
+plot(v2_scores[,1],v2_scores[,2],pch=15, col = colfunc(nrow(v2_scores)),
+     xlab="1st varimax component",ylab="2nd varimax component",main="varimax scores plot")
+
+# Add loadings
+arrows(0,0,v2$loadings[,1]*sf,v2$loadings[,2]*sf,col="black")
+text(v2$loadings[,1]*sft,v2$loadings[,2]*sft,names(data_log[,-1]),asp=1,cex=1.0 ,col="black")
+```
+
+## Tips for your assignment:
+
+Some things you may want to think about for your assignment:
+
+1\. Do your covariance and correlation plots differ? Do you think one is better suited to answering your research question? Why? Is your answer conceptual, or does it have to do with the results? Both?
+
+2\. How would you quantitatively examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?
+
+3\. How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.
+
