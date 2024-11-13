@@ -124,6 +124,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"><strong>BIOL4062/5062 Analysis of Biological Data: Assignment Guide</strong></a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./--BIOL4062-5062-Analysis-of-Biological-Data--Assignment-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -214,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mantel-test-graduate-students-only" id="toc-mantel-test-graduate-students-only" class="nav-link" data-scroll-target="#mantel-test-graduate-students-only"><span class="header-section-number">3.5</span> Mantel Test (Graduate Students Only)</a></li>
   <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">3.6</span> Tips for your Assignment:</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1c.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -444,35 +448,36 @@ Number of objects: 13 </code></pre>
 <pre><code>Run 0 stress 0.07592385 
 Run 1 stress 0.07366297 
 ... New best solution
-... Procrustes: rmse 0.1937851  max resid 0.5647299 
-Run 2 stress 0.08568213 
-Run 3 stress 0.0856906 
-Run 4 stress 0.08055013 
-Run 5 stress 0.0757299 
-Run 6 stress 0.08568217 
-Run 7 stress 0.08055013 
-Run 8 stress 0.07366297 
-... Procrustes: rmse 4.544832e-06  max resid 8.316192e-06 
-... Similar to previous best
-Run 9 stress 0.08055013 
-Run 10 stress 0.08055014 
-Run 11 stress 0.07305563 
+... Procrustes: rmse 0.1937863  max resid 0.5647321 
+Run 2 stress 0.07575137 
+Run 3 stress 0.07239302 
 ... New best solution
-... Procrustes: rmse 0.1700119  max resid 0.5134416 
-Run 12 stress 0.07358653 
-Run 13 stress 0.07239303 
+... Procrustes: rmse 0.1707883  max resid 0.5155234 
+Run 4 stress 0.07572991 
+Run 5 stress 0.07227846 
 ... New best solution
-... Procrustes: rmse 0.01404553  max resid 0.04164098 
-Run 14 stress 0.07575137 
-Run 15 stress 0.08055013 
-Run 16 stress 0.07358653 
-Run 17 stress 0.07575137 
-Run 18 stress 0.07366297 
-Run 19 stress 0.1796535 
+... Procrustes: rmse 0.01244117  max resid 0.03072205 
+Run 6 stress 0.120356 
+Run 7 stress 0.07239301 
+... Procrustes: rmse 0.01244622  max resid 0.03088513 
+Run 8 stress 0.08055013 
+Run 9 stress 0.07239299 
+... Procrustes: rmse 0.01247495  max resid 0.03097102 
+Run 10 stress 0.08055013 
+Run 11 stress 0.07358653 
+Run 12 stress 0.07366297 
+Run 13 stress 0.0757299 
+Run 14 stress 0.08571807 
+Run 15 stress 0.072393 
+... Procrustes: rmse 0.0124875  max resid 0.03101887 
+Run 16 stress 0.08575957 
+Run 17 stress 0.07358653 
+Run 18 stress 0.07358653 
+Run 19 stress 0.07366297 
 Run 20 stress 0.07366297 
 *** Best solution was not repeated -- monoMDS stopping criteria:
-    17: stress ratio &gt; sratmax
-     3: scale factor of the gradient &lt; sfgrmin</code></pre>
+    16: stress ratio &gt; sratmax
+     4: scale factor of the gradient &lt; sfgrmin</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -487,10 +492,10 @@ Data:     dist
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.07239303 
+Stress:     0.07227846 
 Stress type 1, weak ties
 Best solution was not repeated after 20 tries
-The best solution was from try 13 (random start)
+The best solution was from try 5 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
@@ -516,11 +521,11 @@ Species: scores missing</code></pre>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  k       stress
-1 1 2.597694e-01
-2 2 7.239300e-02
-3 3 8.209811e-05
-4 4 3.928323e-04
-5 5 9.293455e-05</code></pre>
+1 1 2.209873e-01
+2 2 7.227846e-02
+3 3 8.412708e-05
+4 4 3.140980e-04
+5 5 9.087882e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
@@ -597,38 +602,39 @@ ind13 0.7501 0.8751</code></pre>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist2, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07575137 
-Run 1 stress 0.07875788 
-Run 2 stress 0.08568215 
-Run 3 stress 0.07366297 
+Run 1 stress 0.1840572 
+Run 2 stress 0.08055013 
+Run 3 stress 0.205126 
+Run 4 stress 0.120356 
+Run 5 stress 0.08055013 
+Run 6 stress 0.08566789 
+Run 7 stress 0.07875788 
+Run 8 stress 0.07882366 
+Run 9 stress 0.072393 
 ... New best solution
-... Procrustes: rmse 0.1934875  max resid 0.5648751 
-Run 4 stress 0.08585258 
-Run 5 stress 0.07575137 
-Run 6 stress 0.07366297 
-... Procrustes: rmse 2.557696e-06  max resid 4.917217e-06 
-... Similar to previous best
-Run 7 stress 0.072393 
-... New best solution
-... Procrustes: rmse 0.17078  max resid 0.5155174 
-Run 8 stress 0.1183846 
-Run 9 stress 0.08055013 
-Run 10 stress 0.07239299 
-... New best solution
-... Procrustes: rmse 2.305719e-05  max resid 4.744634e-05 
-... Similar to previous best
-Run 11 stress 0.1180402 
-Run 12 stress 0.08571807 
+... Procrustes: rmse 0.2253582  max resid 0.6639831 
+Run 10 stress 0.1396043 
+Run 11 stress 0.07589516 
+Run 12 stress 0.07358653 
 Run 13 stress 0.072393 
-... Procrustes: rmse 4.810371e-05  max resid 0.0001054179 
+... New best solution
+... Procrustes: rmse 9.314091e-05  max resid 0.0001993305 
 ... Similar to previous best
-Run 14 stress 0.120356 
-Run 15 stress 0.07575137 
-Run 16 stress 0.07875788 
-Run 17 stress 0.07572992 
-Run 18 stress 0.1180402 
-Run 19 stress 0.08569488 
-Run 20 stress 0.08055013 
-*** Best solution repeated 2 times</code></pre>
+Run 14 stress 0.07875788 
+Run 15 stress 0.07875788 
+Run 16 stress 0.072393 
+... Procrustes: rmse 1.561236e-05  max resid 3.488764e-05 
+... Similar to previous best
+Run 17 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 0.01245818  max resid 0.03077209 
+Run 18 stress 0.08566789 
+Run 19 stress 0.07572991 
+Run 20 stress 0.07239303 
+... Procrustes: rmse 0.012435  max resid 0.03085577 
+*** Best solution was not repeated -- monoMDS stopping criteria:
+    16: stress ratio &gt; sratmax
+     4: scale factor of the gradient &lt; sfgrmin</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,10 +649,10 @@ Data:     dist2
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.07239299 
+Stress:     0.07227846 
 Stress type 1, weak ties
-Best solution was repeated 2 times in 20 tries
-The best solution was from try 10 (random start)
+Best solution was not repeated after 20 tries
+The best solution was from try 17 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
