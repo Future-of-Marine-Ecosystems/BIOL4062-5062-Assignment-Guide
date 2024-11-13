@@ -1,0 +1,72 @@
+# **Assignment Guidelines** {.unnumbered}
+
+This section will run through some general advice on how to put together your assignments, and how to make my life easier marking them:
+
+## General Advice
+
+**1. Read the grading rubric!**
+
+-   It is quite objective. There is little latitude for part marks if you are missing parts that you need.
+
+**2. You don't need to tell me the statistical theory or background (unless it's relevant to your answers)**
+
+-   All you have to do is answer the questions in the assignment. Anything you write outside of that is just eating up your page limit.
+
+**3. Put your biological interpretations together at the end**
+
+-   Your interpretations are more likely to make sense and easier to mark if you put them at the end, and include all of your results together in them rather than inserting them throughout piecemeal.
+
+-   **Also, make sure your biological interpretations are consistent with your data/results! They don't have to be correct, but they have to match your data.**
+
+**4. Make sure your figures are readable**
+
+-   I can't tell if your interpretation of your figures is correct if I can't interpret your figures.
+
+-   Alltext on figures should be readable.
+
+-   If you use color, make sure that the colors you use are clearly distinguishable.
+
+**5. You're not alone!**
+
+-   If you have questions, come to the drop-in sessions, read the discussion boards, or email me to ask questions or set up a meeting if those don't work for you.
+
+-   Do the first two even if you don't have questions: You may find the answer to questions you didn't know you had.
+
+-   You're also welcome to ask questions after an assignment if you want to know why you were graded the way you were, or if you have questions about the comments provided or what you may have done wrong.
+
+**6. Ask if you need an extension**
+
+-   We're pretty reasonable.
+
+## Submission Formatting
+
+Here are some guidelines on how to submit your assignment to make my life easier. **You won't lose marks for not following them, but I would greatly appreciate it if you did.**
+
+**1. Hand in your assignment in 3 parts:**
+
+a)  Your assignment text
+
+-   All assignment 1s have a 2 page limit. Put all your text first, with figures and tables together separately at the end. It is easier for me to tell how many pages you wrote this way. You're not going to lose marks if you're slightly over (this is not a writing class), if you're going to lose marks for writing too many pages I'm going to be able to tell anyways.
+-   Should be a doc or PDF file so I can open it in BrightSpace. Doesn't matter if it's produced through word, markdown, etc, as long as it's in one of those two formats.
+
+b\) Your script, submitted as a .txt file
+
+-   Submitting as a .txt file allows me to open the script in BrightSpace rather than having to download it if it's a .R file. It is much more difficult for me to run your script should I need to if you paste it in your assignment document.
+
+c\) The data you read into your script
+
+-   This is just to make it easy for me to run your script if I think there is a mistake.
+
+**2. Don't put your name on your assignments, in your scripts, or in any of your file names**
+
+-   The BrightSpace system is anonymous so I mark your assignments blind. That doesn't work if you write your name.
+
+-   Delete your file paths in your script for submission if they have your name in them.
+
+-   **You do need to put your B0 number, data code number, and whether you're a graduate student or an undergraduate student.**
+
+**3. Follow the assignment guide**
+
+-   You don't have to follow this guide to get full marks on the assignments (as always, there are many correct answers when it comes to coding). That said, it's easier for me to follow what you're doing if you're doing the same thing as everyone else.
+
+-   It's OK to do your own thing, but if you make a mistake, its going to be much harder for me to help you out, and it's going to take significantly more effort on my end to mark.

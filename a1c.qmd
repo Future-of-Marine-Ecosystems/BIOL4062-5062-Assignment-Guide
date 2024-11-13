@@ -1,3 +1,457 @@
-# Assignment 1c: Cluster Analysis and Multidimensional Scaling
+# **Assignment 1c:** Cluster Analysis and Multidimensional Scaling
 
+This assignment is centered on cluster analysis and multidimensional scaling (MDS), which are both methods of measuring associations within a group (e.g. associations between individuals within a population).
 
+For this tutorial, we'll be using `monkey.csv`.
+
+## Looking at the data
+
+You know the drill by now:
+
+```{r}
+# Load in data
+data = read.csv('monkey.csv', row.names = 1) # First column is row names
+data # Print data
+```
+
+Our data is a matrix containing the number of social interactions observed between individuals in a group of monkeys at the zoo. The matrix is symmetrical - the top/right half is identical to the bottom/left half.
+
+## Calculating Dissimilarity
+
+For this assignment we'll be using 3 R functions: `hclust`, `metaMDS` (from the `vegan` package), `isoMDS` (from the `MASS`package), and `cmdscale()`. Let's see what type of input data those functions need:
+
+```{r, output = F}
+# Check help functions
+library(vegan)
+library(MASS)
+?hclust()
+?metaMDS()
+?isoMDS()
+?cmdscale()
+```
+
+You'll notice all of these functions require a **dissimilarity matrix** produced by `dist`. Let's start by running `dist()`.
+
+```{r}
+# Convert data to a dist object
+dist = as.dist(data)
+dist # Print dist
+```
+
+Now our data is in a `dist` object. All of the redundant entries in the data have been removed.
+
+Right now, our data reflects **similarity (i.e. high numbers reflect greater association between individuals)**. We need to convert it to **dissimilarity**. Dissimilarity is simply the opposite of similarity. We can convert similarity to dissimilarity by subtracting each data value from the maximum of the data.
+
+```{r}
+# Convert to dissimilarity
+dist = max(dist) - dist
+dist # Print dist
+```
+
+Now we're ready to run our analyses!
+
+## Hierarchical Cluster Analysis
+
+Remember from lecture there are 4 types of hierarchical cluster analysis:
+
+1.  Single linkage
+2.  Average linkage
+3.  Complete linkage
+4.  Ward linkage
+
+Let's run through them one by one:
+
+### Single linkage
+
+We can run all 4 types of cluster analysis using the `hclust()` R function:
+
+```{r}
+# run single linkage cluster analysis
+clust_1 = hclust(dist, method = 'single')
+clust_1 # print object
+```
+
+Printing the `hclust` object doesn't really tell us much. For more detail, we're going to have to plot it:
+
+```{r}
+# Plot single linkage tree
+plot(clust_1, hang = -1, main = 'Single linkage', 
+     ylab = 'Dissimilarity', # Label y axis
+     xlab = '', sub = '') # Remove x-axis label
+```
+
+This outputs a tree showing the associations between our individual monkeys. dissimilarity is on the y-axis. The greater the distance between individuals on the y-axis, the greater their dissimilarity. Our tree has grouped the monkeys according to how frequently they interact with each other. For example. individuals 2, 3, 5, and 6 interact often, as evidenced by their low dissimilarity.
+
+But how well does this tree fit the data? To answer that question, we need to calculate the cophenetic correlation coefficient (CCC):
+
+```{r}
+# Calculate CCC
+coph_1 = cophenetic(clust_1) # Get cophenetic
+ccc_1 = cor(coph_1, dist) # Calculate correlation of the cophenetic with the data
+ccc_1 # Print CCC
+```
+
+That's a pretty high correlation coefficient, indicating our dendrogram represented the structure in the original data very well. Let's try some other methods:
+
+### Average Linkage
+
+```{r}
+# run cluster analysis
+clust_2 = hclust(dist, method = 'average')
+
+# Plot
+plot(clust_2, hang = -1, main = 'Average linkage', ylab = 'Dissimilarity', xlab = '', sub = '')
+
+# Calculate CCC
+coph_2 = cophenetic(clust_2)
+ccc_2 = cor(coph_2, dist)
+ccc_2
+```
+
+### Complete Linkage
+
+```{r}
+# run cluster analysis
+clust_3 = hclust(dist, method = 'complete')
+
+# Plot
+plot(clust_3, hang = -1, main = 'Complete linkage', ylab = 'Dissimilarity', xlab = '', sub = '')
+
+# Calculate CCC
+coph_3 = cophenetic(clust_3)
+ccc_3 = cor(coph_3, dist)
+ccc_3
+```
+
+### Ward Linkage
+
+```{r}
+# run cluster analysis
+clust_4 = hclust(dist, method = 'ward.D')
+
+# Plot
+plot(clust_4, hang = -1, main = 'Ward linkage', ylab = 'Dissimilarity', xlab = '', sub = '')
+
+# Calculate CCC
+coph_4 = cophenetic(clust_4)
+ccc_4 = cor(coph_4, dist)
+ccc_4
+```
+
+Each method gives a slightly different tree and CCC value. Where are they similar? Where do they differ? Which one(s) would you trust? Why?
+
+## Multidimensional Scaling
+
+Another method we can use to test for associations between our monkeys is multidimensional scaling (MDS). There are two types of MDS: non-metric, and metric MDS. Let's start with non-metric MDS.
+
+### Non-Metric MDS
+
+```{r}
+# Run non-metric MDS - metaMDS
+mds1 = metaMDS(dist, wascores = F)
+
+# Print mds results
+mds1
+```
+
+By default, metaMDS has two dimensions. This MDS has a stress value of 0.072. Remember from lecture that stress \< 0.10 is a "good representation", so this MDS result is pretty good. If we want, we can test different numbers of dimensions (k) and create a scree plot to find the best one:
+
+```{r, output = F}
+# Create a container object
+scree = data.frame(k = 1:5, stress = NA)
+
+# Loop through k 1 to 5
+for(k in 1:5){
+  
+  # Run MDS
+  mds = metaMDS(dist, wascores = F, k = k) # Set k to our loop index
+  
+  # Pull out stress
+  scree[k,'stress'] = mds$stress # Fill kth row of the column 'stress' in scree
+  
+} # End loop
+```
+
+```{r}
+# Print results
+scree
+
+# Make scree plot
+plot(stress ~ k, data = scree, # Plot stress against k
+     type = 'b', # Lines and points
+     pch = 16) # Point 16 (filled circle)
+abline(h = 0.1, lty = 'dashed') # Plot a dashed line at 0.1
+```
+
+We have an elbow at k=3, but we also get warnings that our dataset may be too small using k=3. The stress at k=2 is low enough that we can stick to using that.
+
+Let's plot our results:
+
+```{r}
+# Plot result
+plot(mds1, type = 't')
+```
+
+Here we've plotted the values of our two MDS dimensions against each other for each individual. Similar to the cluster analysis, we see certain individuals are grouped together. Is it the same groups of individuals? What does that tell you about your results?
+
+Let's try a different non-metric MDS function:
+
+```{r, error = TRUE}
+# Run non-metric MDS - isoMDS
+mds2 = isoMDS(dist)
+```
+
+Uh oh. This function doesn't like zeroes in the data. Let's fix that by translating our data to proportions, and adding a small increment.
+
+```{r}
+# Translate to proportions
+dist2 = dist/max(dist)
+
+# Add an increment
+dist2 = dist2 + 0.0001
+
+# Print new dist
+dist2
+```
+
+Let's make sure this doesn't mess with our results:
+
+```{r}
+# Run non-metric MDS - metaMDS
+mds1 = metaMDS(dist2, wascores = F)
+
+# Print mds results
+mds1
+
+# Plot result
+plot(mds1, type = 't')
+```
+
+The values have shifted around a bit but the structure and interpretation of the plot is the same. Let's continue on:
+
+```{r}
+# Run non-metric MDS - isoMDS
+mds2 = isoMDS(dist2)
+
+# Print output
+mds2
+```
+
+The modelling algorithms seems to be a little different, and we end up with a different stress result - in this case, one that is above the 10% threshold (note that stress is in % in this function, unlike metaMDS where it is in proportion). Let's try another scree plot:
+
+```{r, output = F}
+# Create a container object
+scree = data.frame(k = 1:5, stress = NA)
+
+# Loop through k 1 to 5
+for(k in 1:5){
+  
+  # Run MDS
+  mds = isoMDS(dist2, k = k) # Set k to our loop index
+  
+  # Pull out stress
+  scree[k,'stress'] = mds$stress # Fill kth row of the column 'stress' in scree
+  
+} # End loop
+```
+
+```{r}
+# Print results
+scree
+
+# Make scree plot
+plot(stress ~ k, data = scree, # Plot stress against k
+     type = 'b', # Lines and points
+     pch = 16) # Point 16 (filled circle)
+abline(h = 10, lty = 'dashed') # Plot a dashed line at 0.1
+```
+
+In this case, it seems we're better off using 3 dimensions:
+
+```{r}
+# Run non-metric MDS - isoMDS
+mds2 = isoMDS(dist2, k = 3)
+
+# Print output
+mds2
+```
+
+Let's plot our results:
+
+```{r}
+# Plot isoMDS
+plot(mds2$points[,1], mds2$points[,2], # MDS dimension 1 and 2 values
+     type = 'n', # Don't plot any points
+     xlab = 'Dim 1', ylab = 'Dim 2', main = 'Metric MDS') # Labelling
+
+# Plot individual names
+text(mds2$points[,1], mds2$points[,2], rownames(data))
+```
+
+All of our grouped individuals are plotted on top of each other. Let's try adding some random jiggle so we can see them
+
+```{r}
+# Plot isoMDS
+plot(mds2$points[,1], mds2$points[,2], # MDS dimension 1 and 2 values
+     type = 'n', # Don't plot any points
+     xlab = 'Dim 1', ylab = 'Dim 2', main = 'Metric MDS', # Labelling
+     xlim = c(-2.5, 2.5), ylim = c(3, -3)) # Set axis limits
+
+# Set random seed for consistency
+set.seed(1212)
+
+# Plot individual names
+text(mds2$points[,1] + rnorm(13, 0, 0.2), # Add random values pulled from a 
+     mds2$points[,2] + rnorm(13, 0, 0.2), # normal distribution with mean 0, sd 0.2
+     rownames(data)) # Add names
+```
+
+That's a bit better. We can also add some color to this plot if we want - say, individuals 6 to 9 are juveniles:
+
+```{r}
+# Plot isoMDS
+plot(mds2$points[,1], mds2$points[,2], # MDS dimension 1 and 2 values
+     type = 'n', # Don't plot any points
+     xlab = 'Dim 1', ylab = 'Dim 2', main = 'Metric MDS', # Labelling
+     xlim = c(-2.5, 2.5), ylim = c(3, -3)) # Set axis limits
+
+# Set random seed for consistency
+set.seed(1212)
+
+# Juvenile identifier
+ad = c(rep(1,5), rep(0,4), rep(1,4)) # ad is 1 for first 5 and last 4
+ad
+
+# Plot individual names
+text(mds2$points[,1] + rnorm(13, 0, 0.2), # Add random values pulled from a 
+     mds2$points[,2] + rnorm(13, 0, 0.2), # normal distribution with mean 0, sd 0.2
+     rownames(data), # Add names
+     col = ifelse(ad == 0, 'purple', 'orange')) # color 
+# Add a legend
+legend('topright', legend = c('Juvenile', 'Adult'), fill = c('purple', 'orange'))
+```
+
+Does this plot match the previous one, and/or the cluster analyses?
+
+### Metric MDS
+
+We can run metric MDS using the `cmdscale()` function:
+
+```{r}
+# run metric MDS
+mds3 = cmdscale(dist, eig = T)
+mds3
+```
+
+Metric MDS doesn't have stress. Instead, we have to look at goodness of fit (GOF) to assess how well the analysis worked. GOF is similar to an R^2^ value, where numbers closer to 1 indicate a better fit (though be wary of overfitting!). There are two different GOF values for each metric MDS.
+
+As with the other MDS functions, k defaults to 2. We can make another scree plot:
+
+```{r, output = F}
+# Create a container object
+scree = data.frame(k = 1:5, GOF1 = NA, GOF2 = NA)
+
+# Loop through k 1 to 5
+for(k in 1:5){
+  
+  # Run MDS
+  mds = cmdscale(dist, eig = T, k = k) # Set k to our loop index
+  
+  # Pull out stress
+  scree[k,c(2,3)] = mds$GOF # Fill kth row of the GOF columns in scree
+  
+} # End loop
+```
+
+```{r}
+# Print results
+scree
+
+# Make scree plot
+plot(GOF2 ~ k, data = scree, # Plot stress against k
+     type = 'b', # Lines and points
+     pch = 16, # Point 16 (filled circle)
+     ylab = 'Goodness of Fit', ylim = c(0.3, 1))
+points(GOF1 ~ k, data = scree, type = 'b', pch = 16, col = 'red') # Add second GOF value
+abline(h = 0.1, lty = 'dashed') # Plot a dashed line at 0.1
+legend('topleft', pch = 16, legend = c('GOF1', 'GOF2'), col = c('red', 'black')) # Add legend
+```
+
+Goodness of fit scales linearly, so what k to use is more of a judgement call.
+
+```{r}
+# run metric MDS
+mds3 = cmdscale(dist, k=4, eig = T)
+mds3
+```
+
+Let's plot the first two dimensions:
+
+```{r}
+# Plot metric MDS
+plot(mds3$points[,1], mds3$points[,2], # MDS dimension 1 and 2 values
+     type = 'n', # Don't plot any points
+     xlab = 'Dim 1', ylab = 'Dim 2', main = 'Metric MDS') # Labelling
+
+# Plot individual names
+text(mds3$points[,1], # Add random values pulled from a 
+     mds3$points[,2], # normal distribution with mean 0, sd 0.2
+     rownames(data), # Add names
+     col = ifelse(ad == 0, 'purple', 'orange')) # color 
+# Add a legend
+legend('bottomright', legend = c('Juvenile', 'Adult'), fill = c('purple', 'orange'))
+```
+
+### 3D Plotting (Optional)
+
+It may not be necessary, but if your MDS has more than 2 dimensions, you can try plotting it in three dimensions and see if it helps:
+
+```{r}
+library(plot3D)
+
+# Prepare data to plot
+x = mds3$points[,1]
+y = mds3$points[,2]
+z = mds3$points[,3]
+
+# Create 3D plot
+scatter3D(x,y,z, colvar = NULL, col = 'blue', 
+          pch = 16, cex = 0.5, bty = 'g', theta = 5)
+
+# Add text
+text3D(x, 
+       # Add some jiggle to the labels
+       y+rnorm(13, mean = 0, sd = 0.5), z + rnorm(13, mean = 0, sd = 0.5), 
+                    labels = names(mds3$points[,1]), add = T, colkey = F, 
+                    cex = 0.5, adj = 1, d = 2)
+```
+
+## Mantel Test (Graduate Students Only)
+
+We can infer to some extent whether juveniles and adults preferentially associate with each other from our colored MDS plots, but we can also test it statistically using a Mantel test. To run the Mantel test, we need to convert our adult index into a `dist` object:
+
+```{r}
+# Create dist matrix for adults
+ad_dist = dist(ad)
+ad_dist
+```
+
+Note this is dissimilarity: adult-juvenile pairs are assigned 1, and same-class pairs are assigned 0.
+
+The Mantel test looks for correlation between this matrix and our original dissociation matrix, and statistically tests if the associations are different from what we would expect due to chance.
+
+```{r}
+# Run mantel test
+library(ade4)
+mantel.rtest(ad_dist, dist, nrepet = 999)
+```
+
+It's very close, but we don't have statistically significant evidence that juveniles and adults associate preferentially with each other in this case.
+
+## Tips for your Assignment:
+
+Some things you may want to think about for your assignment:
+
+1\. How would you pick which cluster analyses and MDS analyses are best for your data? Are they conceptual, or do they have to do with the results? Do they agree?
+
+2\. How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.

@@ -1,3 +1,253 @@
-# Assignment 1b: Linear Discriminant Analysis
+# **Assignment 1b:** Linear Discriminant Analysis
 
+Assignment 1b focuses on Linear Discriminant Analysis (LDA), also known as Canonical Variate Analysis. LDA is used to disclose relationships between groups, create models to differentiate between groups based on data, and discern the contribution of different variables to a model's ability do discriminate between groups.
 
+For this tutorial, we'll be using `snake.csv`.
+
+## Looking at the data
+
+```{r}
+# Load in data
+snake = read.csv('snake.csv')
+
+# Look at data
+head(snake)
+dim(snake)
+```
+
+Our data is a 35 row, 7 column data frame. The first column identifies the species of snake (A or B). The other columns are morphological measurements of each individual snake. We want to know if we can use the morphological measurements of the snakes to determine their species. Let's keep examining the data:
+
+```{r}
+# Make a boxplot
+library(tidyverse)
+
+# Convert the data to long format so we can use ggplot
+snake_long = pivot_longer(snake, # Enter data
+                          colnames(snake)[-1], # Pivot all columns except species
+                          names_to = 'Measurement', values_to = 'Value') # Feed labels to new data frame
+
+# Lets take a look at the new data frame
+head(snake_long)
+# We've converted from wide format to long format,
+# now all the data values are contained in a single column
+# which is described by a metadata column
+
+# You can also do this with melt from reshape2
+library(reshape2)
+head(melt(snake))
+
+# Let's make a boxplot
+ggplot(snake_long, aes(x = Measurement, y = Value, fill = Species)) +
+  geom_boxplot() + theme_classic()
+
+# We can do this in R base plot too
+boxplot(Value ~ Species*Measurement, # Plot value by species and measurement
+        data = snake_long, col = c('coral', 'turquoise2'), # Color by species
+        xaxt = 'n', xlab = 'Measurement') # Remove and label x axis
+legend('topleft', legend = c('Species A', 'Species B'), fill = c('coral', 'turquoise2')) # Add a legend
+axis(1, at = seq(1.5,11.5,2), labels = colnames(snake)[-1]) # Add x axis back in with appropriate labels
+
+```
+
+Some of our measurements are very similar across species, and others are quite different. Do they differ statistically as a whole?
+
+## MANOVA
+
+The purpose of LDA is to try to discriminate our snakes into species based on their measurements. However, that only makes sense to do if our two species of snake actually differ across the measurements. Our first step then is to discern whether our snake species differ as a multivariate whole. We'll do this using a MANOVA.
+
+```{r}
+# Run MANOVA
+sm = manova(cbind(M1,M2,M3,M4,M5,M6) ~ Species, data = snake)
+summary(sm, test = 'Hotelling')
+summary(sm, test = 'Wilks')
+```
+
+By both the Hotelling's and Wilks' tests, our MANOVA is significant, indicating the snake species vary as a multivariate whole.
+
+What about our assumptions though? Our MANOVA assumptions are normality, linearity, and homogeneity of covariances. You've been told to assume the latter, so let's skip that one.
+
+```{r}
+# Testing normality
+library(mvnormtest)
+mshapiro.test(t(sm$residuals))
+```
+
+Uh oh, the residuals are significantly non-normal. Let's take a look at them visually:
+
+```{r}
+# Residual histogram
+hist(t(sm$residuals), breaks = 20)
+```
+
+Visually, our residuals actually look quite close to normal. There may be some slight skew, or outliers that are forcing our residuals to statistical non-normality. We might be able to fix this by removing multivariate outliers, or by transforming some of our data (feel free to play around with these ideas!), but based on the shape of our residuals, it is unlikely that our model is fatally biased, and we may end up doing more harm than good. Based on this, we can conclude that our two species have significantly different morphometries given the measurements provided.
+
+## Linear Discriminant Analysis
+
+Now that we've confirmed our species differ as a multivariate whole, we can try to use LDA to build a model to predict which species each snake belongs to based on its measurements.
+
+```{r}
+# LDA
+library(MASS)
+ldaf1 <- lda(Species ~ M1+M2+M3+M4+M5+M6, snake)
+ldaf1
+```
+
+Running our LDA object tells us the prior probabilities used for each species (the proportion of each species in the data), the group means for each measure on each species, and the linear discriminant (LD1) for each measure. We can then plot the LD1 value for each individual:
+
+```{r}
+# Plot discriminant function analysis
+
+# Create a data frame to plot
+ldaf_plot = cbind(snake, # Data
+                  predict(ldaf1)$x, # LD1 value for each individual given its measurements
+                  index = seq(1,nrow(snake), 1)) # Row/Individual number
+
+# Plot
+plot(LD1 ~ index, data = ldaf_plot, col = as.factor(snake$Species), pch = 16)
+legend('topleft', legend = c('A', 'B'), col = c(1, 2), pch = 16) # Add legend
+```
+
+Here we can see higher LD1 values are associated with species B, while lower LD1 values are associated with species A. This is just based on model fit however; how do we know we aren't overfitting? One way to avoid overfitting is by jackknifing (AKA leave-one-out cross validation in this context). This method runs the model once without each point in the dataset, then calculates the posterior probability that the left out point belongs to each species. Let's try it out:
+
+```{r}
+# LDA 2, CV = T
+ldaf2 = lda(Species ~ M1+M2+M3+M4+M5+M6, snake, CV = T)
+
+# Gather posteriors
+as.data.frame(cbind(ldaf2$posterior, # Pull posteriors from ldaf2
+                    ResultantSpp=as.character(ldaf2$class))) # Pull predicted species (i.e. species with the higher posterior probability)
+                                                             
+```
+
+How does this differ from the predictions from our first model?
+
+```{r}
+# Pull ldaf1 model predictions
+ldaf_pred = predict(ldaf1)$class
+
+# Gather Predictions
+ldaf_diff = data.frame(ldaf1 = as.character(ldaf_pred), ldaf2 = as.character(ldaf2$class))
+
+# Add match column
+ldaf_diff$match = (ldaf_diff$ldaf1 == ldaf_diff$ldaf2)
+
+# Which ones are different?
+ldaf_diff[which(ldaf_diff$match == F),]
+
+```
+
+Individuals 17 and 29 both differed in species prediction between the model fit and the jackknife posterior probability. Now let's check the accuracy of our model fit:
+
+```{r}
+# Calculate error
+ldaf_wrong = length(which(ldaf_pred != snake$Species)) # Number of incorrect predictions
+ldaf_err = ldaf_wrong/nrow(snake) # Divide by number of individuals for error
+
+# Print error
+ldaf_wrong
+ldaf_err
+
+```
+
+Our model classified 5 out of 35 (\~14.3%) of the snakes as the incorrect species, meaning 30/35 were correct (\~85.7%). Not bad, but can we do better?
+
+## Model Selection
+
+Our previous model used all 6 measurements, but do we really need all of them, or are some of them unhelpful (or even detrimental)? To test this, we can run model selection using the `stepclass()` function:
+
+```{r}
+# stepclass package
+library(klaR)
+
+# Model selection (forward)
+ms_f = stepclass(Species ~ M1+M2+M3+M4+M5+M6,data=snake,
+          method="lda", fold=35, direction="forward")
+
+# Print model selection result
+ms_f
+```
+
+After model selection, we end up with a model using only M6 to predict species, with a correctness rate of 85.7%. This model has the same correctness as the full model, using only one measurement. In other words, this model is more **efficient** - it gets to the same accuracy using less information.
+
+This model was generated using forward model selection, meaning the selection process works exclusively by adding variables to the model. We can also do the opposite:
+
+```{r}
+# stepclass package
+library(klaR)
+
+# Model selection (forward)
+ms_b = stepclass(Species ~ M1+M2+M3+M4+M5+M6,data=snake,
+          method="lda", fold=35, direction="backward")
+
+# Print model selection result
+ms_b
+```
+
+Backwards model selection works by removing variables from the full model. This means backwards selection should always return a model with a equal or more variables than forwards selection.
+
+Lastly, we can run both:
+
+```{r}
+# stepclass package
+library(klaR)
+
+# Model selection (forward)
+ms_d = stepclass(Species ~ M1+M2+M3+M4+M5+M6,data=snake,
+          method="lda", fold=35, direction="both")
+
+# Print model selection result
+ms_d
+```
+
+## Plotting Probabilities
+
+Lets finish off by making some plots to visualize our LDA model results.
+
+```{r}
+# Pick a model to plot
+ldaf3 = lda(Species ~ M6, data = snake)
+
+# Plot density curve
+plot(ldaf3, dimen = 1, type = 'dens')
+```
+
+This plots the posterior probabilites of an individual belonging to either species given its LD1 value. Remember from earlier that species A is associated with lower LD1 values.
+
+We can also make this plot as a histogram:
+
+```{r}
+# Plot density curve
+plot(ldaf3, dimen = 1, type = 'hist')
+```
+
+Or combine both plots:
+
+```{r}
+# Plot density curve
+plot(ldaf3, dimen = 1, type = 'both')
+```
+
+As always, we can also do this with ggplot too:
+
+```{r}
+# Predict species
+ldaf3_pred = predict(ldaf3)
+
+# Plot
+pred_species = as.data.frame(ldaf3_pred$x) # Gather LD1 values
+pred_species$Species = snake$Species # Gather true species from data
+
+# Plot
+ggplot(pred_species, aes(x = LD1, fill = Species))+
+  geom_density(alpha = 0.4)# alpha tells you how transparent the plots will be
+```
+
+## Tips for your assignment
+
+Some things you may want to think about for your assignment:
+
+1\. How would you pick which model you think is best? What factors would you consider? Are there any factors you would consider other than those discussed in this tutorial?
+
+2\. LDA also assumes the data are independent. Do we know this assumption is respected? Why or why not? What would constitute it not being respected?
+
+3\. How would you interpret your statistical results biologically (can be in terms of the snakes, how you would study them, or both)? You don't have to be right, but don't be vague, and don't contradict your results.

@@ -1,17 +1,21 @@
 project:
   type: book
+  output-dir: docs
 
 book:
-  title: "Analysis of Biological Data: Assignment Guide"
+  title: "**BIOL4062/5062 Analysis of Biological Data: Assignment Guide**"
   author: "Reid Steele"
   date: "2024-11-04"
   chapters:
     - index.qmd
-    - a1a.qmd
-    - a1b.qmd
-    - a1c.qmd
-    - a1d.qmd
-    - a1e.qmd
+    - part: "**Assignment 1**"
+      chapters:
+        - a1a.qmd
+        - a1b.qmd
+        - a1c.qmd
+        - a1d.qmd
+        - a1e.qmd
+    - guidelines.qmd
 
 format:
   html:

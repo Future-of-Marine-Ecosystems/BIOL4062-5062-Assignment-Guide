@@ -1,6 +1,8 @@
-# Assignment 1a: Principal Components Analysis
+# **Assignment 1a:** Principal Components Analysis
 
 Assignment 1a focuses on Principal Components Analysis (PCA). Think of PCA as a method of finding associations between data series.
+
+For this tutorial, we're going to use the dataset in `fishcatch.csv`.
 
 ## Looking at the Data
 
@@ -34,15 +36,23 @@ A few things are immediately obvious from looking at our data:
 
 1\. There are some large outliers
 
-2\. The species data scales vary greatly across variables
+2\. The data scales vary greatly across species
 
-3\. The species all have relatively different distributions, none of which are normal.
+3\. The species all have relatively different distributions, none of which look normal.
 
 Are these issues? How do we fix them?
 
 ## Transformations
 
-Look back at the PCA lecture. What are potential problems with PCA? 1. Covariance Matrix PCA requires data to be in the same units 2. Normality is desirable, but not essential 3. Precision is desireable, but not essential 4. Many zeroes in the data
+Look back at the PCA lecture. What are potential problems with PCA? 
+
+1\. Covariance Matrix PCA requires data to be in the same units 
+
+2\. Normality is desirable, but not essential 
+
+3\. Precision is desireable, but not essential 
+
+4\. Many zeroes in the data
 
 We can fix issue 1 by logging our data:
 
@@ -96,17 +106,11 @@ log(data_test[,-1])[1,] # Print logs of the first row
 
 ```
 
-log(0) returnes negative infinity. That's going to be a problem later in our analysis. We can fix that by adding a small increment. Keep in mind though that each species has a very different data scale in this dataset, and adding an inappropriate increment could cause us trouble later:
+log(0) returnes negative infinity. That's going to be a problem later in our analysis. We can fix that by adding a small increment before taking the log. Keep in mind though that each species has a different magnitude in this dataset, and adding an inappropriate increment could cause us trouble later:
 
 ```{r}
-# Test variance effects of different increments
-var(log(data_test$limpet)[-1])
-var(log(data_test$limpet + 1))
-var(log(data_test$limpet + 0.001))
-var(log(data_test$limpet + 0.000000001))
-
 # Test boxplots of different increments
-boxplot(log(data_test$limpet),
+boxplot(log(data_test$limpet), # Warning because of -Inf
         log(data_test$limpet + 1),
         log(data_test$limpet + 0.001),
         log(data_test$limpet + 0.000000001))
@@ -143,7 +147,7 @@ We see most of the variance is explained by component 1, then a similar lesser a
 print(loadings(pca_1),cutoff=0.00) #all loadings!
 ```
 
-The PCA loadings are the correlation between the variables and each component. Here, we see bluefin and squid are negatively correlated with component 1, while mackerel, sardine, and limpet are weakly correlated with component 1. We can continue this type of interpretation through the other components as well.
+The PCA loadings are the correlations between the variables and each component. Here, we see bluefin and squid are strongly negatively correlated with component 1, while mackerel, sardine, and limpet are weakly positively correlated with component 1. We can continue this type of interpretation through the other components as well.
 
 Our PCA object also contains the PCA scores for each individual data point:
 
@@ -152,7 +156,7 @@ Our PCA object also contains the PCA scores for each individual data point:
 head(pca_1$scores)
 ```
 
-Scores are the value of each data point on each principle component. Lets try plotting them:
+Scores are the value of each data point on each principal component. Lets try plotting them:
 
 ```{r}
 # Plot scores - components 1 and 2
@@ -311,12 +315,14 @@ plot(c(0,2),c(0,1),type = 'n', axes = F,xlab = '', ylab = '', main = 'Haul')
 text(x=1.5, y =seq(0,1,l=5), labels = seq(1,25,l=5))
 rasterImage(legend_image, 0, 0, 1,1)
 ```
+
 How would you interpret this plot? Does it differ from the covariance plot?
 
 ### Alternative Methods
 
 There are a few other ways you can generate, and/or plot your PCAs if you prefer.
-\. Biplot:
+
+Biplot:
 
 ```{r}
 # Exploring biplot
@@ -348,14 +354,11 @@ ggplot(pca_1_plot, aes(x = Comp.1, y = Comp.2, color = Haul)) +
   # Loadings
   geom_segment(data = pca_1_loadings, aes(x = 0, y = 0,xend = Comp.1 , yend = Comp.2), 
     arrow = arrow(length = unit(0.3, "cm"), type = "open", angle = 25), 
-    size = 1, color = "darkblue") + 
+    linewidth = 1, color = "darkblue") + 
   
   # Labels
   geom_text(data = pca_1_loadings, color = 'darkblue', nudge_x = 0.2, nudge_y = 0.2, # Labels
                 aes(x = Comp.1, y = Comp.2, label = colnames(data_log)[-1]))
-
-
-##########################################################################################
 
 
 # ggplot version - Correlation
@@ -377,12 +380,13 @@ ggplot(pca_2_plot, aes(x = Comp.1, y = Comp.2, color = Haul)) +
   # Loadings
   geom_segment(data = pca_2_loadings, aes(x = 0, y = 0,xend = Comp.1 , yend = Comp.2), 
                arrow = arrow(length = unit(0.3, "cm"), type = "open", angle = 25), 
-               size = 1, color = "darkblue") + 
+               linewidth = 1, color = "darkblue") + 
   
   # Labels
   geom_text(data = pca_2_loadings, color = 'darkblue', nudge_x = 0.2, nudge_y = 0.2, # Labels
             aes(x = Comp.1, y = Comp.2, label = colnames(data_log)[-1]))
 ```
+
 You can also run PCA using the prcomp() function instead of princomp(), setting scale = T if you want the correlation matrix. You can then use autoplot() with the ggfortify package to plot the results.
 
 ```{r}
@@ -395,15 +399,12 @@ pca_1a = prcomp(data_log[,-1])
 # Run autoplot
 autoplot(pca_1a, data = data_log, color = 'Hauls', loadings = T, loadings.label = T)
 
-##########################################################################################
-
 # Run PCA - Correlation
 pca_2a = prcomp(data_log[,-1], scale = T)
 
 # Run autoplot
 autoplot(pca_2a, data = data_log, color = 'Hauls', loadings = T, loadings.label = T)
 ```
-
 
 ## Varimax Rotation (Optional)
 
@@ -426,8 +427,6 @@ plot(v1_scores[,1],v1_scores[,2],pch=15, col = colfunc(nrow(v1_scores)),
 arrows(0,0,v1$loadings[,1]*sf,v1$loadings[,2]*sf,col="black")
 text(v1$loadings[,1]*sft,v1$loadings[,2]*sft,names(data_log[,-1]),asp=1,cex=1.0 ,col="black")
 
-##########################################################################################
-
 # Varimax rotation - Correlation
 v2 = varimax(pca_2$loadings[,1:2])
 v2_scores = pca_2$scores[,1:2]%*%v2$rotmat
@@ -441,6 +440,8 @@ arrows(0,0,v2$loadings[,1]*sf,v2$loadings[,2]*sf,col="black")
 text(v2$loadings[,1]*sft,v2$loadings[,2]*sft,names(data_log[,-1]),asp=1,cex=1.0 ,col="black")
 ```
 
+Note that it's pretty hard to tell the hauls apart using this color scale. Make sure your plots are always clear and readable.
+
 ## Tips for your assignment:
 
 Some things you may want to think about for your assignment:
@@ -450,4 +451,3 @@ Some things you may want to think about for your assignment:
 2\. How would you quantitatively examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?
 
 3\. How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.
-
