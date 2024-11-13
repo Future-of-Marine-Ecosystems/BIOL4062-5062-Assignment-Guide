@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BIOL4062/5062 Analysis of Biological Data: Assignment Guide - 2&nbsp; Assignment 1b: Linear Discriminant Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./a1c.html" rel="next">
+<link href="./a1a.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1b.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">**Assignment 1b:** Linear Discriminant Analysis</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><strong>BIOL4062/5062 Analysis of Biological Data: Assignment Guide</strong></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Introduction</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Assignment 1</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1b.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1c.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./guidelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Assignment Guidelines</strong></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link active" data-scroll-target="#looking-at-the-data"><span class="header-section-number">2.1</span> Looking at the data</a></li>
+  <li><a href="#manova" id="toc-manova" class="nav-link" data-scroll-target="#manova"><span class="header-section-number">2.2</span> MANOVA</a></li>
+  <li><a href="#linear-discriminant-analysis" id="toc-linear-discriminant-analysis" class="nav-link" data-scroll-target="#linear-discriminant-analysis"><span class="header-section-number">2.3</span> Linear Discriminant Analysis</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">2.4</span> Model Selection</a></li>
+  <li><a href="#plotting-probabilities" id="toc-plotting-probabilities" class="nav-link" data-scroll-target="#plotting-probabilities"><span class="header-section-number">2.5</span> Plotting Probabilities</a></li>
+  <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">2.6</span> Tips for your assignment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Assignment 1b focuses on Linear Discriminant Analysis (LDA), also known as Canonical Variate Analysis. LDA is used to disclose relationships between groups, create models to differentiate between groups based on data, and discern the contribution of different variables to a model’s ability do discriminate between groups.</p>
+<p>For this tutorial, we’ll be using <code>snake.csv</code>.</p>
+<section id="looking-at-the-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">2.1</span> Looking at the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>snake <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'snake.csv'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snake)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Species   M1   M2   M3   M4   M5   M6
+1     A   41.6  6.7  8.2 12.2 24.7 27.0
+2     A   40.2  8.5  9.2 15.5 27.1 30.3
+3     A   40.4 12.6 14.2 19.6 46.9 26.8
+4     A   26.4  9.0  8.6 14.0 37.6 32.2
+5     A   34.4  7.0 12.1 11.1 31.0 35.8
+6     A   38.8  8.2 10.2 12.4 42.2 33.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(snake)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 35  7</code></pre>
+</div>
+</div>
+<p>Our data is a 35 row, 7 column data frame. The first column identifies the species of snake (A or B). The other columns are morphological measurements of each individual snake. We want to know if we can use the morphological measurements of the snakes to determine their species. Let’s keep examining the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a boxplot</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the data to long format so we can use ggplot</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>snake_long <span class="ot">=</span> <span class="fu">pivot_longer</span>(snake, <span class="co"># Enter data</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">colnames</span>(snake)[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Pivot all columns except species</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">'Measurement'</span>, <span class="at">values_to =</span> <span class="st">'Value'</span>) <span class="co"># Feed labels to new data frame</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Lets take a look at the new data frame</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snake_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Species  Measurement Value
+  &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;
+1 "   A  " M1           41.6
+2 "   A  " M2            6.7
+3 "   A  " M3            8.2
+4 "   A  " M4           12.2
+5 "   A  " M5           24.7
+6 "   A  " M6           27  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We've converted from wide format to long format,</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># now all the data values are contained in a single column</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># which is described by a metadata column</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also do this with melt from reshape2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'reshape2'
+
+The following object is masked from 'package:tidyr':
+
+    smiths</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">melt</span>(snake))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using Species as id variables</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Species variable value
+1     A         M1  41.6
+2     A         M1  40.2
+3     A         M1  40.4
+4     A         M1  26.4
+5     A         M1  34.4
+6     A         M1  38.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's make a boxplot</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(snake_long, <span class="fu">aes</span>(<span class="at">x =</span> Measurement, <span class="at">y =</span> Value, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can do this in R base plot too</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Value <span class="sc">~</span> Species<span class="sc">*</span>Measurement, <span class="co"># Plot value by species and measurement</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> snake_long, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'coral'</span>, <span class="st">'turquoise2'</span>), <span class="co"># Color by species</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xaxt =</span> <span class="st">'n'</span>, <span class="at">xlab =</span> <span class="st">'Measurement'</span>) <span class="co"># Remove and label x axis</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topleft'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'Species A'</span>, <span class="st">'Species B'</span>), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">'coral'</span>, <span class="st">'turquoise2'</span>)) <span class="co"># Add a legend</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">seq</span>(<span class="fl">1.5</span>,<span class="fl">11.5</span>,<span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">colnames</span>(snake)[<span class="sc">-</span><span class="dv">1</span>]) <span class="co"># Add x axis back in with appropriate labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Some of our measurements are very similar across species, and others are quite different. Do they differ statistically as a whole?</p>
+</section>
+<section id="manova" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="manova"><span class="header-section-number">2.2</span> MANOVA</h2>
+<p>The purpose of LDA is to try to discriminate our snakes into species based on their measurements. However, that only makes sense to do if our two species of snake actually differ across the measurements. Our first step then is to discern whether our snake species differ as a multivariate whole. We’ll do this using a MANOVA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run MANOVA</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sm <span class="ot">=</span> <span class="fu">manova</span>(<span class="fu">cbind</span>(M1,M2,M3,M4,M5,M6) <span class="sc">~</span> Species, <span class="at">data =</span> snake)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm, <span class="at">test =</span> <span class="st">'Hotelling'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Df Hotelling-Lawley approx F num Df den Df   Pr(&gt;F)    
+Species    1           1.2263   5.7229      6     28 0.000552 ***
+Residuals 33                                                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sm, <span class="at">test =</span> <span class="st">'Wilks'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Df   Wilks approx F num Df den Df   Pr(&gt;F)    
+Species    1 0.44917   5.7229      6     28 0.000552 ***
+Residuals 33                                            
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>By both the Hotelling’s and Wilks’ tests, our MANOVA is significant, indicating the snake species vary as a multivariate whole.</p>
+<p>What about our assumptions though? Our MANOVA assumptions are normality, linearity, and homogeneity of covariances. You’ve been told to assume the latter, so let’s skip that one.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing normality</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvnormtest)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mshapiro.test</span>(<span class="fu">t</span>(sm<span class="sc">$</span>residuals))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  Z
+W = 0.91571, p-value = 0.01075</code></pre>
+</div>
+</div>
+<p>Uh oh, the residuals are significantly non-normal. Let’s take a look at them visually:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual histogram</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">t</span>(sm<span class="sc">$</span>residuals), <span class="at">breaks =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Visually, our residuals actually look quite close to normal. There may be some slight skew, or outliers that are forcing our residuals to statistical non-normality. We might be able to fix this by removing multivariate outliers, or by transforming some of our data (feel free to play around with these ideas!), but based on the shape of our residuals, it is unlikely that our model is fatally biased, and we may end up doing more harm than good. Based on this, we can conclude that our two species have significantly different morphometries given the measurements provided.</p>
+</section>
+<section id="linear-discriminant-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="linear-discriminant-analysis"><span class="header-section-number">2.3</span> Linear Discriminant Analysis</h2>
+<p>Now that we’ve confirmed our species differ as a multivariate whole, we can try to use LDA to build a model to predict which species each snake belongs to based on its measurements.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'MASS'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    select</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ldaf1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> M1<span class="sc">+</span>M2<span class="sc">+</span>M3<span class="sc">+</span>M4<span class="sc">+</span>M5<span class="sc">+</span>M6, snake)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ldaf1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+lda(Species ~ M1 + M2 + M3 + M4 + M5 + M6, data = snake)
+
+Prior probabilities of groups:
+      A         B   
+0.2857143 0.7142857 
+
+Group means:
+           M1     M2    M3    M4     M5     M6
+   A   32.700  9.410 10.16 15.54 35.290 28.950
+   B   31.496 12.128 10.18 16.78 47.356 21.752
+
+Coefficients of linear discriminants:
+           LD1
+M1  0.01428023
+M2  0.29104494
+M3 -0.07327616
+M4 -0.05544769
+M5  0.03629586
+M6 -0.17208517</code></pre>
+</div>
+</div>
+<p>Running our LDA object tells us the prior probabilities used for each species (the proportion of each species in the data), the group means for each measure on each species, and the linear discriminant (LD1) for each measure. We can then plot the LD1 value for each individual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot discriminant function analysis</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame to plot</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>ldaf_plot <span class="ot">=</span> <span class="fu">cbind</span>(snake, <span class="co"># Data</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">predict</span>(ldaf1)<span class="sc">$</span>x, <span class="co"># LD1 value for each individual given its measurements</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">index =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">nrow</span>(snake), <span class="dv">1</span>)) <span class="co"># Row/Individual number</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(LD1 <span class="sc">~</span> index, <span class="at">data =</span> ldaf_plot, <span class="at">col =</span> <span class="fu">as.factor</span>(snake<span class="sc">$</span>Species), <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topleft'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'A'</span>, <span class="st">'B'</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># Add legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here we can see higher LD1 values are associated with species B, while lower LD1 values are associated with species A. This is just based on model fit however; how do we know we aren’t overfitting? One way to avoid overfitting is by jackknifing (AKA leave-one-out cross validation in this context). This method runs the model once without each point in the dataset, then calculates the posterior probability that the left out point belongs to each species. Let’s try it out:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA 2, CV = T</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ldaf2 <span class="ot">=</span> <span class="fu">lda</span>(Species <span class="sc">~</span> M1<span class="sc">+</span>M2<span class="sc">+</span>M3<span class="sc">+</span>M4<span class="sc">+</span>M5<span class="sc">+</span>M6, snake, <span class="at">CV =</span> T)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gather posteriors</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(ldaf2<span class="sc">$</span>posterior, <span class="co"># Pull posteriors from ldaf2</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ResultantSpp=</span><span class="fu">as.character</span>(ldaf2<span class="sc">$</span>class))) <span class="co"># Pull predicted species (i.e. species with the higher posterior probability)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    A                    B   ResultantSpp
+1     0.897801237948675    0.102198762051325          A  
+2     0.957033498274347   0.0429665017256531          A  
+3   0.00486396795570833    0.995136032044292          B  
+4     0.939579607872302   0.0604203921276979          A  
+5     0.999020574119129 0.000979425880871094          A  
+6     0.958283942083953    0.041716057916047          A  
+7     0.859914694048175    0.140085305951825          A  
+8    0.0790276689479006      0.9209723310521          B  
+9     0.250711809994116    0.749288190005884          B  
+10    0.277233534989757    0.722766465010243          B  
+11   0.0654339037846645    0.934566096215335          B  
+12 8.13045175684633e-05    0.999918695482432          B  
+13  0.00857331675606214    0.991426683243938          B  
+14    0.119793120831736    0.880206879168264          B  
+15    0.868897347918874    0.131102652081126          A  
+16    0.291404395123413    0.708595604876587          B  
+17    0.580893601645515    0.419106398354485          A  
+18    0.407526292222816    0.592473707777184          B  
+19    0.097139347240766    0.902860652759234          B  
+20   0.0629455676122022    0.937054432387798          B  
+21   0.0262176442553781    0.973782355744622          B  
+22   0.0110464412594654    0.988953558740534          B  
+23     0.37967670676917     0.62032329323083          B  
+24  0.00300786068222619    0.996992139317774          B  
+25   0.0331152011340242    0.966884798865976          B  
+26  0.00270158005931187    0.997298419940688          B  
+27   0.0161164609849135    0.983883539015087          B  
+28  0.00346528534198866    0.996534714658011          B  
+29    0.761253716426843    0.238746283573157          A  
+30   0.0597294571669348    0.940270542833065          B  
+31  0.00139900114299064    0.998600998857009          B  
+32   0.0146304515487079    0.985369548451292          B  
+33   0.0215114427320867    0.978488557267913          B  
+34  0.00359029891803412    0.996409701081966          B  
+35 8.92739861715428e-05    0.999910726013828          B  </code></pre>
+</div>
+</div>
+<p>How does this differ from the predictions from our first model?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull ldaf1 model predictions</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ldaf_pred <span class="ot">=</span> <span class="fu">predict</span>(ldaf1)<span class="sc">$</span>class</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gather Predictions</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>ldaf_diff <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ldaf1 =</span> <span class="fu">as.character</span>(ldaf_pred), <span class="at">ldaf2 =</span> <span class="fu">as.character</span>(ldaf2<span class="sc">$</span>class))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add match column</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ldaf_diff<span class="sc">$</span>match <span class="ot">=</span> (ldaf_diff<span class="sc">$</span>ldaf1 <span class="sc">==</span> ldaf_diff<span class="sc">$</span>ldaf2)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Which ones are different?</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>ldaf_diff[<span class="fu">which</span>(ldaf_diff<span class="sc">$</span>match <span class="sc">==</span> F),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    ldaf1  ldaf2 match
+17    B      A   FALSE
+29    B      A   FALSE</code></pre>
+</div>
+</div>
+<p>Individuals 17 and 29 both differed in species prediction between the model fit and the jackknife posterior probability. Now let’s check the accuracy of our model fit:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate error</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ldaf_wrong <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(ldaf_pred <span class="sc">!=</span> snake<span class="sc">$</span>Species)) <span class="co"># Number of incorrect predictions</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>ldaf_err <span class="ot">=</span> ldaf_wrong<span class="sc">/</span><span class="fu">nrow</span>(snake) <span class="co"># Divide by number of individuals for error</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print error</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>ldaf_wrong</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ldaf_err</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1428571</code></pre>
+</div>
+</div>
+<p>Our model classified 5 out of 35 (~14.3%) of the snakes as the incorrect species, meaning 30/35 were correct (~85.7%). Not bad, but can we do better?</p>
+</section>
+<section id="model-selection" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">2.4</span> Model Selection</h2>
+<p>Our previous model used all 6 measurements, but do we really need all of them, or are some of them unhelpful (or even detrimental)? To test this, we can run model selection using the <code>stepclass()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stepclass package</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(klaR)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model selection (forward)</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>ms_f <span class="ot">=</span> <span class="fu">stepclass</span>(Species <span class="sc">~</span> M1<span class="sc">+</span>M2<span class="sc">+</span>M3<span class="sc">+</span>M4<span class="sc">+</span>M5<span class="sc">+</span>M6,<span class="at">data=</span>snake,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">method=</span><span class="st">"lda"</span>, <span class="at">fold=</span><span class="dv">35</span>, <span class="at">direction=</span><span class="st">"forward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> `stepwise classification', using 35-fold cross-validated correctness rate of method lda'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>35 observations of 6 variables in 2 classes; direction: forward</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>stop criterion: improvement less than 5%.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>correctness rate: 0.85714;  in: "M6";  variables (1): M6 
+
+ hr.elapsed min.elapsed sec.elapsed 
+       0.00        0.00        0.74 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>ms_f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>method      : lda 
+final model : Species ~ M6
+&lt;environment: 0x000001c2000dd538&gt;
+
+correctness rate = 0.8571 </code></pre>
+</div>
+</div>
+<p>After model selection, we end up with a model using only M6 to predict species, with a correctness rate of 85.7%. This model has the same correctness as the full model, using only one measurement. In other words, this model is more <strong>efficient</strong> - it gets to the same accuracy using less information.</p>
+<p>This model was generated using forward model selection, meaning the selection process works exclusively by adding variables to the model. We can also do the opposite:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stepclass package</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(klaR)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model selection (forward)</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>ms_b <span class="ot">=</span> <span class="fu">stepclass</span>(Species <span class="sc">~</span> M1<span class="sc">+</span>M2<span class="sc">+</span>M3<span class="sc">+</span>M4<span class="sc">+</span>M5<span class="sc">+</span>M6,<span class="at">data=</span>snake,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">method=</span><span class="st">"lda"</span>, <span class="at">fold=</span><span class="dv">35</span>, <span class="at">direction=</span><span class="st">"backward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> `stepwise classification', using 35-fold cross-validated correctness rate of method lda'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>35 observations of 6 variables in 2 classes; direction: backward</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>stop criterion: improvement less than 5%.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>correctness rate: 0.8;  starting variables (6): M1, M2, M3, M4, M5, M6 
+correctness rate: 0.85714;  out: "M5";  variables (5): M1, M2, M3, M4, M6 
+
+ hr.elapsed min.elapsed sec.elapsed 
+       0.00        0.00        0.87 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ms_b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>method      : lda 
+final model : Species ~ M1 + M2 + M3 + M4 + M6
+&lt;environment: 0x000001c200657210&gt;
+
+correctness rate = 0.8571 </code></pre>
+</div>
+</div>
+<p>Backwards model selection works by removing variables from the full model. This means backwards selection should always return a model with a equal or more variables than forwards selection.</p>
+<p>Lastly, we can run both:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stepclass package</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(klaR)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model selection (forward)</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>ms_d <span class="ot">=</span> <span class="fu">stepclass</span>(Species <span class="sc">~</span> M1<span class="sc">+</span>M2<span class="sc">+</span>M3<span class="sc">+</span>M4<span class="sc">+</span>M5<span class="sc">+</span>M6,<span class="at">data=</span>snake,</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">method=</span><span class="st">"lda"</span>, <span class="at">fold=</span><span class="dv">35</span>, <span class="at">direction=</span><span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> `stepwise classification', using 35-fold cross-validated correctness rate of method lda'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>35 observations of 6 variables in 2 classes; direction: both</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>stop criterion: improvement less than 5%.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>correctness rate: 0.85714;  in: "M6";  variables (1): M6 
+
+ hr.elapsed min.elapsed sec.elapsed 
+       0.00        0.00        0.73 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>ms_d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>method      : lda 
+final model : Species ~ M6
+&lt;environment: 0x000001c200eb4858&gt;
+
+correctness rate = 0.8571 </code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-probabilities" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="plotting-probabilities"><span class="header-section-number">2.5</span> Plotting Probabilities</h2>
+<p>Lets finish off by making some plots to visualize our LDA model results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick a model to plot</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ldaf3 <span class="ot">=</span> <span class="fu">lda</span>(Species <span class="sc">~</span> M6, <span class="at">data =</span> snake)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot density curve</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ldaf3, <span class="at">dimen =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">'dens'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This plots the posterior probabilites of an individual belonging to either species given its LD1 value. Remember from earlier that species A is associated with lower LD1 values.</p>
+<p>We can also make this plot as a histogram:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot density curve</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span> (<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ldaf3, <span class="at">dimen =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">'hist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Or combine both plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot density curve</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span> (<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ldaf3, <span class="at">dimen =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">'both'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As always, we can also do this with ggplot too:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict species</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>ldaf3_pred <span class="ot">=</span> <span class="fu">predict</span>(ldaf3)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>pred_species <span class="ot">=</span> <span class="fu">as.data.frame</span>(ldaf3_pred<span class="sc">$</span>x) <span class="co"># Gather LD1 values</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>pred_species<span class="sc">$</span>Species <span class="ot">=</span> snake<span class="sc">$</span>Species <span class="co"># Gather true species from data</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred_species, <span class="fu">aes</span>(<span class="at">x =</span> LD1, <span class="at">fill =</span> Species))<span class="sc">+</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)<span class="co"># alpha tells you how transparent the plots will be</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1b_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="tips-for-your-assignment" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">2.6</span> Tips for your assignment</h2>
+<p>Some things you may want to think about for your assignment:</p>
+<p>1. How would you pick which model you think is best? What factors would you consider? Are there any factors you would consider other than those discussed in this tutorial?</p>
+<p>2. LDA also assumes the data are independent. Do we know this assumption is respected? Why or why not? What would constitute it not being respected?</p>
+<p>3. How would you interpret your statistical results biologically (can be in terms of the snakes, how you would study them, or both)? You don’t have to be right, but don’t be vague, and don’t contradict your results.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./a1a.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./a1c.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
