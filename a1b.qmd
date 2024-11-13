@@ -217,6 +217,7 @@ We can also make this plot as a histogram:
 
 ```{r}
 # Plot density curve
+par(mar = c (4,4,4,4))
 plot(ldaf3, dimen = 1, type = 'hist')
 ```
 
@@ -224,6 +225,7 @@ Or combine both plots:
 
 ```{r}
 # Plot density curve
+par(mar = c (4,4,4,4))
 plot(ldaf3, dimen = 1, type = 'both')
 ```
 

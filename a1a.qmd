@@ -24,7 +24,7 @@ Our data is a 25 row, 6 column data frame, describing catch of 5 different fishe
 boxplot(data[,-1]) # Exclude haul
 
 # look at data distribution
-par(mfrow = c(3,2)) # 1 column 5 row grid plot
+# par(mfrow = c(3,2)) # 1 column 5 row grid plot
 hist(data$mackerel, breaks = 10)
 hist(data$bluefin, breaks = 10)
 hist(data$sardine, breaks = 10)
@@ -68,7 +68,7 @@ Now that we've transformed the data, let's check for normality again:
 
 ```{r}
 # Generate histograms
-par(mfrow = c(3,2)) # 1 column 5 row grid plot
+# par(mfrow = c(3,2)) # 1 column 5 row grid plot
 hist(data_log$mackerel, breaks = 10)
 hist(data_log$bluefin, breaks = 10)
 hist(data_log$sardine, breaks = 10)
