@@ -6,9 +6,10 @@ book:
   title: "**BIOL4062/5062 Analysis of Biological Data: Assignment Guide**"
   author: "Reid Steele"
   date: "2024-11-04"
-  site-url: "https://future-of-marine-ecosystems.github.io/BIOL4062-5062-Assignment-Guide/"
-  repo-url: "https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide"
+  search: true
+  repo-url: "https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/"
   repo-actions: [edit]
+  downloads: [pdf]
   chapters:
     - index.qmd
     - part: "**Assignment 1**"
