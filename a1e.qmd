@@ -1,3 +1,157 @@
 # **Assignment 1e:** Bayesian Data Analysis
 
+Assignment 1e is an introduction Bayesian data analysis, using Bayesian general linear models.
 
+For this tutorial, we'll be using `cuse.csv` .
+
+## Looking at the Data
+
+```{r}
+# Load in data
+data = read.csv('cuse.csv')
+
+# Look at the data structure
+head(data)
+dim(data)
+```
+
+Our data contains 16 observations of 5 variables - a binomial matrix of how many women are using or not using birth control within 16 groups, and three categorical predictors - age, expressed as a bin, education, and whether they want more children. The first column is a duplicate of our row names. We can get rid of that:
+
+```{r}
+# Remove column 1
+data = data[,-1]
+head(data)
+```
+
+## Binomial GLM
+
+Binomial general linear models are used to calculate the probability of a binomial response - in this case, whether someone is using or not using birth control. Binomial GLM response can be fed in either as a true/false set, or as a matrix of successes and failures. According to `?family`, we need to feed in the data with successes first and failures second. Let's create the matrix:
+
+```{r}
+# create response matrix
+resp = cbind(data$using, data$notUsing)
+head(resp)
+```
+
+In this case, all of our variables are categorical, and they are currently stored as characters:
+
+```{r}
+# Check predictor classes
+class(data$age)
+class(data$education)
+class(data$wantsMore)
+```
+
+These should function fine as categorical variables. Let's make our GLM:
+
+```{r}
+# Run GLM
+m1 = glm(resp ~ age + education + wantsMore, family = 'binomial', data = data)
+summary(m1) # Summary
+```
+
+In our summary we see we have 5 predictors: The age bin, low education, and wanting more kids. High education and not wanting more kids are missing because these variables are binary, so we only need one variable to differentiate them. We can also see the values of our model coefficients, their standard errors, and the model AIC.
+
+## Making it Bayesian
+
+The default GLM function is frequentist (that's why we have p-values). Now lets try a Bayesian approach:
+
+```{r}
+# Stan
+library(rstanarm)
+library(bayesplot)
+library(shinystan)
+library(ggplot2)
+
+# Run glm
+m2 = stan_glm(resp ~ age + education + wantsMore, family = 'binomial', data = data)
+summary(m2) # Summary
+```
+
+The `stan_glm` function automatically feeds our model into Stan, which is a Hamiltonian Markov Chain Monte Carlo (MCMC) sampler. Running `summary` on our model gives us some model diagnostics - all our Rhat values are 1 and all our n_eff values are well into the thousands, both of which are a good sign. We can also do some visual checks and tests:
+
+```{r}
+# Trace plot
+plot(m2, 'trace')
+```
+
+These are trace plots, which show us the parameter values selected for each iteration of the MCMC chain. We want these to look "fuzzy" - that indicates the sampler is exploring the full range of possible values. If these lines were to be flat, that would indicate the sampler got "stuck" and didn't sample the full posterior distributions. These look good.
+
+Lets look at our posteriors:
+
+```{r}
+# Plot parameter values with uncertainties
+plot(m2, prob_outer = 0.95)
+
+# Plot posterior distributions
+plot(m2, 'mcmc_hist')
+```
+
+These plots both give us an idea of our parameter values and their posterior distributions. The former plot shows the median parameter estimates (circle), their 50% quantiles (dark blue box), and their 95% quantiles (thin blue line). The latter shows histograms of the posterior distributions of each of our parameters.
+
+We can also pull out our coefficients and posteriors directly
+
+```{r}
+# Model coefficients
+m2$coefficients
+
+# Model posteriors
+posterior <- as.matrix(m2)
+
+# Plot model posteriors (95% quantile)
+plot_title <- ggtitle("Posterior distributions with medians and 95% credible intervals")
+
+mcmc_areas(posterior, pars = names(m2$coefficients),
+           prob = 0.95) + plot_title
+```
+
+How would you interpret these plots?
+
+## Adding Priors
+
+Lets try adding some priors:
+
+```{r}
+# Run glm with priors
+m3 = stan_glm(resp ~ age + education + wantsMore, family = 'binomial', data = data,
+              prior = normal(location = c(0.2, 1.5, 2, -1, -0.25), # Normal priors, means
+                             scale = c(0.03, 0.03, 0.03, 0.03, 0.03))) # And standard deviations
+summary(m3) # Summary
+```
+
+Lets look at our plots again:
+
+```{r}
+# Trace plot
+plot(m3, 'trace')
+
+# Plot parameter values with uncertainties
+plot(m3, prob_outer = 0.95)
+
+# Plot posterior distributions
+plot(m3, 'mcmc_hist')
+
+# Model coefficients
+m3$coefficients
+
+# Model posteriors
+posterior <- as.matrix(m3)
+
+# Plot model posteriors (95% quantile)
+plot_title <- ggtitle("Posterior distributions with medians and 95% credible intervals")
+
+mcmc_areas(posterior, pars = names(m3$coefficients),
+           prob = 0.95) + plot_title
+```
+
+You can also look at all of your Stan model results using `shinystan` by running `launch_shinystan(model)`. Try it out on your end (it doesn't work in markdown)
+
+## Tips for your Assignment:
+
+Some things you may want to think about for your assignment:
+
+1.  How do the results of these three models differ? Why or why not?
+
+2.  Do you believe certain models are more or less correct? Why or why not?
+
+3.  How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.

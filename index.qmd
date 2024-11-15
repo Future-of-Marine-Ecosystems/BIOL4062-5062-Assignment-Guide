@@ -2,6 +2,32 @@
 
 Welcome to the assignment guide for BIOL4062/5062: Analysis of Biological Data.
 
-This book is designed to walk you through the assignments for this class. It is a resource to help you figure out how to code for your assignments, and bring attention to key questions to ask yourself as you interpret your results, both statistically and biologically. Keep in mind that there are always different ways to get to the right answer with coding. This book is not a monolith, and you do not need to follow it if you don't want to (more in Assignment Guidelines), but make sure what you are doing is clear and sufficiently analogous to this guide, else you lose marks for being unclear, or running the wrong analyses.
+This website is designed to walk you through the assignments for this class. It is a resource to help you figure out how to code for your assignments, and bring attention to key questions to ask yourself as you interpret your results, both statistically and biologically. Keep in mind that there are always different ways to get to the right answer with coding. The content here is not a monolith. You don't need to follow it if you don't want to (more in Assignment Guidelines), but make sure what you are doing is clear and sufficiently analogous to this guide, else you lose marks for being unclear, or running the wrong analyses.
+
+## Getting Help
+
+Don't suffer in silence! If you need help on the assignments, there are multiple options available to you:
+
+-   Assignment Drop-In Sessions:
+
+    -   TA-run in-person help sessions the week before each assignment is due.
+
+    -   Optional, but recommended
+
+        -   Even if you don't have questions, you may benefit from hearing the questions of others
+
+-   BrightSpace Discussion Board:
+
+    -   Feel free to ask questions on the BrightSpace discussion board, or peruse questions already asked
+
+        -   You may find your answer without even asking!
+
+    -   Make sure to start your question with the assignment number
+
+-   Email
+
+    -   Feel free to ask questions, or set up an appointment
+
+    -   Direct Assignment 1 questions to the TA, and Assignment 2 and/or class administration (e.g. extension requests) to the instructors
 
 Without further ado, let's get into it!

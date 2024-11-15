@@ -44,13 +44,13 @@ Are these issues? How do we fix them?
 
 ## Transformations
 
-Look back at the PCA lecture. What are potential problems with PCA? 
+Look back at the PCA lecture. What are potential problems with PCA?
 
-1\. Covariance Matrix PCA requires data to be in the same units 
+1\. Covariance Matrix PCA requires data to be in the same units
 
-2\. Normality is desirable, but not essential 
+2\. Normality is desirable, but not essential
 
-3\. Precision is desireable, but not essential 
+3\. Precision is desireable, but not essential
 
 4\. Many zeroes in the data
 
@@ -322,7 +322,7 @@ How would you interpret this plot? Does it differ from the covariance plot?
 
 There are a few other ways you can generate, and/or plot your PCAs if you prefer.
 
-Biplot:
+#### Biplot
 
 ```{r}
 # Exploring biplot
@@ -330,7 +330,7 @@ biplot(pca_1) # Covariance
 biplot(pca_2) # Correlation
 ```
 
-ggplot:
+#### ggplot
 
 ```{r}
 library(ggplot2)

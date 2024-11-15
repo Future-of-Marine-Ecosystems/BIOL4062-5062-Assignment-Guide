@@ -1,6 +1,6 @@
 # **Assignment Guidelines** {.unnumbered}
 
-This section will run through some general advice on how to put together your assignments, and how to make my life easier marking them:
+This section will run through some general advice on how to put together your assignments, and how to make your TA's life easier marking them:
 
 ## General Advice
 
@@ -20,15 +20,15 @@ This section will run through some general advice on how to put together your as
 
 **4. Make sure your figures are readable**
 
--   I can't tell if your interpretation of your figures is correct if I can't interpret your figures.
+-   We can't tell if your interpretation of your figures is correct if I can't interpret your figures.
 
--   Alltext on figures should be readable.
+-   All text on figures should be readable.
 
 -   If you use color, make sure that the colors you use are clearly distinguishable.
 
 **5. You're not alone!**
 
--   If you have questions, come to the drop-in sessions, read the discussion boards, or email me to ask questions or set up a meeting if those don't work for you.
+-   If you have questions, come to the drop-in sessions, read the discussion boards, or email the TA to ask questions or set up a meeting if those don't work for you.
 
 -   Do the first two even if you don't have questions: You may find the answer to questions you didn't know you had.
 
@@ -46,20 +46,22 @@ Here are some guidelines on how to submit your assignment to make my life easier
 
 a)  Your assignment text
 
--   All assignment 1s have a 2 page limit. Put all your text first, with figures and tables together separately at the end. It is easier for me to tell how many pages you wrote this way. You're not going to lose marks if you're slightly over (this is not a writing class), if you're going to lose marks for writing too many pages I'm going to be able to tell anyways.
--   Should be a doc or PDF file so I can open it in BrightSpace. Doesn't matter if it's produced through word, markdown, etc, as long as it's in one of those two formats.
+-   All assignment 1s have a 2 page limit. Put all your text first, with figures and tables together separately at the end. It is easier for me to tell how many pages you wrote this way. You're not going to lose marks if you're slightly over (this is not a writing class), if you're going to lose marks for writing too many pages we're going to be able to tell anyways.
+-   Should be a doc or PDF file so it can be opened in BrightSpace. Doesn't matter if it's produced through word, markdown, etc, as long as it's in one of those two formats.
 
 b\) Your script, submitted as a .txt file
 
--   Submitting as a .txt file allows me to open the script in BrightSpace rather than having to download it if it's a .R file. It is much more difficult for me to run your script should I need to if you paste it in your assignment document.
+-   Submitting as a .txt file allows us to open the script in BrightSpace rather than having to download it if it's a .R file. It is much more difficult to run your script should we need to if you paste it in your assignment document.
 
 c\) The data you read into your script
 
--   This is just to make it easy for me to run your script if I think there is a mistake.
+-   This is just to make it easy to run your script if there is a mistake.
+
+***Note: If you do your assignments in markdown, you can combine a) and b)***
 
 **2. Don't put your name on your assignments, in your scripts, or in any of your file names**
 
--   The BrightSpace system is anonymous so I mark your assignments blind. That doesn't work if you write your name.
+-   The BrightSpace system is anonymous so your assignments are marked blind. That doesn't work if you write your name.
 
 -   Delete your file paths in your script for submission if they have your name in them.
 
@@ -67,6 +69,6 @@ c\) The data you read into your script
 
 **3. Follow the assignment guide**
 
--   You don't have to follow this guide to get full marks on the assignments (as always, there are many correct answers when it comes to coding). That said, it's easier for me to follow what you're doing if you're doing the same thing as everyone else.
+-   You don't have to follow this guide to get full marks on the assignments (as always, there are many correct answers when it comes to coding). That said, it's easier to follow what you're doing if you're doing the same thing as everyone else.
 
--   It's OK to do your own thing, but if you make a mistake, its going to be much harder for me to help you out, and it's going to take significantly more effort on my end to mark.
+-   It's OK to do your own thing, but if you make a mistake, its going to be much harder to help you out, and it's going to take significantly more effort to mark.

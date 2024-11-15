@@ -3,15 +3,18 @@ project:
   output-dir: docs
 
 book:
-  title: "**BIOL4062/5062 Analysis of Biological Data: Assignment Guide**"
-  author: "Reid Steele"
+  title: "**Assignment 1 Guide**"
+  subtitle: "BIOL4062/5062: Analysis of Biological Data"
+  author: "Reid Steele (Based on work by Ana Eguiguren)"
   date: "2024-11-04"
+  cover-image: FOME_Primary_BlueGradient.png
   search: true
   repo-url: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
   repo-actions: [edit]
   downloads: [pdf]
   chapters:
     - index.qmd
+    - guidelines.qmd
     - part: "**Assignment 1**"
       chapters:
         - a1a.qmd
@@ -19,11 +22,10 @@ book:
         - a1c.qmd
         - a1d.qmd
         - a1e.qmd
-    - guidelines.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: darkly
   pdf:
     documentclass: scrreprt
 

@@ -1,3 +1,282 @@
 # **Assignment 1d:** Multiple Linear Regression
 
+This assignment is all about linear regression. Linear regression is used to model linear relationships between a dependent (response) variable and one or more independent (predictor) variables. Multiple linear regression involves multiple independent variables.
 
+For this tutorial we're going to use `Schoenemann.csv`.
+
+## Looking at the data
+
+```{r}
+# Read in data
+data = read.csv('Schoenemann.csv')
+
+# View data structure
+head(data)
+dim(data)
+```
+
+The Schoenemann dataset contains 39 observations of 12 variables, describing to the morphometry of different species of mammals, along with metadata describing them. Let's start by getting rid of the metadata. We won't need it for this assignment.
+
+```{r}
+# Remove metadata
+data = data[,which(colnames(data) == 'Mass'):ncol(data)] # I do it this way to avoid hard coding
+
+# check if it worked
+head(data)
+```
+
+Now we only have numeric data left. Let's take a look at the data graphically.
+
+```{r}
+# Looking at the data
+boxplot(data)
+
+# Loop through columns to create histograms
+for(i in 1:ncol(data)){hist(data[,i], main = colnames(data)[i])} # Name histogram according to column name
+```
+
+## Considering Transformations
+
+We can see that all these data are exponentially distributed - there is much more data at small values, and the data at higher values is spread out. If we run our regressions on this data, our assumptions are going to be violated:
+
+```{r}
+# Run a test model and check assumptions
+test = lm(CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE, data = data)
+
+# Check for normality as an example
+
+# Residual histogram
+hist(residuals(test), 20)
+
+# QQplot
+qqnorm(residuals(test))
+
+# Statistical test for normality
+shapiro.test(residuals(test))
+```
+
+Those diagnostics look... less than ideal.
+
+This is a textbook case of when to apply a log transformation - remember logging is the opposite of exponentiating:
+
+```{r}
+# Apply log transformation
+data_l = log(data)
+
+# Check out the new data
+head(data_l)
+
+# Looking at the data
+boxplot(data_l)
+
+# Loop through columns to create histograms
+for(i in 1:ncol(data_l)){hist(data_l[,i], main = colnames(data_l)[i])} # Name histogram according to column name
+```
+
+Now our data looks much more uniform.
+
+**Always remember that transforming your data incorrectly or unnecessarily can do more harm than good.** How do you decide if it is helpful to transform your data? What is the purpose of transforming your data? Think carefully about these questions for your assignment when you're deciding whether to transform the data for your assignment.
+
+## Simple Linear Regression
+
+Now that our data is good to go, we're going to run some simple linear regressions to predict central nervous system mass (CNS). Simple linear regressions only have one predictor variable. Linear regression is run using the `lm()` command:
+
+```{r}
+# Run simple linear regressions - Mass
+m1 = lm(CNS ~ Mass, data = data_l) # run model
+summary(m1) # model summary
+
+# Run simple linear regressions - Fat
+m2 = lm(CNS ~ Fat, data = data_l) # run model
+summary(m2) # model summary
+
+# Run simple linear regressions - FFWT
+m3 = lm(CNS ~ FFWT, data = data_l) # run model
+summary(m3) # model summary
+
+# Run simple linear regressions - HEART
+m4 = lm(CNS ~ HEART, data = data_l) # run model
+summary(m4) # model summary
+
+# Run simple linear regressions - MUSCLE
+m5 = lm(CNS ~ MUSCLE, data = data_l) # run model
+summary(m5) # model summary
+
+# Run simple linear regressions - BONE
+m6 = lm(CNS ~ BONE, data = data_l) # run model
+summary(m6) # model summary
+
+```
+
+In this case, it looks like all of our variables are strong, significant predictors with high R^2^ values.
+
+Let's plot all of these regressions:
+
+```{r}
+# Plot regressions
+
+# Plot simple linear regressions - Mass
+plot(CNS ~ Mass, data = data_l, pch = 16) # plot points
+abline(m1, lwd = 2, col = 'red') # Plot model
+
+# Plot simple linear regressions - Fat
+plot(CNS ~ Fat, data = data_l, pch = 16) # plot points
+abline(m2, lwd = 2, col = 'red') # Plot model
+
+# Plot simple linear regressions - FFWT
+plot(CNS ~ FFWT, data = data_l, pch = 16) # plot points
+abline(m3, lwd = 2, col = 'red') # Plot model
+
+# Plot simple linear regressions - HEART
+plot(CNS ~ HEART, data = data_l, pch = 16) # plot points
+abline(m4, lwd = 2, col = 'red') # Plot model
+
+# Plot simple linear regressions - MUSCLE
+plot(CNS ~ MUSCLE, data = data_l, pch = 16) # plot points
+abline(m5, lwd = 2, col = 'red') # Plot model
+
+# Plot simple linear regressions - BONE
+plot(CNS ~ BONE, data = data_l, pch = 16) # plot points
+abline(m6, lwd = 2, col = 'red') # Plot model
+
+```
+
+All of the regression slopes are positive. This makes sense - larger animals tend to have larger brains.
+
+## Multiple Linear Regression
+
+We've made 6 models using 1 variable. Now, let's try making 1 model with 6 variables:
+
+```{r}
+# Run full model
+m7 = lm(CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE, data = data_l)
+summary(m7)
+```
+
+Our full model has a very(!) high R^2^ value, and contrary to the simple linear regressions where every predictor was significant, none of our predictors are considered significant in the final model at $\alpha$ = 0.05. Why do you think that is?
+
+## Checking Assumptions
+
+Now that we've run our full model, it's time to check its assumptions. Those assumptions are **Independence, Linearity, Homoscedasticity, and Normality.** By now, you should be familiar with what these all mean, but let's run through them anyways:
+
+### Independence
+
+The assumption of independence states that the value of each data point ('datum', if you will) is independent of all other data points. Some of the ways in which it could be violated may not be testable (e.g. if they have to do with how the data was collected), but what we *can* test for is **autocorrelation**. Autocorrelation translates to self correlation (auto = self). We can test for autocorrelation statistically using a Durbin-Watson test, and visually using an autocorrelation function on the residuals:
+
+```{r}
+library(lmtest)
+
+# Durbin-watson test
+dwtest(m7)
+
+# Autocorrelation function
+acf(residuals(m7))
+```
+
+The Durbin-Watson test returns an insignificant p-value, indicating no autocorrelation structure is present. The ACF plots the correlation coefficient of the data against itself using lags. Lag 0 correlates the data against itself, which is always 1. Lag 1 correlates each data point against the point after it, and so on. All of the correlation coefficients are between the blue lines, so again, we have no autocorrelation structure, and we can say independence is respected.
+
+### Linearity
+
+The assumption of linearity states that the response variable consistently scales linearly with its predictors. We can test for linearity statistically using Ramsey's RESET test on our model:
+
+```{r}
+# Run RESET test
+resettest(m7)
+```
+
+In this case, the p-value is not significant, meaning the assumption of linearity is respected.
+
+### Homoscedasticity
+
+The assumption of homoscedasticity is that the variance in the data is independent of the value of the data - i.e. the variance in the data is consistent. We can test this statistically using the Breusch-Pagan test, and visually by plotting the model residuals against the fitted values.
+
+```{r}
+# Run Breusch-Pagan test
+bptest(m7)
+
+# Plot residuals vs fitted
+plot(m7$residuals ~ m7$fitted.values, pch = 16); abline(h = 0)
+
+# Can also be done using plot.lm, ?plot.lm for details
+plot(m7, 1)
+```
+
+The Breusch-Pagan returns a significant p-value, indicating the assumption of homoscedasticity is violated. We can see in the residuals versus fitted plot that the variance in the data is smaller at low values than it is at higher values (the points on the left of the plot are clustered more closely than they are on the right). Let's come back to this later.
+
+### Normality
+
+The assumption of normality states that the residuals of our model should be normally distributed. If they aren't, that would indicate that our model is biased towards overprediction or underprediction in some way. As we did earlier in the transformation section, we can check for normality visually by looking at histograms and QQ plots of our residuals, and statistically by running a Shapiro-Wilk test on the residuals.
+
+```{r}
+# Residual histogram
+hist(residuals(m7))
+
+# QQplot
+qqnorm(residuals(m7))
+
+# Can also use plot.lm for qqplot
+plot(m7, 2)
+
+# Statistical test for normality
+shapiro.test(residuals(m7))
+```
+
+The Shapiro-Wilk test p-value is not significant (though it treads close), meaning the assumption of normality is respected. The residual histogram largely looks normal, and the QQ plot tails start to pull off the line at high and low values, possibly indicating outliers are causing us some trouble, but not enough to violate the assumption.
+
+### What if my assumptions aren't respected?
+
+The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We've already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using `plot.lm()` identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want.
+
+Keep in mind that data transformations and removing outliers both represent trade-offs. Removing outliers may help meet your model assumptions, but you may also be removing data that reflects reality from your model. In that case, is it really helping you to remove outliers? Similarly, transforming your data may help you meet your assumptions, but in a case like this, transforming our data further or in a different way could end up violating other assumptions. Sometimes the best way to deal with violated assumptions is simply to state that they are violated and think about what that means for the interpretation of your model. Play around with all these different ideas, and come up with what you think is best. At the end of the day, a lot of statistical choices are judgement calls, with no perfect right answer.
+
+## Model Selection
+
+In assignment 1b, we created 1 model with 6 variables, then tested if we could get a similarly effective mode using fewer variables - i.e. a more **efficient** model. Let's do the same thing here:
+
+```{r}
+# Stepwise model selection - forward
+m8 = step(m7, direction = 'forward')
+summary(m8)
+```
+
+Running forward model selection cuts the model down to 3 variables. As with 1b, we can also do backward:
+
+```{r}
+# Stepwise model selection - backwards
+m9 = step(m7, direction = 'backward')
+summary(m9)
+```
+
+And both:
+
+```{r}
+# Stepwise model selection - both
+m10 = step(m7, direction = 'both')
+summary(m10)
+```
+
+If you want to get fancy, we can even look at every possible model
+
+```{r}
+library(MuMIn)
+
+# Set global options to avoid error
+options('na.action' = na.fail)
+
+# Run dredge to get full selection table
+dredge(m7, rank = 'AIC')
+```
+
+Here, we're ranking models by AIC. AIC balances fit with model complexity. Lower values of AIC are considered better. Generally, 2 is used as a rule of thumb for AIC - if delta AIC is \>2, the lower AIC model is considered better. If delat AIC is \<2, the support for the best model is weak, and the models could even be considered "tied".
+
+# 
+
+## Tips for your Assignment:
+
+Some things you may want to think about for your assignment:
+
+1.  What role is collinearity playing in your assignment? Is it something you should be concerned about? Why or why not?
+
+2.  What does it mean if your assumptions are violated? How would you fix it? Is it worth fixing it? Why or why not?
+
+3.  How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.
