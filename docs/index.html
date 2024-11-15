@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Reid Steele">
+<meta name="author" content="Reid Steele (Based on work by Ana Eguiguren)">
 <meta name="dcterms.date" content="2024-11-04">
 
-<title>BIOL4062/5062 Analysis of Biological Data: Assignment Guide</title>
+<title>Assignment 1 Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,16 +32,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./a1a.html" rel="next">
+<link href="./guidelines.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -90,10 +90,10 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./"><strong>BIOL4062/5062 Analysis of Biological Data: Assignment Guide</strong></a> 
+      <a href="./"><strong>Assignment 1 Guide</strong></a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./--BIOL4062-5062-Analysis-of-Biological-Data--Assignment-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -108,6 +108,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><strong>Introduction</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./guidelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Assignment Guidelines</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -151,12 +157,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./guidelines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Assignment Guidelines</strong></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -167,7 +167,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a>
+  <ul class="collapse">
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -176,7 +179,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>BIOL4062/5062 Analysis of Biological Data: Assignment Guide</strong></h1>
+<h1 class="title"><strong>Assignment 1 Guide</strong></h1>
+<p class="subtitle lead">BIOL4062/5062: Analysis of Biological Data</p>
 </div>
 
 
@@ -186,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Reid Steele </p>
+             <p>Reid Steele (Based on work by Ana Eguiguren) </p>
           </div>
   </div>
     
@@ -203,13 +207,41 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+
 <section id="introduction" class="level1 unnumbered">
-<h1 class="unnumbered"><strong>Introduction</strong></h1>
+<h1 class="unnumbered"><strong>Introduction</strong></h1><p><img src="FOME_Primary_BlueGradient.png" title="**Assignment 1 Guide**" class="quarto-cover-image img-fluid"></p>
 <p>Welcome to the assignment guide for BIOL4062/5062: Analysis of Biological Data.</p>
-<p>This book is designed to walk you through the assignments for this class. It is a resource to help you figure out how to code for your assignments, and bring attention to key questions to ask yourself as you interpret your results, both statistically and biologically. Keep in mind that there are always different ways to get to the right answer with coding. This book is not a monolith, and you do not need to follow it if you don’t want to (more in Assignment Guidelines), but make sure what you are doing is clear and sufficiently analogous to this guide, else you lose marks for being unclear, or running the wrong analyses.</p>
+<p>This website is designed to walk you through the assignments for this class. It is a resource to help you figure out how to code for your assignments, and bring attention to key questions to ask yourself as you interpret your results, both statistically and biologically. Keep in mind that there are always different ways to get to the right answer with coding. The content here is not a monolith. You don’t need to follow it if you don’t want to (more in Assignment Guidelines), but make sure what you are doing is clear and sufficiently analogous to this guide, else you lose marks for being unclear, or running the wrong analyses.</p>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
+<p>Don’t suffer in silence! If you need help on the assignments, there are multiple options available to you:</p>
+<ul>
+<li><p>Assignment Drop-In Sessions:</p>
+<ul>
+<li><p>TA-run in-person help sessions the week before each assignment is due.</p></li>
+<li><p>Optional, but recommended</p>
+<ul>
+<li>Even if you don’t have questions, you may benefit from hearing the questions of others</li>
+</ul></li>
+</ul></li>
+<li><p>BrightSpace Discussion Board:</p>
+<ul>
+<li><p>Feel free to ask questions on the BrightSpace discussion board, or peruse questions already asked</p>
+<ul>
+<li>You may find your answer without even asking!</li>
+</ul></li>
+<li><p>Make sure to start your question with the assignment number</p></li>
+</ul></li>
+<li><p>Email</p>
+<ul>
+<li><p>Feel free to ask questions, or set up an appointment</p></li>
+<li><p>Direct Assignment 1 questions to the TA, and Assignment 2 and/or class administration (e.g.&nbsp;extension requests) to the instructors</p></li>
+</ul></li>
+</ul>
 <p>Without further ado, let’s get into it!</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -450,8 +482,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./a1a.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./guidelines.html" class="pagination-link">
+        <span class="nav-page-text"><strong>Assignment Guidelines</strong></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

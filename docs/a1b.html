@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BIOL4062/5062 Analysis of Biological Data: Assignment Guide - 2&nbsp; Assignment 1b: Linear Discriminant Analysis</title>
+<title>Assignment 1 Guide - 2&nbsp; Assignment 1b: Linear Discriminant Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,10 +123,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./"><strong>BIOL4062/5062 Analysis of Biological Data: Assignment Guide</strong></a> 
+      <a href="./"><strong>Assignment 1 Guide</strong></a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./--BIOL4062-5062-Analysis-of-Biological-Data--Assignment-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -141,6 +141,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>Introduction</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./guidelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Assignment Guidelines</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,12 +190,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./guidelines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Assignment Guidelines</strong></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -542,14 +542,14 @@ M6 -0.17208517</code></pre>
 <pre><code>correctness rate: 0.85714;  in: "M6";  variables (1): M6 
 
  hr.elapsed min.elapsed sec.elapsed 
-       0.00        0.00        0.69 </code></pre>
+        0.0         0.0         0.7 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>ms_f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>method      : lda 
 final model : Species ~ M6
-&lt;environment: 0x00000169675df600&gt;
+&lt;environment: 0x000001ffb14df850&gt;
 
 correctness rate = 0.8571 </code></pre>
 </div>
@@ -577,14 +577,14 @@ correctness rate = 0.8571 </code></pre>
 correctness rate: 0.85714;  out: "M5";  variables (5): M1, M2, M3, M4, M6 
 
  hr.elapsed min.elapsed sec.elapsed 
-       0.00        0.00        1.04 </code></pre>
+       0.00        0.00        0.82 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ms_b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>method      : lda 
 final model : Species ~ M1 + M2 + M3 + M4 + M6
-&lt;environment: 0x0000016967b5c5a0&gt;
+&lt;environment: 0x000001ffb1a5b250&gt;
 
 correctness rate = 0.8571 </code></pre>
 </div>
@@ -611,14 +611,14 @@ correctness rate = 0.8571 </code></pre>
 <pre><code>correctness rate: 0.85714;  in: "M6";  variables (1): M6 
 
  hr.elapsed min.elapsed sec.elapsed 
-       0.00        0.00        0.72 </code></pre>
+       0.00        0.00        0.67 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>ms_d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>method      : lda 
 final model : Species ~ M6
-&lt;environment: 0x00000169683cfa48&gt;
+&lt;environment: 0x000001ffb22c26a0&gt;
 
 correctness rate = 0.8571 </code></pre>
 </div>
