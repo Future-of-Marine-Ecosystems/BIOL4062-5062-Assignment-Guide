@@ -12,8 +12,8 @@ book:
   navbar:
     logo: FOME_Primary_BlueGradient.png
         right:
-      - icon: github
-        href: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
+        - icon: github
+          href: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
         aria-label: GitHub
   repo-url: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
   repo-actions: [edit]
