@@ -71,10 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -131,9 +133,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"><strong>Assignment 1 Guide</strong></a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./--Assignment-1-Guide--.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -471,34 +474,34 @@ Number of objects: 13 </code></pre>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07592385 
-Run 1 stress 0.08055013 
-Run 2 stress 0.1871469 
-Run 3 stress 0.07227846 
+Run 1 stress 0.07239299 
 ... New best solution
-... Procrustes: rmse 0.2259278  max resid 0.6639222 
-Run 4 stress 0.07366297 
-Run 5 stress 0.08055014 
-Run 6 stress 0.072393 
-... Procrustes: rmse 0.0124627  max resid 0.03093207 
-Run 7 stress 0.0757299 
-Run 8 stress 0.07366297 
-Run 9 stress 0.1193093 
-Run 10 stress 0.07875788 
-Run 11 stress 0.07366297 
+... Procrustes: rmse 0.2256247  max resid 0.6643278 
+Run 2 stress 0.07358653 
+Run 3 stress 0.07358653 
+Run 4 stress 0.07239299 
+... New best solution
+... Procrustes: rmse 4.221552e-06  max resid 6.679751e-06 
+... Similar to previous best
+Run 5 stress 0.0757299 
+Run 6 stress 0.08569061 
+Run 7 stress 0.07875788 
+Run 8 stress 0.08055013 
+Run 9 stress 0.08055013 
+Run 10 stress 0.08055013 
+Run 11 stress 0.1193093 
 Run 12 stress 0.07358653 
-Run 13 stress 0.072393 
-... Procrustes: rmse 0.01245462  max resid 0.03090781 
-Run 14 stress 0.0757299 
-Run 15 stress 0.07366297 
-Run 16 stress 0.0856906 
-Run 17 stress 0.120356 
-Run 18 stress 0.07575138 
-Run 19 stress 0.07239303 
-... Procrustes: rmse 0.01250312  max resid 0.0310759 
+Run 13 stress 0.1183846 
+Run 14 stress 0.07239301 
+... Procrustes: rmse 5.309254e-05  max resid 0.0001167106 
+... Similar to previous best
+Run 15 stress 0.07875788 
+Run 16 stress 0.07358653 
+Run 17 stress 0.07875788 
+Run 18 stress 0.1846257 
+Run 19 stress 0.0757299 
 Run 20 stress 0.07875788 
-*** Best solution was not repeated -- monoMDS stopping criteria:
-    16: stress ratio &gt; sratmax
-     4: scale factor of the gradient &lt; sfgrmin</code></pre>
+*** Best solution repeated 2 times</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,10 +516,10 @@ Data:     dist
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.07227846 
+Stress:     0.07239299 
 Stress type 1, weak ties
-Best solution was not repeated after 20 tries
-The best solution was from try 3 (random start)
+Best solution was repeated 2 times in 20 tries
+The best solution was from try 4 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
@@ -542,11 +545,11 @@ Species: scores missing</code></pre>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  k       stress
-1 1 2.207810e-01
-2 2 7.239299e-02
-3 3 8.687759e-05
-4 4 9.701912e-05
-5 5 9.612971e-05</code></pre>
+1 1 2.210909e-01
+2 2 7.239307e-02
+3 3 8.127625e-05
+4 4 9.834161e-05
+5 5 8.305797e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
@@ -633,38 +636,35 @@ ind13 0.7501 0.8751</code></pre>
 <pre><code>Run 0 stress 0.07575137 
 Run 1 stress 0.07366297 
 ... New best solution
-... Procrustes: rmse 0.1934883  max resid 0.5648732 
-Run 2 stress 0.08566789 
-Run 3 stress 0.072393 
+... Procrustes: rmse 0.193488  max resid 0.5648752 
+Run 2 stress 0.07875788 
+Run 3 stress 0.0757299 
+Run 4 stress 0.07351183 
 ... New best solution
-... Procrustes: rmse 0.1707714  max resid 0.5155033 
-Run 4 stress 0.07305565 
-Run 5 stress 0.07875788 
-Run 6 stress 0.08055013 
-Run 7 stress 0.08055013 
-Run 8 stress 0.07227846 
+... Procrustes: rmse 0.1694561  max resid 0.5154592 
+Run 5 stress 0.07575137 
+Run 6 stress 0.072393 
 ... New best solution
-... Procrustes: rmse 0.012481  max resid 0.03084463 
-Run 9 stress 0.07239303 
-... Procrustes: rmse 0.01243422  max resid 0.03085177 
+... Procrustes: rmse 0.01791345  max resid 0.04235897 
+Run 7 stress 0.120356 
+Run 8 stress 0.07875788 
+Run 9 stress 0.07366297 
 Run 10 stress 0.07358653 
-Run 11 stress 0.07575137 
-Run 12 stress 0.0757299 
+Run 11 stress 0.07366297 
+Run 12 stress 0.07239303 
+... Procrustes: rmse 7.646135e-05  max resid 0.000169124 
+... Similar to previous best
 Run 13 stress 0.07875788 
-Run 14 stress 0.07875788 
-Run 15 stress 0.08569482 
-Run 16 stress 0.07239299 
-... Procrustes: rmse 0.01247125  max resid 0.03095752 
-Run 17 stress 0.07239303 
-... Procrustes: rmse 0.01243607  max resid 0.03085684 
+Run 14 stress 0.08055013 
+Run 15 stress 0.0757299 
+Run 16 stress 0.08571329 
+Run 17 stress 0.072393 
+... Procrustes: rmse 7.805803e-05  max resid 0.0001665372 
+... Similar to previous best
 Run 18 stress 0.07366297 
-Run 19 stress 0.072393 
-... Procrustes: rmse 0.01247805  max resid 0.03098211 
-Run 20 stress 0.072393 
-... Procrustes: rmse 0.01245941  max resid 0.03092522 
-*** Best solution was not repeated -- monoMDS stopping criteria:
-    13: stress ratio &gt; sratmax
-     7: scale factor of the gradient &lt; sfgrmin</code></pre>
+Run 19 stress 0.07366297 
+Run 20 stress 0.07366297 
+*** Best solution repeated 2 times</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -679,10 +679,10 @@ Data:     dist2
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.07227846 
+Stress:     0.072393 
 Stress type 1, weak ties
-Best solution was not repeated after 20 tries
-The best solution was from try 8 (random start)
+Best solution was repeated 2 times in 20 tries
+The best solution was from try 6 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
@@ -1148,6 +1148,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
