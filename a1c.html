@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -108,10 +108,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./FOME_Small.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title"><strong>Assignment 1 Guide</strong></span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -120,31 +138,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1c.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./"><strong>Assignment 1 Guide</strong></a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./--Assignment-1-Guide--.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -474,33 +474,33 @@ Number of objects: 13 </code></pre>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07592385 
-Run 1 stress 0.07239299 
+Run 1 stress 0.07875788 
+Run 2 stress 0.072393 
 ... New best solution
-... Procrustes: rmse 0.2256247  max resid 0.6643278 
-Run 2 stress 0.07358653 
-Run 3 stress 0.07358653 
-Run 4 stress 0.07239299 
+... Procrustes: rmse 0.2256252  max resid 0.6643287 
+Run 3 stress 0.1172799 
+Run 4 stress 0.07875788 
+Run 5 stress 0.07239299 
 ... New best solution
-... Procrustes: rmse 4.221552e-06  max resid 6.679751e-06 
+... Procrustes: rmse 1.402053e-05  max resid 3.049394e-05 
 ... Similar to previous best
-Run 5 stress 0.0757299 
-Run 6 stress 0.08569061 
-Run 7 stress 0.07875788 
-Run 8 stress 0.08055013 
-Run 9 stress 0.08055013 
-Run 10 stress 0.08055013 
-Run 11 stress 0.1193093 
-Run 12 stress 0.07358653 
-Run 13 stress 0.1183846 
-Run 14 stress 0.07239301 
-... Procrustes: rmse 5.309254e-05  max resid 0.0001167106 
+Run 6 stress 0.07366297 
+Run 7 stress 0.07575137 
+Run 8 stress 0.08569496 
+Run 9 stress 0.07239302 
+... Procrustes: rmse 9.291677e-05  max resid 0.0002025866 
 ... Similar to previous best
-Run 15 stress 0.07875788 
-Run 16 stress 0.07358653 
-Run 17 stress 0.07875788 
-Run 18 stress 0.1846257 
-Run 19 stress 0.0757299 
-Run 20 stress 0.07875788 
+Run 10 stress 0.07366297 
+Run 11 stress 0.1183846 
+Run 12 stress 0.07575137 
+Run 13 stress 0.07366297 
+Run 14 stress 0.07366297 
+Run 15 stress 0.08566789 
+Run 16 stress 0.0757299 
+Run 17 stress 0.1396043 
+Run 18 stress 0.08569059 
+Run 19 stress 0.07366297 
+Run 20 stress 0.07358653 
 *** Best solution repeated 2 times</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
@@ -519,7 +519,7 @@ Dimensions: 2
 Stress:     0.07239299 
 Stress type 1, weak ties
 Best solution was repeated 2 times in 20 tries
-The best solution was from try 4 (random start)
+The best solution was from try 5 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
@@ -545,11 +545,11 @@ Species: scores missing</code></pre>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  k       stress
-1 1 2.210909e-01
-2 2 7.239307e-02
-3 3 8.127625e-05
-4 4 9.834161e-05
-5 5 8.305797e-05</code></pre>
+1 1 2.269034e-01
+2 2 7.227846e-02
+3 3 9.042291e-05
+4 4 1.065488e-04
+5 5 9.220829e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
@@ -634,37 +634,45 @@ ind13 0.7501 0.8751</code></pre>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist2, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07575137 
-Run 1 stress 0.07366297 
+Run 1 stress 0.08571807 
+Run 2 stress 0.07366297 
 ... New best solution
-... Procrustes: rmse 0.193488  max resid 0.5648752 
-Run 2 stress 0.07875788 
-Run 3 stress 0.0757299 
-Run 4 stress 0.07351183 
+... Procrustes: rmse 0.1934882  max resid 0.5648759 
+Run 3 stress 0.07366297 
+... Procrustes: rmse 4.7225e-06  max resid 8.830348e-06 
+... Similar to previous best
+Run 4 stress 0.072393 
 ... New best solution
-... Procrustes: rmse 0.1694561  max resid 0.5154592 
-Run 5 stress 0.07575137 
-Run 6 stress 0.072393 
+... Procrustes: rmse 0.1707816  max resid 0.5155175 
+Run 5 stress 0.07239299 
 ... New best solution
-... Procrustes: rmse 0.01791345  max resid 0.04235897 
-Run 7 stress 0.120356 
+... Procrustes: rmse 3.800681e-05  max resid 8.1537e-05 
+... Similar to previous best
+Run 6 stress 0.1180402 
+Run 7 stress 0.07358653 
 Run 8 stress 0.07875788 
-Run 9 stress 0.07366297 
-Run 10 stress 0.07358653 
+Run 9 stress 0.072393 
+... Procrustes: rmse 4.033972e-05  max resid 8.891589e-05 
+... Similar to previous best
+Run 10 stress 0.08573941 
 Run 11 stress 0.07366297 
 Run 12 stress 0.07239303 
-... Procrustes: rmse 7.646135e-05  max resid 0.000169124 
+... Procrustes: rmse 0.0001082525  max resid 0.0002240652 
 ... Similar to previous best
-Run 13 stress 0.07875788 
-Run 14 stress 0.08055013 
-Run 15 stress 0.0757299 
-Run 16 stress 0.08571329 
-Run 17 stress 0.072393 
-... Procrustes: rmse 7.805803e-05  max resid 0.0001665372 
+Run 13 stress 0.07239301 
+... Procrustes: rmse 5.631227e-05  max resid 0.0001243573 
 ... Similar to previous best
-Run 18 stress 0.07366297 
-Run 19 stress 0.07366297 
-Run 20 stress 0.07366297 
-*** Best solution repeated 2 times</code></pre>
+Run 14 stress 0.08568216 
+Run 15 stress 0.07239299 
+... New best solution
+... Procrustes: rmse 4.647472e-06  max resid 7.436329e-06 
+... Similar to previous best
+Run 16 stress 0.07875788 
+Run 17 stress 0.08569487 
+Run 18 stress 0.1183846 
+Run 19 stress 0.1396043 
+Run 20 stress 0.07875788 
+*** Best solution repeated 1 times</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -679,10 +687,10 @@ Data:     dist2
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.072393 
+Stress:     0.07239299 
 Stress type 1, weak ties
-Best solution was repeated 2 times in 20 tries
-The best solution was from try 6 (random start)
+Best solution was repeated 1 time in 20 tries
+The best solution was from try 15 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
