@@ -9,6 +9,12 @@ book:
   date: "2024-11-19"
   cover-image: FOME_Primary_BlueGradient.png
   search: true
+  navbar:
+    logo: FOME_Primary_BlueGradient.png
+        right:
+      - icon: github
+        href: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
+        aria-label: GitHub
   repo-url: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
   repo-actions: [edit]
   downloads: [pdf]
