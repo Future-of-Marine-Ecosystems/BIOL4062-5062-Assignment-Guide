@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 1 Guide - 5&nbsp; Assignment 1e: Bayesian Data Analysis</title>
+<title>5&nbsp; Assignment 1e: Bayesian Data Analysis – **Assignment 1 Guide**</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -80,7 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1e.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">**Assignment 1e:** Bayesian Data Analysis</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1e.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -119,13 +126,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"><strong>Assignment 1 Guide</strong></a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./--Assignment-1-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -150,9 +157,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>Assignment 1</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -192,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -205,12 +212,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-priors" id="toc-adding-priors" class="nav-link" data-scroll-target="#adding-priors"><span class="header-section-number">5.4</span> Adding Priors</a></li>
   <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">5.5</span> Tips for your Assignment:</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1e.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1e.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1e.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></h1>
 </div>
@@ -225,7 +232,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>Assignment 1e is an introduction Bayesian data analysis, using Bayesian general linear models.</p>
 <p>For this tutorial, we’ll be using <code>cuse.csv</code> .</p>
@@ -389,8 +398,8 @@ This is shinystan version 2.6.0</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.000118 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.18 seconds.
+Chain 1: Gradient evaluation took 3.4e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.34 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -407,15 +416,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.153 seconds (Warm-up)
-Chain 1:                0.151 seconds (Sampling)
-Chain 1:                0.304 seconds (Total)
+Chain 1:  Elapsed Time: 0.063 seconds (Warm-up)
+Chain 1:                0.069 seconds (Sampling)
+Chain 1:                0.132 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1.7e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
+Chain 2: Gradient evaluation took 1.1e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -432,15 +441,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.147 seconds (Warm-up)
-Chain 2:                0.156 seconds (Sampling)
-Chain 2:                0.303 seconds (Total)
+Chain 2:  Elapsed Time: 0.064 seconds (Warm-up)
+Chain 2:                0.065 seconds (Sampling)
+Chain 2:                0.129 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 1.8e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
+Chain 3: Gradient evaluation took 1e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -457,15 +466,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.158 seconds (Warm-up)
-Chain 3:                0.145 seconds (Sampling)
-Chain 3:                0.303 seconds (Total)
+Chain 3:  Elapsed Time: 0.066 seconds (Warm-up)
+Chain 3:                0.074 seconds (Sampling)
+Chain 3:                0.14 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 2.1e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
+Chain 4: Gradient evaluation took 1.1e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -482,9 +491,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.151 seconds (Warm-up)
-Chain 4:                0.157 seconds (Sampling)
-Chain 4:                0.308 seconds (Total)
+Chain 4:  Elapsed Time: 0.062 seconds (Warm-up)
+Chain 4:                0.066 seconds (Sampling)
+Chain 4:                0.128 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2) <span class="co"># Summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -517,14 +526,14 @@ The mean_ppd is the sample average posterior predictive distribution of the outc
 
 MCMC diagnostics
               mcse Rhat n_eff
-(Intercept)   0.0  1.0  2127 
-age25-29      0.0  1.0  2358 
-age30-39      0.0  1.0  2176 
-age40-49      0.0  1.0  2086 
-educationlow  0.0  1.0  3176 
-wantsMoreyes  0.0  1.0  3310 
-mean_PPD      0.0  1.0  4075 
-log-posterior 0.0  1.0  1993 
+(Intercept)   0.0  1.0  1954 
+age25-29      0.0  1.0  2188 
+age30-39      0.0  1.0  1756 
+age40-49      0.0  1.0  1627 
+educationlow  0.0  1.0  2565 
+wantsMoreyes  0.0  1.0  2709 
+mean_PPD      0.0  1.0  3822 
+log-posterior 0.0  1.0  1729 
 
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 </div>
@@ -534,7 +543,11 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace plot</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="st">'trace'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>These are trace plots, which show us the parameter values selected for each iteration of the MCMC chain. We want these to look “fuzzy” - that indicates the sampler is exploring the full range of possible values. If these lines were to be flat, that would indicate the sampler got “stuck” and didn’t sample the full posterior distributions. These look good.</p>
@@ -543,7 +556,11 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot parameter values with uncertainties</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="at">prob_outer =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot posterior distributions</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="st">'mcmc_hist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -551,7 +568,11 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>These plots both give us an idea of our parameter values and their posterior distributions. The former plot shows the median parameter estimates (circle), their 50% quantiles (dark blue box), and their 95% quantiles (thin blue line). The latter shows histograms of the posterior distributions of each of our parameters.</p>
@@ -561,7 +582,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>m2<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)     age25-29     age30-39     age40-49 educationlow wantsMoreyes 
-  -0.8090834    0.3881481    0.9127747    1.1921744   -0.3264688   -0.8373483 </code></pre>
+  -0.8100123    0.3880875    0.9104639    1.1962392   -0.3244504   -0.8295794 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model posteriors</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m2)</span>
@@ -572,7 +593,11 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_areas</span>(posterior, <span class="at">pars =</span> <span class="fu">names</span>(m2<span class="sc">$</span>coefficients),</span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">prob =</span> <span class="fl">0.95</span>) <span class="sc">+</span> plot_title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>How would you interpret these plots?</p>
@@ -589,8 +614,8 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <pre><code>
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 4.1e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.41 seconds.
+Chain 1: Gradient evaluation took 2.2e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.22 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -607,15 +632,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.243 seconds (Warm-up)
-Chain 1:                0.113 seconds (Sampling)
-Chain 1:                0.356 seconds (Total)
+Chain 1:  Elapsed Time: 0.084 seconds (Warm-up)
+Chain 1:                0.046 seconds (Sampling)
+Chain 1:                0.13 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1.7e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
+Chain 2: Gradient evaluation took 1.1e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -632,15 +657,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.224 seconds (Warm-up)
-Chain 2:                0.106 seconds (Sampling)
-Chain 2:                0.33 seconds (Total)
+Chain 2:  Elapsed Time: 0.074 seconds (Warm-up)
+Chain 2:                0.044 seconds (Sampling)
+Chain 2:                0.118 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 2.8e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.28 seconds.
+Chain 3: Gradient evaluation took 1e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -657,15 +682,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.201 seconds (Warm-up)
-Chain 3:                0.114 seconds (Sampling)
-Chain 3:                0.315 seconds (Total)
+Chain 3:  Elapsed Time: 0.079 seconds (Warm-up)
+Chain 3:                0.045 seconds (Sampling)
+Chain 3:                0.124 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 1.8e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
+Chain 4: Gradient evaluation took 1e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -682,9 +707,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.214 seconds (Warm-up)
-Chain 4:                0.129 seconds (Sampling)
-Chain 4:                0.343 seconds (Total)
+Chain 4:  Elapsed Time: 0.078 seconds (Warm-up)
+Chain 4:                0.073 seconds (Sampling)
+Chain 4:                0.151 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3) <span class="co"># Summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -711,20 +736,20 @@ wantsMoreyes -0.3    0.0 -0.3  -0.3  -0.2
 
 Fit Diagnostics:
            mean   sd   10%   50%   90%
-mean_PPD 31.7    1.5 29.8  31.8  33.8 
+mean_PPD 31.7    1.6 29.7  31.7  33.7 
 
 The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help('summary.stanreg')).
 
 MCMC diagnostics
               mcse Rhat n_eff
-(Intercept)   0.0  1.0  6014 
-age25-29      0.0  1.0  6066 
-age30-39      0.0  1.0  6159 
-age40-49      0.0  1.0  6568 
-educationlow  0.0  1.0  6899 
-wantsMoreyes  0.0  1.0  6404 
-mean_PPD      0.0  1.0  4811 
-log-posterior 0.0  1.0  1690 
+(Intercept)   0.0  1.0  5619 
+age25-29      0.0  1.0  5131 
+age30-39      0.0  1.0  5358 
+age40-49      0.0  1.0  5577 
+educationlow  0.0  1.0  6557 
+wantsMoreyes  0.0  1.0  6815 
+mean_PPD      0.0  1.0  5183 
+log-posterior 0.0  1.0  1663 
 
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 </div>
@@ -734,12 +759,20 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace plot</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m3, <span class="st">'trace'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot parameter values with uncertainties</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m3, <span class="at">prob_outer =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot posterior distributions</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m3, <span class="st">'mcmc_hist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -747,13 +780,17 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model coefficients</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>m3<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)     age25-29     age30-39     age40-49 educationlow wantsMoreyes 
-  -1.1980341    0.2201313    1.4813526    1.9956072   -0.9704883   -0.2822287 </code></pre>
+  -1.2010237    0.2203645    1.4813230    1.9950403   -0.9704829   -0.2824180 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model posteriors</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m3)</span>
@@ -764,7 +801,11 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_areas</span>(posterior, <span class="at">pars =</span> <span class="fu">names</span>(m3<span class="sc">$</span>coefficients),</span>
 <span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">prob =</span> <span class="fl">0.95</span>) <span class="sc">+</span> plot_title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1e_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1e_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can also look at all of your Stan model results using <code>shinystan</code> by running <code>launch_shinystan(model)</code>. Try it out on your end (it doesn’t work in markdown)</p>
@@ -817,18 +858,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -860,11 +890,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -874,8 +943,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -887,7 +965,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -931,6 +1132,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -956,6 +1158,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1017,7 +1245,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./a1d.html" class="pagination-link">
+      <a href="./a1d.html" class="pagination-link" aria-label="**Assignment 1d:** Multiple Linear Regression">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span>
       </a>          
   </div>
@@ -1028,4 +1256,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1e.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
