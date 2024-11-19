@@ -471,37 +471,36 @@ Number of objects: 13 </code></pre>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07592385 
-Run 1 stress 0.1851728 
-Run 2 stress 0.07366297 
+Run 1 stress 0.07366297 
 ... New best solution
-... Procrustes: rmse 0.1937856  max resid 0.5647317 
-Run 3 stress 0.07227846 
+... Procrustes: rmse 0.1937834  max resid 0.5647288 
+Run 2 stress 0.08569062 
+Run 3 stress 0.08055014 
+Run 4 stress 0.1787816 
+Run 5 stress 0.072393 
 ... New best solution
-... Procrustes: rmse 0.1728504  max resid 0.5161531 
-Run 4 stress 0.1428286 
-Run 5 stress 0.07351184 
-Run 6 stress 0.07239303 
-... Procrustes: rmse 0.01243977  max resid 0.03087057 
-Run 7 stress 0.07875788 
-Run 8 stress 0.07358653 
+... Procrustes: rmse 0.1707731  max resid 0.5155119 
+Run 6 stress 0.07358653 
+Run 7 stress 0.08569487 
+Run 8 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 0.01247782  max resid 0.03083542 
 Run 9 stress 0.07239303 
-... Procrustes: rmse 0.01243495  max resid 0.03085427 
-Run 10 stress 0.08055013 
-Run 11 stress 0.1841547 
-Run 12 stress 0.08569482 
-Run 13 stress 0.07358653 
-Run 14 stress 0.07875788 
-Run 15 stress 0.07305563 
-Run 16 stress 0.07366297 
-Run 17 stress 0.07227846 
-... Procrustes: rmse 3.301031e-06  max resid 7.619039e-06 
-... Similar to previous best
-Run 18 stress 0.07875788 
-Run 19 stress 0.08569059 
-Run 20 stress 0.07227846 
-... Procrustes: rmse 3.199116e-06  max resid 4.691239e-06 
-... Similar to previous best
-*** Best solution repeated 2 times</code></pre>
+... Procrustes: rmse 0.01243661  max resid 0.03086232 
+Run 10 stress 0.07351187 
+Run 11 stress 0.07366297 
+Run 12 stress 0.0757299 
+Run 13 stress 0.08055013 
+Run 14 stress 0.07366297 
+Run 15 stress 0.08055013 
+Run 16 stress 0.07588696 
+Run 17 stress 0.08568214 
+Run 18 stress 0.1180402 
+Run 19 stress 0.07882366 
+Run 20 stress 0.07575137 
+*** Best solution was not repeated -- monoMDS stopping criteria:
+    16: stress ratio &gt; sratmax
+     4: scale factor of the gradient &lt; sfgrmin</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -518,8 +517,8 @@ Distance: user supplied
 Dimensions: 2 
 Stress:     0.07227846 
 Stress type 1, weak ties
-Best solution was repeated 2 times in 20 tries
-The best solution was from try 3 (random start)
+Best solution was not repeated after 20 tries
+The best solution was from try 8 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
@@ -545,11 +544,11 @@ Species: scores missing</code></pre>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  k       stress
-1 1 2.207810e-01
-2 2 7.239303e-02
-3 3 9.254513e-05
-4 4 3.576866e-04
-5 5 8.507855e-05</code></pre>
+1 1 2.209681e-01
+2 2 7.239299e-02
+3 3 9.452244e-05
+4 4 1.096018e-04
+5 5 9.564232e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
@@ -634,38 +633,42 @@ ind13 0.7501 0.8751</code></pre>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist2, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07575137 
-Run 1 stress 0.08055013 
-Run 2 stress 0.07875788 
-Run 3 stress 0.1193093 
-Run 4 stress 0.07239301 
+Run 1 stress 0.07366297 
 ... New best solution
-... Procrustes: rmse 0.2253598  max resid 0.6639866 
-Run 5 stress 0.072393 
+... Procrustes: rmse 0.1934858  max resid 0.5648741 
+Run 2 stress 0.08571807 
+Run 3 stress 0.08566789 
+Run 4 stress 0.1193093 
+Run 5 stress 0.07366297 
 ... New best solution
-... Procrustes: rmse 0.0001150675  max resid 0.0002449904 
+... Procrustes: rmse 1.146332e-05  max resid 2.063068e-05 
 ... Similar to previous best
-Run 6 stress 0.1892204 
-Run 7 stress 0.07351186 
-Run 8 stress 0.07875788 
-Run 9 stress 0.07239303 
-... Procrustes: rmse 0.0001723574  max resid 0.0003734582 
+Run 6 stress 0.07575137 
+Run 7 stress 0.07239301 
+... New best solution
+... Procrustes: rmse 0.1707851  max resid 0.5155216 
+Run 8 stress 0.08055013 
+Run 9 stress 0.07351183 
+Run 10 stress 0.120356 
+Run 11 stress 0.07366297 
+Run 12 stress 0.07305564 
+Run 13 stress 0.0857181 
+Run 14 stress 0.07572991 
+Run 15 stress 0.07239302 
+... Procrustes: rmse 2.69087e-05  max resid 5.674374e-05 
 ... Similar to previous best
-Run 10 stress 0.08055013 
-Run 11 stress 0.07358653 
-Run 12 stress 0.1193093 
-Run 13 stress 0.1193093 
-Run 14 stress 0.0757299 
-Run 15 stress 0.08572776 
-Run 16 stress 0.07366297 
-Run 17 stress 0.07239303 
-... Procrustes: rmse 4.861025e-05  max resid 0.0001012576 
-... Similar to previous best
-Run 18 stress 0.0857393 
-Run 19 stress 0.07875788 
-Run 20 stress 0.07239302 
-... Procrustes: rmse 0.0001046324  max resid 0.0002198666 
-... Similar to previous best
-*** Best solution repeated 4 times</code></pre>
+Run 16 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 0.01244922  max resid 0.03074646 
+Run 17 stress 0.07239302 
+... Procrustes: rmse 0.01245365  max resid 0.03091328 
+Run 18 stress 0.072393 
+... Procrustes: rmse 0.01247231  max resid 0.03095217 
+Run 19 stress 0.120356 
+Run 20 stress 0.1183846 
+*** Best solution was not repeated -- monoMDS stopping criteria:
+    14: stress ratio &gt; sratmax
+     6: scale factor of the gradient &lt; sfgrmin</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -680,10 +683,10 @@ Data:     dist2
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.072393 
+Stress:     0.07227846 
 Stress type 1, weak ties
-Best solution was repeated 4 times in 20 tries
-The best solution was from try 5 (random start)
+Best solution was not repeated after 20 tries
+The best solution was from try 16 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
