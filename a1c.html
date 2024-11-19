@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Assignment 1 Guide - 3&nbsp; Assignment 1c: Cluster Analysis and Multidimensional Scaling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./a1d.html" rel="next">
+<link href="./a1b.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1c.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">**Assignment 1c:** Cluster Analysis and Multidimensional Scaling</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><strong>Assignment 1 Guide</strong></a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Introduction</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./guidelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Assignment Guidelines</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Assignment 1</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1c.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link active" data-scroll-target="#looking-at-the-data"><span class="header-section-number">3.1</span> Looking at the data</a></li>
+  <li><a href="#calculating-dissimilarity" id="toc-calculating-dissimilarity" class="nav-link" data-scroll-target="#calculating-dissimilarity"><span class="header-section-number">3.2</span> Calculating Dissimilarity</a></li>
+  <li><a href="#hierarchical-cluster-analysis" id="toc-hierarchical-cluster-analysis" class="nav-link" data-scroll-target="#hierarchical-cluster-analysis"><span class="header-section-number">3.3</span> Hierarchical Cluster Analysis</a>
+  <ul class="collapse">
+  <li><a href="#single-linkage" id="toc-single-linkage" class="nav-link" data-scroll-target="#single-linkage"><span class="header-section-number">3.3.1</span> Single linkage</a></li>
+  <li><a href="#average-linkage" id="toc-average-linkage" class="nav-link" data-scroll-target="#average-linkage"><span class="header-section-number">3.3.2</span> Average Linkage</a></li>
+  <li><a href="#complete-linkage" id="toc-complete-linkage" class="nav-link" data-scroll-target="#complete-linkage"><span class="header-section-number">3.3.3</span> Complete Linkage</a></li>
+  <li><a href="#ward-linkage" id="toc-ward-linkage" class="nav-link" data-scroll-target="#ward-linkage"><span class="header-section-number">3.3.4</span> Ward Linkage</a></li>
+  </ul></li>
+  <li><a href="#multidimensional-scaling" id="toc-multidimensional-scaling" class="nav-link" data-scroll-target="#multidimensional-scaling"><span class="header-section-number">3.4</span> Multidimensional Scaling</a>
+  <ul class="collapse">
+  <li><a href="#non-metric-mds" id="toc-non-metric-mds" class="nav-link" data-scroll-target="#non-metric-mds"><span class="header-section-number">3.4.1</span> Non-Metric MDS</a></li>
+  <li><a href="#metric-mds" id="toc-metric-mds" class="nav-link" data-scroll-target="#metric-mds"><span class="header-section-number">3.4.2</span> Metric MDS</a></li>
+  <li><a href="#d-plotting-optional" id="toc-d-plotting-optional" class="nav-link" data-scroll-target="#d-plotting-optional"><span class="header-section-number">3.4.3</span> 3D Plotting (Optional)</a></li>
+  </ul></li>
+  <li><a href="#mantel-test-graduate-students-only" id="toc-mantel-test-graduate-students-only" class="nav-link" data-scroll-target="#mantel-test-graduate-students-only"><span class="header-section-number">3.5</span> Mantel Test (Graduate Students Only)</a></li>
+  <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">3.6</span> Tips for your Assignment:</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1c.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This assignment is centered on cluster analysis and multidimensional scaling (MDS), which are both methods of measuring associations within a group (e.g.&nbsp;associations between individuals within a population).</p>
+<p>For this tutorial, we’ll be using <code>monkey.csv</code>.</p>
+<section id="looking-at-the-data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">3.1</span> Looking at the data</h2>
+<p>You know the drill by now:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'monkey.csv'</span>, <span class="at">row.names =</span> <span class="dv">1</span>) <span class="co"># First column is row names</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="co"># Print data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ind1 ind2 ind3 ind4 ind5 ind6 ind7 ind8 ind9 ind10 ind11 ind12 ind13
+ind1    21    2    2   10    2    2    8    0    0     8    14    12     4
+ind2     2   21   16    2   16    8    2    2    4     4     4     0     2
+ind3     2   16   21    0   10   16    2    0    2     4     4     0     2
+ind4    10    2    0   21    2    2   16    2    2     8    12     8     4
+ind5     2   16   10    2   21   10    2    4    0     2     4     4     2
+ind6     2    8   16    2   10   21    4    2    0     0     0     4     4
+ind7     8    2    2   16    2    4   21    4    2    16     8     8     4
+ind8     0    2    0    2    4    2    4   21    0     2     0     0     0
+ind9     0    4    2    2    0    0    2    0   21     0     4     0     0
+ind10    8    4    4    8    2    0   16    2    0    21    14    14     2
+ind11   14    4    4   12    4    0    8    0    4    14    21    12     4
+ind12   12    0    0    8    4    4    8    0    0    14    12    21     2
+ind13    4    2    2    4    2    4    4    0    0     2     4     2    21</code></pre>
+</div>
+</div>
+<p>Our data is a matrix containing the number of social interactions observed between individuals in a group of monkeys at the zoo. The matrix is symmetrical - the top/right half is identical to the bottom/left half.</p>
+</section>
+<section id="calculating-dissimilarity" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="calculating-dissimilarity"><span class="header-section-number">3.2</span> Calculating Dissimilarity</h2>
+<p>For this assignment we’ll be using 3 R functions: <code>hclust</code>, <code>metaMDS</code> (from the <code>vegan</code> package), <code>isoMDS</code> (from the <code>MASS</code>package), and <code>cmdscale()</code>. Let’s see what type of input data those functions need:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check help functions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>?<span class="fu">hclust</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>?<span class="fu">metaMDS</span>()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>?<span class="fu">isoMDS</span>()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>?<span class="fu">cmdscale</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You’ll notice all of these functions require a <strong>dissimilarity matrix</strong> produced by <code>dist</code>. Let’s start by running <code>dist()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert data to a dist object</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">=</span> <span class="fu">as.dist</span>(data)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dist <span class="co"># Print dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ind1 ind2 ind3 ind4 ind5 ind6 ind7 ind8 ind9 ind10 ind11 ind12
+ind2     2                                                          
+ind3     2   16                                                     
+ind4    10    2    0                                                
+ind5     2   16   10    2                                           
+ind6     2    8   16    2   10                                      
+ind7     8    2    2   16    2    4                                 
+ind8     0    2    0    2    4    2    4                            
+ind9     0    4    2    2    0    0    2    0                       
+ind10    8    4    4    8    2    0   16    2    0                  
+ind11   14    4    4   12    4    0    8    0    4    14            
+ind12   12    0    0    8    4    4    8    0    0    14    12      
+ind13    4    2    2    4    2    4    4    0    0     2     4     2</code></pre>
+</div>
+</div>
+<p>Now our data is in a <code>dist</code> object. All of the redundant entries in the data have been removed.</p>
+<p>Right now, our data reflects <strong>similarity (i.e.&nbsp;high numbers reflect greater association between individuals)</strong>. We need to convert it to <strong>dissimilarity</strong>. Dissimilarity is simply the opposite of similarity. We can convert similarity to dissimilarity by subtracting each data value from the maximum of the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dissimilarity</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">=</span> <span class="fu">max</span>(dist) <span class="sc">-</span> dist</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dist <span class="co"># Print dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ind1 ind2 ind3 ind4 ind5 ind6 ind7 ind8 ind9 ind10 ind11 ind12
+ind2    14                                                          
+ind3    14    0                                                     
+ind4     6   14   16                                                
+ind5    14    0    6   14                                           
+ind6    14    8    0   14    6                                      
+ind7     8   14   14    0   14   12                                 
+ind8    16   14   16   14   12   14   12                            
+ind9    16   12   14   14   16   16   14   16                       
+ind10    8   12   12    8   14   16    0   14   16                  
+ind11    2   12   12    4   12   16    8   16   12     2            
+ind12    4   16   16    8   12   12    8   16   16     2     4      
+ind13   12   14   14   12   14   12   12   16   16    14    12    14</code></pre>
+</div>
+</div>
+<p>Now we’re ready to run our analyses!</p>
+</section>
+<section id="hierarchical-cluster-analysis" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="hierarchical-cluster-analysis"><span class="header-section-number">3.3</span> Hierarchical Cluster Analysis</h2>
+<p>Remember from lecture there are 4 types of hierarchical cluster analysis:</p>
+<ol type="1">
+<li>Single linkage</li>
+<li>Average linkage</li>
+<li>Complete linkage</li>
+<li>Ward linkage</li>
+</ol>
+<p>Let’s run through them one by one:</p>
+<section id="single-linkage" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="single-linkage"><span class="header-section-number">3.3.1</span> Single linkage</h3>
+<p>We can run all 4 types of cluster analysis using the <code>hclust()</code> R function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run single linkage cluster analysis</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>clust_1 <span class="ot">=</span> <span class="fu">hclust</span>(dist, <span class="at">method =</span> <span class="st">'single'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>clust_1 <span class="co"># print object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+hclust(d = dist, method = "single")
+
+Cluster method   : single 
+Number of objects: 13 </code></pre>
+</div>
+</div>
+<p>Printing the <code>hclust</code> object doesn’t really tell us much. For more detail, we’re going to have to plot it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot single linkage tree</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(clust_1, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">'Single linkage'</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Dissimilarity'</span>, <span class="co"># Label y axis</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">''</span>, <span class="at">sub =</span> <span class="st">''</span>) <span class="co"># Remove x-axis label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This outputs a tree showing the associations between our individual monkeys. dissimilarity is on the y-axis. The greater the distance between individuals on the y-axis, the greater their dissimilarity. Our tree has grouped the monkeys according to how frequently they interact with each other. For example. individuals 2, 3, 5, and 6 interact often, as evidenced by their low dissimilarity.</p>
+<p>But how well does this tree fit the data? To answer that question, we need to calculate the cophenetic correlation coefficient (CCC):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate CCC</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>coph_1 <span class="ot">=</span> <span class="fu">cophenetic</span>(clust_1) <span class="co"># Get cophenetic</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ccc_1 <span class="ot">=</span> <span class="fu">cor</span>(coph_1, dist) <span class="co"># Calculate correlation of the cophenetic with the data</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ccc_1 <span class="co"># Print CCC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9036043</code></pre>
+</div>
+</div>
+<p>That’s a pretty high correlation coefficient, indicating our dendrogram represented the structure in the original data very well. Let’s try some other methods:</p>
+</section>
+<section id="average-linkage" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="average-linkage"><span class="header-section-number">3.3.2</span> Average Linkage</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run cluster analysis</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>clust_2 <span class="ot">=</span> <span class="fu">hclust</span>(dist, <span class="at">method =</span> <span class="st">'average'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(clust_2, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">'Average linkage'</span>, <span class="at">ylab =</span> <span class="st">'Dissimilarity'</span>, <span class="at">xlab =</span> <span class="st">''</span>, <span class="at">sub =</span> <span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate CCC</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>coph_2 <span class="ot">=</span> <span class="fu">cophenetic</span>(clust_2)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ccc_2 <span class="ot">=</span> <span class="fu">cor</span>(coph_2, dist)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ccc_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9288949</code></pre>
+</div>
+</div>
+</section>
+<section id="complete-linkage" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="complete-linkage"><span class="header-section-number">3.3.3</span> Complete Linkage</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run cluster analysis</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>clust_3 <span class="ot">=</span> <span class="fu">hclust</span>(dist, <span class="at">method =</span> <span class="st">'complete'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(clust_3, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">'Complete linkage'</span>, <span class="at">ylab =</span> <span class="st">'Dissimilarity'</span>, <span class="at">xlab =</span> <span class="st">''</span>, <span class="at">sub =</span> <span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate CCC</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>coph_3 <span class="ot">=</span> <span class="fu">cophenetic</span>(clust_3)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ccc_3 <span class="ot">=</span> <span class="fu">cor</span>(coph_3, dist)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ccc_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9141956</code></pre>
+</div>
+</div>
+</section>
+<section id="ward-linkage" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="ward-linkage"><span class="header-section-number">3.3.4</span> Ward Linkage</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run cluster analysis</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>clust_4 <span class="ot">=</span> <span class="fu">hclust</span>(dist, <span class="at">method =</span> <span class="st">'ward.D'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(clust_4, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">'Ward linkage'</span>, <span class="at">ylab =</span> <span class="st">'Dissimilarity'</span>, <span class="at">xlab =</span> <span class="st">''</span>, <span class="at">sub =</span> <span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate CCC</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>coph_4 <span class="ot">=</span> <span class="fu">cophenetic</span>(clust_4)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ccc_4 <span class="ot">=</span> <span class="fu">cor</span>(coph_4, dist)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ccc_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7633159</code></pre>
+</div>
+</div>
+<p>Each method gives a slightly different tree and CCC value. Where are they similar? Where do they differ? Which one(s) would you trust? Why?</p>
+</section>
+</section>
+<section id="multidimensional-scaling" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="multidimensional-scaling"><span class="header-section-number">3.4</span> Multidimensional Scaling</h2>
+<p>Another method we can use to test for associations between our monkeys is multidimensional scaling (MDS). There are two types of MDS: non-metric, and metric MDS. Let’s start with non-metric MDS.</p>
+<section id="non-metric-mds" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="non-metric-mds"><span class="header-section-number">3.4.1</span> Non-Metric MDS</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run non-metric MDS - metaMDS</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Run 0 stress 0.07592385 
+Run 1 stress 0.07358653 
+... New best solution
+... Procrustes: rmse 0.1926081  max resid 0.5628466 
+Run 2 stress 0.07575137 
+Run 3 stress 0.08568213 
+Run 4 stress 0.07239301 
+... New best solution
+... Procrustes: rmse 0.1712365  max resid 0.5176449 
+Run 5 stress 0.07882366 
+Run 6 stress 0.07875788 
+Run 7 stress 0.08055022 
+Run 8 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 0.01249288  max resid 0.03088889 
+Run 9 stress 0.1734347 
+Run 10 stress 0.07358653 
+Run 11 stress 0.07875788 
+Run 12 stress 0.07875788 
+Run 13 stress 0.072393 
+... Procrustes: rmse 0.0124638  max resid 0.03095045 
+Run 14 stress 0.07875788 
+Run 15 stress 0.07575138 
+Run 16 stress 0.07366297 
+Run 17 stress 0.1998376 
+Run 18 stress 0.07358653 
+Run 19 stress 0.120356 
+Run 20 stress 0.07875788 
+*** Best solution was not repeated -- monoMDS stopping criteria:
+    13: stress ratio &gt; sratmax
+     7: scale factor of the gradient &lt; sfgrmin</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+metaMDS(comm = dist, wascores = F) 
+
+global Multidimensional Scaling using monoMDS
+
+Data:     dist 
+Distance: user supplied 
+
+Dimensions: 2 
+Stress:     0.07227846 
+Stress type 1, weak ties
+Best solution was not repeated after 20 tries
+The best solution was from try 8 (random start)
+Scaling: centring, PC rotation 
+Species: scores missing</code></pre>
+</div>
+</div>
+<p>By default, metaMDS has two dimensions. This MDS has a stress value of 0.072. Remember from lecture that stress &lt; 0.10 is a “good representation”, so this MDS result is pretty good. If we want, we can test different numbers of dimensions (k) and create a scree plot to find the best one:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a container object</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>scree <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">k =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">stress =</span> <span class="cn">NA</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through k 1 to 5</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run MDS</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  mds <span class="ot">=</span> <span class="fu">metaMDS</span>(dist, <span class="at">wascores =</span> F, <span class="at">k =</span> k) <span class="co"># Set k to our loop index</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pull out stress</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  scree[k,<span class="st">'stress'</span>] <span class="ot">=</span> mds<span class="sc">$</span>stress <span class="co"># Fill kth row of the column 'stress' in scree</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>} <span class="co"># End loop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  k       stress
+1 1 2.712906e-01
+2 2 7.239303e-02
+3 3 8.814077e-05
+4 4 3.763269e-04
+5 5 9.500430e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'b'</span>, <span class="co"># Lines and points</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># Point 16 (filled circle)</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.1</span>, <span class="at">lty =</span> <span class="st">'dashed'</span>) <span class="co"># Plot a dashed line at 0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We have an elbow at k=3, but we also get warnings that our dataset may be too small using k=3. The stress at k=2 is low enough that we can stick to using that.</p>
+<p>Let’s plot our results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot result</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds1, <span class="at">type =</span> <span class="st">'t'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>species scores not available</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here we’ve plotted the values of our two MDS dimensions against each other for each individual. Similar to the cluster analysis, we see certain individuals are grouped together. Is it the same groups of individuals? What does that tell you about your results?</p>
+<p>Let’s try a different non-metric MDS function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run non-metric MDS - isoMDS</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>mds2 <span class="ot">=</span> <span class="fu">isoMDS</span>(dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in isoMDS(dist): zero or negative distance between objects 2 and 3</code></pre>
+</div>
+</div>
+<p>Uh oh. This function doesn’t like zeroes in the data. Let’s fix that by translating our data to proportions, and adding a small increment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Translate to proportions</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dist2 <span class="ot">=</span> dist<span class="sc">/</span><span class="fu">max</span>(dist)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add an increment</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>dist2 <span class="ot">=</span> dist2 <span class="sc">+</span> <span class="fl">0.0001</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print new dist</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>dist2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        ind1   ind2   ind3   ind4   ind5   ind6   ind7   ind8   ind9  ind10
+ind2  0.8751                                                               
+ind3  0.8751 0.0001                                                        
+ind4  0.3751 0.8751 1.0001                                                 
+ind5  0.8751 0.0001 0.3751 0.8751                                          
+ind6  0.8751 0.5001 0.0001 0.8751 0.3751                                   
+ind7  0.5001 0.8751 0.8751 0.0001 0.8751 0.7501                            
+ind8  1.0001 0.8751 1.0001 0.8751 0.7501 0.8751 0.7501                     
+ind9  1.0001 0.7501 0.8751 0.8751 1.0001 1.0001 0.8751 1.0001              
+ind10 0.5001 0.7501 0.7501 0.5001 0.8751 1.0001 0.0001 0.8751 1.0001       
+ind11 0.1251 0.7501 0.7501 0.2501 0.7501 1.0001 0.5001 1.0001 0.7501 0.1251
+ind12 0.2501 1.0001 1.0001 0.5001 0.7501 0.7501 0.5001 1.0001 1.0001 0.1251
+ind13 0.7501 0.8751 0.8751 0.7501 0.8751 0.7501 0.7501 1.0001 1.0001 0.8751
+       ind11  ind12
+ind2               
+ind3               
+ind4               
+ind5               
+ind6               
+ind7               
+ind8               
+ind9               
+ind10              
+ind11              
+ind12 0.2501       
+ind13 0.7501 0.8751</code></pre>
+</div>
+</div>
+<p>Let’s make sure this doesn’t mess with our results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run non-metric MDS - metaMDS</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist2, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Run 0 stress 0.07575137 
+Run 1 stress 0.07358653 
+... New best solution
+... Procrustes: rmse 0.1923138  max resid 0.5629988 
+Run 2 stress 0.1172799 
+Run 3 stress 0.07308015 
+... New best solution
+... Procrustes: rmse 0.1725227  max resid 0.5167782 
+Run 4 stress 0.1832293 
+Run 5 stress 0.0757299 
+Run 6 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 0.01388241  max resid 0.04162179 
+Run 7 stress 0.08571329 
+Run 8 stress 0.07572991 
+Run 9 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 2.027274e-06  max resid 3.417192e-06 
+... Similar to previous best
+Run 10 stress 0.07366297 
+Run 11 stress 0.07366297 
+Run 12 stress 0.0757299 
+Run 13 stress 0.0757299 
+Run 14 stress 0.08055013 
+Run 15 stress 0.07239301 
+... Procrustes: rmse 0.01245452  max resid 0.03091433 
+Run 16 stress 0.07366297 
+Run 17 stress 0.07227846 
+... New best solution
+... Procrustes: rmse 2.642746e-06  max resid 4.669585e-06 
+... Similar to previous best
+Run 18 stress 0.08569496 
+Run 19 stress 0.07358653 
+Run 20 stress 0.08055013 
+*** Best solution repeated 1 times</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mds1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+metaMDS(comm = dist2, wascores = F) 
+
+global Multidimensional Scaling using monoMDS
+
+Data:     dist2 
+Distance: user supplied 
+
+Dimensions: 2 
+Stress:     0.07227846 
+Stress type 1, weak ties
+Best solution was repeated 1 time in 20 tries
+The best solution was from try 17 (random start)
+Scaling: centring, PC rotation 
+Species: scores missing</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot result</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds1, <span class="at">type =</span> <span class="st">'t'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>species scores not available</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The values have shifted around a bit but the structure and interpretation of the plot is the same. Let’s continue on:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run non-metric MDS - isoMDS</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>mds2 <span class="ot">=</span> <span class="fu">isoMDS</span>(dist2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>initial  value 24.760322 
+iter   5 value 14.153502
+iter  10 value 12.254154
+iter  15 value 11.639473
+iter  20 value 11.360460
+final  value 11.341572 
+converged</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print output</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>mds2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$points
+            [,1]         [,2]
+ind1   0.5060798  0.103253718
+ind2  -0.6157097 -0.285522725
+ind3  -0.6133549 -0.310223762
+ind4   0.5008471  0.144443835
+ind5  -0.6264450 -0.279477605
+ind6  -0.6228134 -0.325577873
+ind7   0.4940123  0.147103149
+ind8  -0.6783876  0.680257989
+ind9  -0.2575043  1.075686777
+ind10  0.5482152  0.033286470
+ind11  0.5478840  0.082682890
+ind12  0.5895070  0.001005794
+ind13  0.2276697 -1.066918657
+
+$stress
+[1] 11.34157</code></pre>
+</div>
+</div>
+<p>The modelling algorithms seems to be a little different, and we end up with a different stress result - in this case, one that is above the 10% threshold (note that stress is in % in this function, unlike metaMDS where it is in proportion). Let’s try another scree plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a container object</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>scree <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">k =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">stress =</span> <span class="cn">NA</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through k 1 to 5</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run MDS</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  mds <span class="ot">=</span> <span class="fu">isoMDS</span>(dist2, <span class="at">k =</span> k) <span class="co"># Set k to our loop index</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pull out stress</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  scree[k,<span class="st">'stress'</span>] <span class="ot">=</span> mds<span class="sc">$</span>stress <span class="co"># Fill kth row of the column 'stress' in scree</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>} <span class="co"># End loop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  k      stress
+1 1 36.54857293
+2 2 11.34157190
+3 3  0.04614441
+4 4  0.12630298
+5 5  0.19439990</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'b'</span>, <span class="co"># Lines and points</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># Point 16 (filled circle)</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">10</span>, <span class="at">lty =</span> <span class="st">'dashed'</span>) <span class="co"># Plot a dashed line at 0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In this case, it seems we’re better off using 3 dimensions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run non-metric MDS - isoMDS</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>mds2 <span class="ot">=</span> <span class="fu">isoMDS</span>(dist2, <span class="at">k =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>initial  value 18.960422 
+iter   5 value 11.725940
+iter  10 value 6.417141
+iter  15 value 4.149185
+iter  20 value 1.466748
+iter  25 value 0.764657
+iter  30 value 0.449114
+iter  35 value 0.302911
+iter  40 value 0.156116
+iter  45 value 0.087536
+iter  50 value 0.046144
+final  value 0.046144 
+stopped after 50 iterations</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print output</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>mds2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$points
+            [,1]       [,2]       [,3]
+ind1   2.0028765  0.4079841 -0.4202376
+ind2  -2.0901193 -1.3657278  1.2720375
+ind3  -2.0910832 -1.3666943  1.2729356
+ind4   2.0066696  0.4042391 -0.4161698
+ind5  -2.0896284 -1.3631915  1.2769256
+ind6  -2.0921681 -1.3637290  1.2724192
+ind7   2.0032691  0.4111298 -0.4185160
+ind8  -2.1600174  2.2033842 -1.8938700
+ind9  -0.6641520  2.9972846  2.5707229
+ind10  2.0009095  0.4046552 -0.4185896
+ind11  2.0041166  0.4044773 -0.4197885
+ind12  2.0019583  0.4023552 -0.4223419
+ind13 -0.8326313 -2.1761669 -3.2555274
+
+$stress
+[1] 0.04614441</code></pre>
+</div>
+</div>
+<p>Let’s plot our results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot isoMDS</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds2<span class="sc">$</span>points[,<span class="dv">1</span>], mds2<span class="sc">$</span>points[,<span class="dv">2</span>], <span class="co"># MDS dimension 1 and 2 values</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'n'</span>, <span class="co"># Don't plot any points</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Dim 1'</span>, <span class="at">ylab =</span> <span class="st">'Dim 2'</span>, <span class="at">main =</span> <span class="st">'Metric MDS'</span>) <span class="co"># Labelling</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot individual names</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(mds2<span class="sc">$</span>points[,<span class="dv">1</span>], mds2<span class="sc">$</span>points[,<span class="dv">2</span>], <span class="fu">rownames</span>(data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>All of our grouped individuals are plotted on top of each other. Let’s try adding some random jiggle so we can see them</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot isoMDS</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds2<span class="sc">$</span>points[,<span class="dv">1</span>], mds2<span class="sc">$</span>points[,<span class="dv">2</span>], <span class="co"># MDS dimension 1 and 2 values</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'n'</span>, <span class="co"># Don't plot any points</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Dim 1'</span>, <span class="at">ylab =</span> <span class="st">'Dim 2'</span>, <span class="at">main =</span> <span class="st">'Metric MDS'</span>, <span class="co"># Labelling</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>)) <span class="co"># Set axis limits</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed for consistency</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1212</span>)</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot individual names</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(mds2<span class="sc">$</span>points[,<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">13</span>, <span class="dv">0</span>, <span class="fl">0.2</span>), <span class="co"># Add random values pulled from a </span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>     mds2<span class="sc">$</span>points[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">13</span>, <span class="dv">0</span>, <span class="fl">0.2</span>), <span class="co"># normal distribution with mean 0, sd 0.2</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">rownames</span>(data)) <span class="co"># Add names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>That’s a bit better. We can also add some color to this plot if we want - say, individuals 6 to 9 are juveniles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot isoMDS</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds2<span class="sc">$</span>points[,<span class="dv">1</span>], mds2<span class="sc">$</span>points[,<span class="dv">2</span>], <span class="co"># MDS dimension 1 and 2 values</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'n'</span>, <span class="co"># Don't plot any points</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Dim 1'</span>, <span class="at">ylab =</span> <span class="st">'Dim 2'</span>, <span class="at">main =</span> <span class="st">'Metric MDS'</span>, <span class="co"># Labelling</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>)) <span class="co"># Set axis limits</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed for consistency</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1212</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Juvenile identifier</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>ad <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="co"># ad is 1 for first 5 and last 4</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>ad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 1 1 1 1 0 0 0 0 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot individual names</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(mds2<span class="sc">$</span>points[,<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">13</span>, <span class="dv">0</span>, <span class="fl">0.2</span>), <span class="co"># Add random values pulled from a </span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>     mds2<span class="sc">$</span>points[,<span class="dv">2</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">13</span>, <span class="dv">0</span>, <span class="fl">0.2</span>), <span class="co"># normal distribution with mean 0, sd 0.2</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">rownames</span>(data), <span class="co"># Add names</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">ifelse</span>(ad <span class="sc">==</span> <span class="dv">0</span>, <span class="st">'purple'</span>, <span class="st">'orange'</span>)) <span class="co"># color </span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topright'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'Juvenile'</span>, <span class="st">'Adult'</span>), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">'purple'</span>, <span class="st">'orange'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Does this plot match the previous one, and/or the cluster analyses?</p>
+</section>
+<section id="metric-mds" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="metric-mds"><span class="header-section-number">3.4.2</span> Metric MDS</h3>
+<p>We can run metric MDS using the <code>cmdscale()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run metric MDS</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>mds3 <span class="ot">=</span> <span class="fu">cmdscale</span>(dist, <span class="at">eig =</span> T)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>mds3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$points
+             [,1]       [,2]
+ind1   5.84977914  2.7981654
+ind2  -7.46899061 -0.4452479
+ind3  -7.87360160  2.4742095
+ind4   6.04970828 -1.1964346
+ind5  -6.77887791  2.8518073
+ind6  -7.21161499  3.9150940
+ind7   4.79289905 -0.9896933
+ind8  -2.46317365 -5.3304368
+ind9  -1.86216019 -9.7770302
+ind10  5.45394235  1.1317599
+ind11  5.27120921 -0.1097836
+ind12  6.20052885  3.6063451
+ind13  0.04035206  1.0712450
+
+$eig
+ [1]  4.150450e+02  1.794715e+02  1.684147e+02  1.309366e+02  6.931537e+01
+ [6]  5.811388e+01  3.306204e+01  1.780496e+01 -4.263256e-14 -8.643935e+00
+[11] -2.208342e+01 -4.468321e+01 -7.952271e+01
+
+$x
+NULL
+
+$ac
+[1] 0
+
+$GOF
+[1] 0.4844901 0.5545014</code></pre>
+</div>
+</div>
+<p>Metric MDS doesn’t have stress. Instead, we have to look at goodness of fit (GOF) to assess how well the analysis worked. GOF is similar to an R<sup>2</sup> value, where numbers closer to 1 indicate a better fit (though be wary of overfitting!). There are two different GOF values for each metric MDS.</p>
+<p>As with the other MDS functions, k defaults to 2. We can make another scree plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a container object</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>scree <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">k =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">GOF1 =</span> <span class="cn">NA</span>, <span class="at">GOF2 =</span> <span class="cn">NA</span>)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through k 1 to 5</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run MDS</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  mds <span class="ot">=</span> <span class="fu">cmdscale</span>(dist, <span class="at">eig =</span> T, <span class="at">k =</span> k) <span class="co"># Set k to our loop index</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pull out stress</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>  scree[k,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">=</span> mds<span class="sc">$</span>GOF <span class="co"># Fill kth row of the GOF columns in scree</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>} <span class="co"># End loop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  k      GOF1      GOF2
+1 1 0.3382331 0.3871096
+2 2 0.4844901 0.5545014
+3 3 0.6217365 0.7115806
+4 4 0.7284408 0.8337043
+5 5 0.7849281 0.8983543</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GOF2 <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'b'</span>, <span class="co"># Lines and points</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>, <span class="co"># Point 16 (filled circle)</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Goodness of Fit'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="dv">1</span>))</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(GOF1 <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Add second GOF value</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.1</span>, <span class="at">lty =</span> <span class="st">'dashed'</span>) <span class="co"># Plot a dashed line at 0.1</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topleft'</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'GOF1'</span>, <span class="st">'GOF2'</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'red'</span>, <span class="st">'black'</span>)) <span class="co"># Add legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Goodness of fit scales linearly, so what k to use is more of a judgement call.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run metric MDS</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>mds3 <span class="ot">=</span> <span class="fu">cmdscale</span>(dist, <span class="at">k=</span><span class="dv">4</span>, <span class="at">eig =</span> T)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>mds3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$points
+             [,1]       [,2]       [,3]       [,4]
+ind1   5.84977914  2.7981654  1.2685787 -0.6738375
+ind2  -7.46899061 -0.4452479  2.6496404  2.1091477
+ind3  -7.87360160  2.4742095  3.4326421  1.2339175
+ind4   6.04970828 -1.1964346 -0.9306802 -1.2319775
+ind5  -6.77887791  2.8518073 -1.2465315  2.3989342
+ind6  -7.21161499  3.9150940 -1.9699687 -2.4369605
+ind7   4.79289905 -0.9896933 -2.7067201 -0.2043847
+ind8  -2.46317365 -5.3304368 -9.4034890  2.0126521
+ind9  -1.86216019 -9.7770302  5.2905629 -1.1532342
+ind10  5.45394235  1.1317599  0.3565324  4.1657272
+ind11  5.27120921 -0.1097836  4.1678975  1.4238728
+ind12  6.20052885  3.6063451 -0.2995254  1.5298300
+ind13  0.04035206  1.0712450 -0.6089393 -9.1736869
+
+$eig
+ [1]  4.150450e+02  1.794715e+02  1.684147e+02  1.309366e+02  6.931537e+01
+ [6]  5.811388e+01  3.306204e+01  1.780496e+01 -4.263256e-14 -8.643935e+00
+[11] -2.208342e+01 -4.468321e+01 -7.952271e+01
+
+$x
+NULL
+
+$ac
+[1] 0
+
+$GOF
+[1] 0.7284408 0.8337043</code></pre>
+</div>
+</div>
+<p>Let’s plot the first two dimensions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot metric MDS</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mds3<span class="sc">$</span>points[,<span class="dv">1</span>], mds3<span class="sc">$</span>points[,<span class="dv">2</span>], <span class="co"># MDS dimension 1 and 2 values</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">'n'</span>, <span class="co"># Don't plot any points</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Dim 1'</span>, <span class="at">ylab =</span> <span class="st">'Dim 2'</span>, <span class="at">main =</span> <span class="st">'Metric MDS'</span>) <span class="co"># Labelling</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot individual names</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(mds3<span class="sc">$</span>points[,<span class="dv">1</span>], <span class="co"># Add random values pulled from a </span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>     mds3<span class="sc">$</span>points[,<span class="dv">2</span>], <span class="co"># normal distribution with mean 0, sd 0.2</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">rownames</span>(data), <span class="co"># Add names</span></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">ifelse</span>(ad <span class="sc">==</span> <span class="dv">0</span>, <span class="st">'purple'</span>, <span class="st">'orange'</span>)) <span class="co"># color </span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'bottomright'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'Juvenile'</span>, <span class="st">'Adult'</span>), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">'purple'</span>, <span class="st">'orange'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="d-plotting-optional" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="d-plotting-optional"><span class="header-section-number">3.4.3</span> 3D Plotting (Optional)</h3>
+<p>It may not be necessary, but if your MDS has more than 2 dimensions, you can try plotting it in three dimensions and see if it helps:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plot3D)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data to plot</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> mds3<span class="sc">$</span>points[,<span class="dv">1</span>]</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> mds3<span class="sc">$</span>points[,<span class="dv">2</span>]</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> mds3<span class="sc">$</span>points[,<span class="dv">3</span>]</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3D plot</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter3D</span>(x,y,z, <span class="at">colvar =</span> <span class="cn">NULL</span>, <span class="at">col =</span> <span class="st">'blue'</span>, </span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">bty =</span> <span class="st">'g'</span>, <span class="at">theta =</span> <span class="dv">5</span>)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text</span></span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text3D</span>(x, </span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>       <span class="co"># Add some jiggle to the labels</span></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>       y<span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">13</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.5</span>), z <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">13</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.5</span>), </span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">names</span>(mds3<span class="sc">$</span>points[,<span class="dv">1</span>]), <span class="at">add =</span> T, <span class="at">colkey =</span> F, </span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">adj =</span> <span class="dv">1</span>, <span class="at">d =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="a1c_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="mantel-test-graduate-students-only" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="mantel-test-graduate-students-only"><span class="header-section-number">3.5</span> Mantel Test (Graduate Students Only)</h2>
+<p>We can infer to some extent whether juveniles and adults preferentially associate with each other from our colored MDS plots, but we can also test it statistically using a Mantel test. To run the Mantel test, we need to convert our adult index into a <code>dist</code> object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dist matrix for adults</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>ad_dist <span class="ot">=</span> <span class="fu">dist</span>(ad)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>ad_dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1 2 3 4 5 6 7 8 9 10 11 12
+2  0                         
+3  0 0                       
+4  0 0 0                     
+5  0 0 0 0                   
+6  1 1 1 1 1                 
+7  1 1 1 1 1 0               
+8  1 1 1 1 1 0 0             
+9  1 1 1 1 1 0 0 0           
+10 0 0 0 0 0 1 1 1 1         
+11 0 0 0 0 0 1 1 1 1  0      
+12 0 0 0 0 0 1 1 1 1  0  0   
+13 0 0 0 0 0 1 1 1 1  0  0  0</code></pre>
+</div>
+</div>
+<p>Note this is dissimilarity: adult-juvenile pairs are assigned 1, and same-class pairs are assigned 0.</p>
+<p>The Mantel test looks for correlation between this matrix and our original dissociation matrix, and statistically tests if the associations are different from what we would expect due to chance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run mantel test</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mantel.rtest</span>(ad_dist, dist, <span class="at">nrepet =</span> <span class="dv">999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in is.euclid(m1): Zero distance(s)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in is.euclid(m2): Zero distance(s)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monte-Carlo test
+Call: mantelnoneuclid(m1 = m1, m2 = m2, nrepet = nrepet)
+
+Observation: 0.1686576 
+
+Based on 999 replicates
+Simulated p-value: 0.073 
+Alternative hypothesis: greater 
+
+     Std.Obs  Expectation     Variance 
+ 1.369210491 -0.001062026  0.015364686 </code></pre>
+</div>
+</div>
+<p>It’s very close, but we don’t have statistically significant evidence that juveniles and adults associate preferentially with each other in this case.</p>
+</section>
+<section id="tips-for-your-assignment" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">3.6</span> Tips for your Assignment:</h2>
+<p>Some things you may want to think about for your assignment:</p>
+<p>1. How would you pick which cluster analyses and MDS analyses are best for your data? Are they conceptual, or do they have to do with the results? Do they agree?</p>
+<p>2. How would you interpret your statistical results biologically? You don’t have to be right, but don’t be vague, and don’t contradict your results.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./a1b.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./a1d.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
