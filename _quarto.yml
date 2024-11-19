@@ -10,11 +10,7 @@ book:
   cover-image: FOME_Primary_BlueGradient.png
   search: true
   navbar:
-    logo: FOME_Primary_BlueGradient.png
-        right:
-        - icon: github
-          href: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
-          aria-label: GitHub
+    logo: FOME_Small.png
   repo-url: https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/
   repo-actions: [edit]
   downloads: [pdf]
@@ -32,7 +28,7 @@ book:
 format:
   html:
     theme:
-      light: pulse
+      light: cosmo
       dark: darkly
   pdf:
     documentclass: scrreprt
