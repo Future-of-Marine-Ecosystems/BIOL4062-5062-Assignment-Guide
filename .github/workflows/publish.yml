@@ -14,9 +14,13 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Install and activate renv
+      - name: Install libglpk package
         run: sudo apt install libglpk-dev
+
+      - name: Install and activate renv: 1
         uses: r-lib/actions/setup-r@v2
+
+      - name: Install and activate renv: 2
         uses: r-lib/actions/setup-renv@v2
 
       - name: Set up Quarto
