@@ -269,8 +269,6 @@ dredge(m7, rank = 'AIC')
 
 Here, we're ranking models by AIC. AIC balances fit with model complexity. Lower values of AIC are considered better. Generally, 2 is used as a rule of thumb for AIC - if delta AIC is \>2, the lower AIC model is considered better. If delat AIC is \<2, the support for the best model is weak, and the models could even be considered "tied".
 
-# 
-
 ## Tips for your Assignment:
 
 Some things you may want to think about for your assignment:

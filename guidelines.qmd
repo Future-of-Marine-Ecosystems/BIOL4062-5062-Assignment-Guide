@@ -44,9 +44,9 @@ Please format your submission following these guidelines: it will make both our 
 
 **1. Hand in your assignment in 3 parts:**
 
-a\)  Your assignment text
+a\) Your assignment text
 
--   All assignment 1s have a 2 page limit. Put all your text first, with figures and tables together separately at the end. It is easier for me to tell how many pages you wrote this way. You're not going to lose marks if you're slightly over (this is not a writing class).
+-   All assignment 1s have a 2 page limit. Put all your text first, with figures and tables together separately at the end. It is easier for the TA to tell how many pages you wrote this way. You're not going to lose marks if you're slightly over (this is not a writing class).
 -   Should be a word doc or PDF file so it can be opened in BrightSpace. It doesn't matter whether it's produced through word, markdown, etc, as long as it's in one of those two formats.
 
 b\) Your script, submitted as a .txt file
