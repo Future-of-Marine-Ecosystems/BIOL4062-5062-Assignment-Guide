@@ -1,8 +1,8 @@
 # **Assignment 1d:** Multiple Linear Regression
 
-This assignment is all about linear regression. Linear regression is used to model linear relationships between a dependent (response) variable and one or more independent (predictor) variables. Multiple linear regression involves multiple independent variables.
+This assignment is all about multiple linear regression. Linear regression is used to model relationships between a dependent (response) variable and one or more independent (predictor) variables. Multiple linear regression involves multiple predictor variables.
 
-For this tutorial we're going to use `Schoenemann.csv`.
+For this tutorial we're going to use `Schoenemann.csv`, derived from the data in [this](https://doi.org/10.1159/000073759) paper.
 
 ## Looking at the data
 
@@ -15,29 +15,29 @@ head(data)
 dim(data)
 ```
 
-The Schoenemann dataset contains 39 observations of 12 variables, describing to the morphometry of different species of mammals, along with metadata describing them. Let's start by getting rid of the metadata. We won't need it for this assignment.
+The Schoenemann dataset contains 39 observations of 12 variables, describing to the morphometry of different species of mammals, along with taxonomic and location information. Let's start by getting rid of the non-morphological data. We won't need it for this assignment.
 
 ```{r}
 # Remove metadata
-data = data[,which(colnames(data) == 'Mass'):ncol(data)] # I do it this way to avoid hard coding
+data = data[,which(colnames(data) == 'Mass'):ncol(data)] # I do it this way to avoid hard coding a number which may change
 
 # check if it worked
 head(data)
 ```
 
-Now we only have numeric data left. Let's take a look at the data graphically.
+Now we only have the numeric morphologicall data left. Let's take a look at the data graphically.
 
 ```{r}
-# Looking at the data
+# Visualize the data
 boxplot(data)
 
 # Loop through columns to create histograms
-for(i in 1:ncol(data)){hist(data[,i], main = colnames(data)[i])} # Name histogram according to column name
+for(i in 1:ncol(data)){hist(data[,i], main = colnames(data)[i], xlab = "")} # Name histogram according to column name
 ```
 
 ## Considering Transformations
 
-We can see that all these data are exponentially distributed - there is much more data at small values, and the data at higher values is spread out. If we run our regressions on this data, our assumptions are going to be violated:
+We can see that these data have many more small values, and the data at higher values has higher variance \[try e.g. plot(data\$Mass, data\$Fat) to see this\]. If we run our regressions on these data, the assumption of heteroscedasticity is going to be violated:
 
 ```{r}
 # Run a test model and check assumptions
@@ -55,9 +55,9 @@ qqnorm(residuals(test))
 shapiro.test(residuals(test))
 ```
 
-Those diagnostics look... less than ideal.
+These diagnostics look... less than ideal.
 
-This is a textbook case of when to apply a log transformation - remember logging is the opposite of exponentiating:
+This is a textbook case of when to apply a log transformation to standardize variance - remember logging is the opposite of exponentiating:
 
 ```{r}
 # Apply log transformation
@@ -70,16 +70,16 @@ head(data_l)
 boxplot(data_l)
 
 # Loop through columns to create histograms
-for(i in 1:ncol(data_l)){hist(data_l[,i], main = colnames(data_l)[i])} # Name histogram according to column name
+for(i in 1:ncol(data_l)){hist(data_l[,i], main = colnames(data_l)[i], xlab = "")} # Name histogram according to column name
 ```
 
 Now our data looks much more uniform.
 
-**Always remember that transforming your data incorrectly or unnecessarily can do more harm than good.** How do you decide if it is helpful to transform your data? What is the purpose of transforming your data? Think carefully about these questions for your assignment when you're deciding whether to transform the data for your assignment.
+**Always remember that transforming your data incorrectly or unnecessarily can do more harm than good.** How do you decide if it is helpful to transform your data? What is the purpose of transforming your data? Think carefully about these questions for your assignment when you're deciding whether to transform any data.
 
 ## Simple Linear Regression
 
-Now that our data is good to go, we're going to run some simple linear regressions to predict central nervous system mass (CNS). Simple linear regressions only have one predictor variable. Linear regression is run using the `lm()` command:
+Now that our data is good to go, we're going to run some simple linear regressions on the logged data to predict central nervous system mass (CNS). Simple linear regressions only have one predictor variable, so we will run separate models for each predictor. Linear regression is run using the `lm()` command:
 
 ```{r}
 # Run simple linear regressions - Mass
@@ -141,7 +141,7 @@ abline(m6, lwd = 2, col = 'red') # Plot model
 
 ```
 
-All of the regression slopes are positive. This makes sense - larger animals tend to have larger brains.
+All of the regression slopes are positive. This makes sense - larger animals tend to have larger brains. Remember to always think about whether your results make biological sense.
 
 ## Multiple Linear Regression
 
@@ -153,7 +153,7 @@ m7 = lm(CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE, data = data_l)
 summary(m7)
 ```
 
-Our full model has a very(!) high R^2^ value, and contrary to the simple linear regressions where every predictor was significant, none of our predictors are considered significant in the final model at $\alpha$ = 0.05. Why do you think that is?
+Our full model has a very(!) high R^2^ value, and, in contrast to the simple linear regressions where every predictor was significant, none of our predictors are considered significant in the final model at $\alpha$ = 0.05. Why do you think that is?
 
 ## Checking Assumptions
 
@@ -221,11 +221,11 @@ plot(m7, 2)
 shapiro.test(residuals(m7))
 ```
 
-The Shapiro-Wilk test p-value is not significant (though it treads close), meaning the assumption of normality is respected. The residual histogram largely looks normal, and the QQ plot tails start to pull off the line at high and low values, possibly indicating outliers are causing us some trouble, but not enough to violate the assumption.
+The Shapiro-Wilk test p-value is not significant (though it comes close), meaning the assumption of normality is respected. The residual histogram largely looks normal, and the QQ plot tails start to pull off the line at high and low values, possibly indicating outliers are causing us some trouble, but not enough to violate the assumption.
 
 ### What if my assumptions aren't respected?
 
-The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We've already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using `plot.lm()` identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want.
+The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We've already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using `plot.lm()` identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want, although in general it is good practice to only remove outliers where absolutely necessary, as they may contain important biological or other information.
 
 Keep in mind that data transformations and removing outliers both represent trade-offs. Removing outliers may help meet your model assumptions, but you may also be removing data that reflects reality from your model. In that case, is it really helping you to remove outliers? Similarly, transforming your data may help you meet your assumptions, but in a case like this, transforming our data further or in a different way could end up violating other assumptions. Sometimes the best way to deal with violated assumptions is simply to state that they are violated and think about what that means for the interpretation of your model. Play around with all these different ideas, and come up with what you think is best. At the end of the day, a lot of statistical choices are judgement calls, with no perfect right answer.
 
@@ -267,7 +267,7 @@ options('na.action' = na.fail)
 dredge(m7, rank = 'AIC')
 ```
 
-Here, we're ranking models by AIC. AIC balances fit with model complexity. Lower values of AIC are considered better. Generally, 2 is used as a rule of thumb for AIC - if delta AIC is \>2, the lower AIC model is considered better. If delat AIC is \<2, the support for the best model is weak, and the models could even be considered "tied".
+Here, we're ranking models by AIC. AIC balances fit with model complexity. Lower values of AIC are considered better. Generally, 2 is used as a rule of thumb for delta AIC: if delta AIC is \>2, the model with the higher AIC value has little support. If delta AIC is \<2, there is at least some support for the model with the higher AIC.
 
 # 
 

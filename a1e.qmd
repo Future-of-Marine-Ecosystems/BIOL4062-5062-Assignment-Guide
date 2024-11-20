@@ -1,6 +1,6 @@
 # **Assignment 1e:** Bayesian Data Analysis
 
-Assignment 1e is an introduction Bayesian data analysis, using Bayesian general linear models.
+Assignment 1e is an introduction to Bayesian data analysis, using Bayesian generalized linear models.
 
 For this tutorial, we'll be using `cuse.csv` .
 
@@ -15,7 +15,7 @@ head(data)
 dim(data)
 ```
 
-Our data contains 16 observations of 5 variables - a binomial matrix of how many women are using or not using birth control within 16 groups, and three categorical predictors - age, expressed as a bin, education, and whether they want more children. The first column is a duplicate of our row names. We can get rid of that:
+Our data contains 16 observations of 5 variables - a two-column binomial matrix (notUsing and using) of the number of women using and not using birth control within 16 groups, and three categorical predictors - age, expressed as categories, education, and whether they want more children. The first column is a duplicate of our row names. We can get rid of that:
 
 ```{r}
 # Remove column 1
@@ -25,7 +25,7 @@ head(data)
 
 ## Binomial GLM
 
-Binomial general linear models are used to calculate the probability of a binomial response - in this case, whether someone is using or not using birth control. Binomial GLM response can be fed in either as a true/false set, or as a matrix of successes and failures. According to `?family`, we need to feed in the data with successes first and failures second. Let's create the matrix:
+Binomial generalized linear models (logistic regression with a binary response variable and a logit link) are used to calculate the probability of a binomial response - in this case, whether someone is using or not using birth control. Binomial GLM responses can be fed in either as a true/false set, or as a two-column matrix of successes and failures. According to `?family`, we need to feed in the data with successes (whatever that means in each context) first and failures second. Let's create the matrix:
 
 ```{r}
 # create response matrix
@@ -50,7 +50,7 @@ m1 = glm(resp ~ age + education + wantsMore, family = 'binomial', data = data)
 summary(m1) # Summary
 ```
 
-In our summary we see we have 5 predictors: The age bin, low education, and wanting more kids. High education and not wanting more kids are missing because these variables are binary, so we only need one variable to differentiate them. We can also see the values of our model coefficients, their standard errors, and the model AIC.
+In our summary we see we have 5 predictor categories with parameter estimates: different age bins (values representing the difference from the age \<25 bin), low education (representing the difference from high), and wanting more kids (representing the difference from not wanting more kids). We can also see the values of our model coefficients, their standard errors, and the model AIC.
 
 ## Making it Bayesian
 
@@ -68,14 +68,14 @@ m2 = stan_glm(resp ~ age + education + wantsMore, family = 'binomial', data = da
 summary(m2) # Summary
 ```
 
-The `stan_glm` function automatically feeds our model into Stan, which is a Hamiltonian Markov Chain Monte Carlo (MCMC) sampler. Running `summary` on our model gives us some model diagnostics - all our Rhat values are 1 and all our n_eff values are well into the thousands, both of which are a good sign. We can also do some visual checks and tests:
+The `stan_glm` function automatically feeds our model into [Stan](https://mc-stan.org/), which is a Hamiltonian Markov Chain Monte Carlo (MCMC) sampler. Running `summary` on our model gives us some model diagnostics - all our Rhat values are 1 and all our n_eff values are well into the thousands, both of which are a good sign. We can also do some visual checks and tests:
 
 ```{r}
 # Trace plot
 plot(m2, 'trace')
 ```
 
-These are trace plots, which show us the parameter values selected for each iteration of the MCMC chain. We want these to look "fuzzy" - that indicates the sampler is exploring the full range of possible values. If these lines were to be flat, that would indicate the sampler got "stuck" and didn't sample the full posterior distributions. These look good.
+These are trace plots, which show us the parameter values selected for each iteration of the MCMC chain. We want these to look "fuzzy" - that indicates the sampler is exploring the full range of possible values. If these lines were flat, that would indicate the sampler got "stuck" and didn't sample the full posterior distributions. These look good.
 
 Lets look at our posteriors:
 
@@ -105,7 +105,7 @@ mcmc_areas(posterior, pars = names(m2$coefficients),
            prob = 0.95) + plot_title
 ```
 
-How would you interpret these plots?
+How would you interpret these plots? Note the asymmetry in the histograms, in contrast to typical frequentist approaches
 
 ## Adding Priors
 
@@ -144,14 +144,16 @@ mcmc_areas(posterior, pars = names(m3$coefficients),
            prob = 0.95) + plot_title
 ```
 
+What has changed versus the model without priors?
+
 You can also look at all of your Stan model results using `shinystan` by running `launch_shinystan(model)`. Try it out on your end (it doesn't work in markdown)
 
 ## Tips for your Assignment:
 
 Some things you may want to think about for your assignment:
 
-1.  How do the results of these three models differ? Why or why not?
+1.  How do the results of these three models differ? Why do they or don't they?
 
-2.  Do you believe certain models are more or less correct? Why or why not?
+2.  Do you interpret certain models as being more or less correct? Why or why not?
 
 3.  How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.
