@@ -474,41 +474,31 @@ Number of objects: 13 </code></pre>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07592385 
-Run 1 stress 0.07366297 
+Run 1 stress 0.120356 
+Run 2 stress 0.072393 
 ... New best solution
-... Procrustes: rmse 0.1937854  max resid 0.5647301 
-Run 2 stress 0.07358653 
+... Procrustes: rmse 0.2256254  max resid 0.6643299 
+Run 3 stress 0.0757299 
+Run 4 stress 0.07575137 
+Run 5 stress 0.07366297 
+Run 6 stress 0.08055013 
+Run 7 stress 0.07351183 
+Run 8 stress 0.08569481 
+Run 9 stress 0.07358653 
+Run 10 stress 0.08569489 
+Run 11 stress 0.0757299 
+Run 12 stress 0.07305563 
+Run 13 stress 0.07875788 
+Run 14 stress 0.07875788 
+Run 15 stress 0.08055013 
+Run 16 stress 0.07239299 
 ... New best solution
-... Procrustes: rmse 0.008639134  max resid 0.0238044 
-Run 3 stress 0.07366297 
-... Procrustes: rmse 0.008636293  max resid 0.02384508 
-Run 4 stress 0.07358653 
-... New best solution
-... Procrustes: rmse 6.751276e-06  max resid 1.288452e-05 
+... Procrustes: rmse 3.552977e-05  max resid 7.841097e-05 
 ... Similar to previous best
-Run 5 stress 0.08566789 
-Run 6 stress 0.072393 
-... New best solution
-... Procrustes: rmse 0.1712541  max resid 0.5176682 
-Run 7 stress 0.1396354 
-Run 8 stress 0.072393 
-... Procrustes: rmse 4.559504e-05  max resid 9.377233e-05 
-... Similar to previous best
-Run 9 stress 0.07358654 
-Run 10 stress 0.07366297 
-Run 11 stress 0.08568213 
-Run 12 stress 0.07351185 
-Run 13 stress 0.07575138 
-Run 14 stress 0.07239299 
-... New best solution
-... Procrustes: rmse 4.712477e-05  max resid 0.0001017654 
-... Similar to previous best
-Run 15 stress 0.1183846 
-Run 16 stress 0.08055013 
-Run 17 stress 0.07575137 
-Run 18 stress 0.08573269 
-Run 19 stress 0.0757299 
-Run 20 stress 0.07875788 
+Run 17 stress 0.07358653 
+Run 18 stress 0.1782434 
+Run 19 stress 0.07575137 
+Run 20 stress 0.0757299 
 *** Best solution repeated 1 times</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
@@ -527,7 +517,7 @@ Dimensions: 2
 Stress:     0.07239299 
 Stress type 1, weak ties
 Best solution was repeated 1 time in 20 tries
-The best solution was from try 14 (random start)
+The best solution was from try 16 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>
@@ -553,11 +543,11 @@ Species: scores missing</code></pre>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  k       stress
-1 1 2.210963e-01
-2 2 7.239300e-02
-3 3 8.854861e-05
-4 4 1.501690e-04
-5 5 9.560530e-05</code></pre>
+1 1 2.266009e-01
+2 2 7.239301e-02
+3 3 8.479425e-05
+4 4 9.175703e-05
+5 5 8.823969e-05</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make scree plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stress <span class="sc">~</span> k, <span class="at">data =</span> scree, <span class="co"># Plot stress against k</span></span>
@@ -642,33 +632,30 @@ ind13 0.7501 0.8751</code></pre>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">=</span> <span class="fu">metaMDS</span>(dist2, <span class="at">wascores =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.07575137 
-Run 1 stress 0.07305565 
+Run 1 stress 0.07239299 
 ... New best solution
-... Procrustes: rmse 0.2261891  max resid 0.6660298 
+... Procrustes: rmse 0.2253585  max resid 0.6639845 
 Run 2 stress 0.0757299 
-Run 3 stress 0.120356 
-Run 4 stress 0.0757299 
-Run 5 stress 0.0757299 
-Run 6 stress 0.08055013 
-Run 7 stress 0.07575137 
-Run 8 stress 0.07875788 
-Run 9 stress 0.07572991 
-Run 10 stress 0.1797944 
-Run 11 stress 0.07575137 
-Run 12 stress 0.07366297 
-Run 13 stress 0.07239302 
-... New best solution
-... Procrustes: rmse 0.01404512  max resid 0.04165867 
-Run 14 stress 0.0757299 
-Run 15 stress 0.0856906 
-Run 16 stress 0.072393 
-... New best solution
-... Procrustes: rmse 0.0001240378  max resid 0.000261776 
+Run 3 stress 0.07351189 
+Run 4 stress 0.1734347 
+Run 5 stress 0.07305564 
+Run 6 stress 0.07575137 
+Run 7 stress 0.08573296 
+Run 8 stress 0.1193093 
+Run 9 stress 0.07239304 
+... Procrustes: rmse 9.728986e-05  max resid 0.0001985514 
 ... Similar to previous best
-Run 17 stress 0.08571807 
-Run 18 stress 0.07366297 
-Run 19 stress 0.1183846 
-Run 20 stress 0.07351184 
+Run 10 stress 0.120356 
+Run 11 stress 0.07358653 
+Run 12 stress 0.07308015 
+Run 13 stress 0.0856679 
+Run 14 stress 0.07575137 
+Run 15 stress 0.07366297 
+Run 16 stress 0.08055013 
+Run 17 stress 0.08055013 
+Run 18 stress 0.1193093 
+Run 19 stress 0.07358653 
+Run 20 stress 0.07366297 
 *** Best solution repeated 1 times</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print mds results</span></span>
@@ -684,10 +671,10 @@ Data:     dist2
 Distance: user supplied 
 
 Dimensions: 2 
-Stress:     0.072393 
+Stress:     0.07239299 
 Stress type 1, weak ties
 Best solution was repeated 1 time in 20 tries
-The best solution was from try 16 (random start)
+The best solution was from try 1 (random start)
 Scaling: centring, PC rotation 
 Species: scores missing</code></pre>
 </div>

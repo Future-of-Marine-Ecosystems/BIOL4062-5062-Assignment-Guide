@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Assignment 1e is an introduction Bayesian data analysis, using Bayesian general linear models.</p>
+<p>Assignment 1e is an introduction to Bayesian data analysis, using Bayesian generalized linear models.</p>
 <p>For this tutorial, we’ll be using <code>cuse.csv</code> .</p>
 <section id="looking-at-the-data" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">5.1</span> Looking at the Data</h2>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 16  6</code></pre>
 </div>
 </div>
-<p>Our data contains 16 observations of 5 variables - a binomial matrix of how many women are using or not using birth control within 16 groups, and three categorical predictors - age, expressed as a bin, education, and whether they want more children. The first column is a duplicate of our row names. We can get rid of that:</p>
+<p>Our data contains 16 observations of 5 variables - a two-column binomial matrix (notUsing and using) of the number of women using and not using birth control within 16 groups, and three categorical predictors - age, expressed as categories, education, and whether they want more children. The first column is a duplicate of our row names. We can get rid of that:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove column 1</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> data[,<span class="sc">-</span><span class="dv">1</span>]</span>
@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="binomial-glm" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="binomial-glm"><span class="header-section-number">5.2</span> Binomial GLM</h2>
-<p>Binomial general linear models are used to calculate the probability of a binomial response - in this case, whether someone is using or not using birth control. Binomial GLM response can be fed in either as a true/false set, or as a matrix of successes and failures. According to <code>?family</code>, we need to feed in the data with successes first and failures second. Let’s create the matrix:</p>
+<p>Binomial generalized linear models (logistic regression with a binary response variable and a logit link) are used to calculate the probability of a binomial response - in this case, whether someone is using or not using birth control. Binomial GLM responses can be fed in either as a true/false set, or as a two-column matrix of successes and failures. According to <code>?family</code>, we need to feed in the data with successes (whatever that means in each context) first and failures second. Let’s create the matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create response matrix</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">=</span> <span class="fu">cbind</span>(data<span class="sc">$</span>using, data<span class="sc">$</span>notUsing)</span>
@@ -343,7 +343,7 @@ AIC: 113.43
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 </div>
-<p>In our summary we see we have 5 predictors: The age bin, low education, and wanting more kids. High education and not wanting more kids are missing because these variables are binary, so we only need one variable to differentiate them. We can also see the values of our model coefficients, their standard errors, and the model AIC.</p>
+<p>In our summary we see we have 5 predictor categories with parameter estimates: different age bins (values representing the difference from the age &lt;25 bin), low education (representing the difference from high), and wanting more kids (representing the difference from not wanting more kids). We can also see the values of our model coefficients, their standard errors, and the model AIC.</p>
 </section>
 <section id="making-it-bayesian" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="making-it-bayesian"><span class="header-section-number">5.3</span> Making it Bayesian</h2>
@@ -401,8 +401,8 @@ This is shinystan version 2.6.0</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 3.8e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.38 seconds.
+Chain 1: Gradient evaluation took 3.6e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.36 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -419,15 +419,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.064 seconds (Warm-up)
-Chain 1:                0.062 seconds (Sampling)
-Chain 1:                0.126 seconds (Total)
+Chain 1:  Elapsed Time: 0.066 seconds (Warm-up)
+Chain 1:                0.072 seconds (Sampling)
+Chain 1:                0.138 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1.2e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 2: Gradient evaluation took 1.1e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -444,15 +444,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.08 seconds (Warm-up)
-Chain 2:                0.058 seconds (Sampling)
-Chain 2:                0.138 seconds (Total)
+Chain 2:  Elapsed Time: 0.063 seconds (Warm-up)
+Chain 2:                0.056 seconds (Sampling)
+Chain 2:                0.119 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 1.2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 3: Gradient evaluation took 1.1e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -469,15 +469,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.058 seconds (Warm-up)
-Chain 3:                0.069 seconds (Sampling)
-Chain 3:                0.127 seconds (Total)
+Chain 3:  Elapsed Time: 0.068 seconds (Warm-up)
+Chain 3:                0.065 seconds (Sampling)
+Chain 3:                0.133 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 1.2e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 4: Gradient evaluation took 1.1e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -494,9 +494,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.064 seconds (Warm-up)
+Chain 4:  Elapsed Time: 0.063 seconds (Warm-up)
 Chain 4:                0.06 seconds (Sampling)
-Chain 4:                0.124 seconds (Total)
+Chain 4:                0.123 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2) <span class="co"># Summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -523,25 +523,25 @@ wantsMoreyes -0.8    0.1 -1.0  -0.8  -0.7
 
 Fit Diagnostics:
            mean   sd   10%   50%   90%
-mean_PPD 31.7    1.6 29.8  31.7  33.8 
+mean_PPD 31.7    1.6 29.6  31.8  33.7 
 
 The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help('summary.stanreg')).
 
 MCMC diagnostics
               mcse Rhat n_eff
-(Intercept)   0.0  1.0  2173 
-age25-29      0.0  1.0  2419 
-age30-39      0.0  1.0  2009 
-age40-49      0.0  1.0  2247 
-educationlow  0.0  1.0  3404 
-wantsMoreyes  0.0  1.0  3152 
-mean_PPD      0.0  1.0  4325 
-log-posterior 0.0  1.0  2056 
+(Intercept)   0.0  1.0  2263 
+age25-29      0.0  1.0  2510 
+age30-39      0.0  1.0  2105 
+age40-49      0.0  1.0  2301 
+educationlow  0.0  1.0  2922 
+wantsMoreyes  0.0  1.0  3803 
+mean_PPD      0.0  1.0  3989 
+log-posterior 0.0  1.0  2002 
 
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 </div>
 </div>
-<p>The <code>stan_glm</code> function automatically feeds our model into Stan, which is a Hamiltonian Markov Chain Monte Carlo (MCMC) sampler. Running <code>summary</code> on our model gives us some model diagnostics - all our Rhat values are 1 and all our n_eff values are well into the thousands, both of which are a good sign. We can also do some visual checks and tests:</p>
+<p>The <code>stan_glm</code> function automatically feeds our model into <a href="https://mc-stan.org/">Stan</a>, which is a Hamiltonian Markov Chain Monte Carlo (MCMC) sampler. Running <code>summary</code> on our model gives us some model diagnostics - all our Rhat values are 1 and all our n_eff values are well into the thousands, both of which are a good sign. We can also do some visual checks and tests:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace plot</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="st">'trace'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -553,7 +553,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 </div>
 </div>
 </div>
-<p>These are trace plots, which show us the parameter values selected for each iteration of the MCMC chain. We want these to look “fuzzy” - that indicates the sampler is exploring the full range of possible values. If these lines were to be flat, that would indicate the sampler got “stuck” and didn’t sample the full posterior distributions. These look good.</p>
+<p>These are trace plots, which show us the parameter values selected for each iteration of the MCMC chain. We want these to look “fuzzy” - that indicates the sampler is exploring the full range of possible values. If these lines were flat, that would indicate the sampler got “stuck” and didn’t sample the full posterior distributions. These look good.</p>
 <p>Lets look at our posteriors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot parameter values with uncertainties</span></span>
@@ -585,7 +585,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>m2<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)     age25-29     age30-39     age40-49 educationlow wantsMoreyes 
-  -0.8062511    0.3889056    0.9039898    1.1876717   -0.3275097   -0.8361847 </code></pre>
+  -0.8124640    0.3878221    0.9128071    1.1902963   -0.3256058   -0.8387534 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model posteriors</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m2)</span>
@@ -603,7 +603,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 </div>
 </div>
 </div>
-<p>How would you interpret these plots?</p>
+<p>How would you interpret these plots? Note the asymmetry in the histograms, in contrast to typical frequentist approaches</p>
 </section>
 <section id="adding-priors" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="adding-priors"><span class="header-section-number">5.4</span> Adding Priors</h2>
@@ -617,8 +617,8 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <pre><code>
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 2.4e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.24 seconds.
+Chain 1: Gradient evaluation took 2.1e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.21 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -635,15 +635,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.078 seconds (Warm-up)
+Chain 1:  Elapsed Time: 0.08 seconds (Warm-up)
 Chain 1:                0.046 seconds (Sampling)
-Chain 1:                0.124 seconds (Total)
+Chain 1:                0.126 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1.9e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+Chain 2: Gradient evaluation took 1.1e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -660,15 +660,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.077 seconds (Warm-up)
+Chain 2:  Elapsed Time: 0.083 seconds (Warm-up)
 Chain 2:                0.047 seconds (Sampling)
-Chain 2:                0.124 seconds (Total)
+Chain 2:                0.13 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 1.2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 3: Gradient evaluation took 1e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -685,15 +685,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.082 seconds (Warm-up)
-Chain 3:                0.045 seconds (Sampling)
-Chain 3:                0.127 seconds (Total)
+Chain 3:  Elapsed Time: 0.102 seconds (Warm-up)
+Chain 3:                0.046 seconds (Sampling)
+Chain 3:                0.148 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 1.1e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
+Chain 4: Gradient evaluation took 1e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -710,8 +710,8 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.075 seconds (Warm-up)
-Chain 4:                0.043 seconds (Sampling)
+Chain 4:  Elapsed Time: 0.073 seconds (Warm-up)
+Chain 4:                0.045 seconds (Sampling)
 Chain 4:                0.118 seconds (Total)
 Chain 4: </code></pre>
 </div>
@@ -739,20 +739,20 @@ wantsMoreyes -0.3    0.0 -0.3  -0.3  -0.2
 
 Fit Diagnostics:
            mean   sd   10%   50%   90%
-mean_PPD 31.8    1.5 29.9  31.8  33.7 
+mean_PPD 31.7    1.5 29.8  31.7  33.7 
 
 The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help('summary.stanreg')).
 
 MCMC diagnostics
               mcse Rhat n_eff
-(Intercept)   0.0  1.0  5707 
-age25-29      0.0  1.0  5113 
-age30-39      0.0  1.0  6209 
-age40-49      0.0  1.0  5790 
-educationlow  0.0  1.0  5394 
-wantsMoreyes  0.0  1.0  5479 
-mean_PPD      0.0  1.0  5036 
-log-posterior 0.0  1.0  1836 
+(Intercept)   0.0  1.0  6305 
+age25-29      0.0  1.0  5683 
+age30-39      0.0  1.0  6038 
+age40-49      0.0  1.0  5943 
+educationlow  0.0  1.0  5633 
+wantsMoreyes  0.0  1.0  5445 
+mean_PPD      0.0  1.0  4547 
+log-posterior 0.0  1.0  1808 
 
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 </div>
@@ -793,7 +793,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>m3<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)     age25-29     age30-39     age40-49 educationlow wantsMoreyes 
-  -1.1991100    0.2209450    1.4811175    1.9949071   -0.9698267   -0.2824029 </code></pre>
+  -1.1993421    0.2209978    1.4813878    1.9952341   -0.9699428   -0.2817045 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model posteriors</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m3)</span>
@@ -811,14 +811,15 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 </div>
 </div>
 </div>
+<p>What has changed versus the model without priors?</p>
 <p>You can also look at all of your Stan model results using <code>shinystan</code> by running <code>launch_shinystan(model)</code>. Try it out on your end (it doesn’t work in markdown)</p>
 </section>
 <section id="tips-for-your-assignment" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">5.5</span> Tips for your Assignment:</h2>
 <p>Some things you may want to think about for your assignment:</p>
 <ol type="1">
-<li><p>How do the results of these three models differ? Why or why not?</p></li>
-<li><p>Do you believe certain models are more or less correct? Why or why not?</p></li>
+<li><p>How do the results of these three models differ? Why do they or don’t they?</p></li>
+<li><p>Do you interpret certain models as being more or less correct? Why or why not?</p></li>
 <li><p>How would you interpret your statistical results biologically? You don’t have to be right, but don’t be vague, and don’t contradict your results.</p></li>
 </ol>
 
