@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-cd7de1037569933fbb609f06423bd096.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-07889e05e195592e533097ce55888da8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -901,37 +901,74 @@ W = 0.95391, p-value = 0.1113</code></pre>
 <p>In assignment 1b, we created 1 model with 6 variables, then tested if we could get a similarly effective mode using fewer variables - i.e.&nbsp;a more <strong>efficient</strong> model. Let’s do the same thing here:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise model selection - forward</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>m8 <span class="ot">=</span> <span class="fu">step</span>(m7, <span class="at">direction =</span> <span class="st">'forward'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>m8 <span class="ot">=</span> <span class="fu">step</span>(<span class="fu">lm</span>(CNS <span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> data_l),</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">scope=</span>(CNS <span class="sc">~</span> Mass <span class="sc">+</span> Fat <span class="sc">+</span> FFWT <span class="sc">+</span> HEART <span class="sc">+</span> MUSCLE <span class="sc">+</span> BONE),</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">direction=</span><span class="st">'forward'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Start:  AIC=-80.52
-CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE</code></pre>
+<pre><code>Start:  AIC=47.92
+CNS ~ 1
+
+         Df Sum of Sq     RSS     AIC
++ MUSCLE  1    122.51   4.086 -83.984
++ FFWT    1    121.96   4.634 -79.074
++ HEART   1    121.82   4.780 -77.869
++ Mass    1    121.65   4.948 -76.519
++ BONE    1    121.03   5.567 -71.921
++ Fat     1    112.27  14.327 -35.056
+&lt;none&gt;                126.595  47.920
+
+Step:  AIC=-83.98
+CNS ~ MUSCLE
+
+        Df Sum of Sq    RSS     AIC
++ HEART  1  0.233798 3.8522 -84.282
++ Mass   1  0.212536 3.8735 -84.067
+&lt;none&gt;               4.0860 -83.984
++ Fat    1  0.152823 3.9332 -83.470
++ FFWT   1  0.139313 3.9467 -83.337
++ BONE   1  0.021542 4.0645 -82.190
+
+Step:  AIC=-84.28
+CNS ~ MUSCLE + HEART
+
+       Df Sum of Sq    RSS     AIC
++ Mass  1   0.35155 3.5007 -86.014
++ Fat   1   0.29737 3.5549 -85.415
++ FFWT  1   0.23682 3.6154 -84.756
+&lt;none&gt;              3.8522 -84.282
++ BONE  1   0.10287 3.7494 -83.337
+
+Step:  AIC=-86.01
+CNS ~ MUSCLE + HEART + Mass
+
+       Df Sum of Sq    RSS     AIC
+&lt;none&gt;              3.5007 -86.014
++ Fat   1  0.040574 3.4601 -84.468
++ FFWT  1  0.018388 3.4823 -84.219
++ BONE  1  0.000458 3.5002 -84.019</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE, 
-    data = data_l)
+lm(formula = CNS ~ MUSCLE + HEART + Mass, data = data_l)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.72690 -0.12073  0.00376  0.08672  0.85638 
+-0.74267 -0.11882 -0.00818  0.10790  0.84702 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) -0.61138    1.18496  -0.516   0.6094  
-Mass        -0.46867    2.14250  -0.219   0.8282  
-Fat         -0.06818    0.15489  -0.440   0.6628  
-FFWT        -0.02606    2.30347  -0.011   0.9910  
-HEART        0.41894    0.21913   1.912   0.0649 .
-MUSCLE       1.03524    0.61123   1.694   0.1000  
-BONE        -0.06339    0.32054  -0.198   0.8445  
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)  -0.1840     0.8704  -0.211  0.83383   
+MUSCLE        1.2436     0.4254   2.923  0.00603 **
+HEART         0.3855     0.1997   1.931  0.06166 . 
+Mass         -0.8197     0.4372  -1.875  0.06919 . 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.3286 on 32 degrees of freedom
-Multiple R-squared:  0.9727,    Adjusted R-squared:  0.9676 
-F-statistic: 190.1 on 6 and 32 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.3163 on 35 degrees of freedom
+Multiple R-squared:  0.9723,    Adjusted R-squared:   0.97 
+F-statistic: 410.2 on 3 and 35 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Running forward model selection cuts the model down to 3 variables. As with 1b, we can also do backward:</p>
@@ -1473,8 +1510,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1585,7 +1620,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
