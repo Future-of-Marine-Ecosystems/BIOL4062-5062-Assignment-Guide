@@ -343,7 +343,7 @@ mds3 = cmdscale(dist, eig = T)
 mds3
 ```
 
-Metric MDS doesn't have stress. Instead, we have to look at goodness of fit (GOF) to assess how well the analysis worked. GOF is similar to an R^2^ value, where numbers closer to 1 indicate a better fit (though be wary of overfitting!). There are two different GOF values for each metric MDS.
+For metric MDS, we look at goodness of fit (GOF) instead of stress to assess how well the analysis worked. GOF is similar to an R^2^ value, where numbers closer to 1 indicate a better fit (though be wary of overfitting!). There are two different GOF values for each metric MDS.
 
 As with the other MDS functions, k defaults to 2. We can make another scree plot:
 

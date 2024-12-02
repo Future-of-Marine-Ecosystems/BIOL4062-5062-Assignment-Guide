@@ -133,7 +133,29 @@ pca_1 = princomp(data_log[,-1]) # We don't want haul in our PCA!
 summary(pca_1)
 ```
 
-Running a summary on our PCA gives us the standard deviation of each principal component, the proportion of variance explained by each principal component, and the cumulative variance explained as we add each component. Here, we see the first principal component explains 66% of the variance. The second explains 16%, which adds up to 82% with the first component, and so on up to component 5. We can visualize the cumulative variance explained with a scree plot:
+Running a summary on our PCA gives us the standard deviation of each principal component, the proportion of variance explained by each principal component, and the cumulative variance explained as we add each component.
+
+Each principal component is an **eigenvector** of the correlation/covariance matrix (remember from lecture that the *j*th principal component is the *j*th eigenvector of the correlation/covariance matrix). The **eigenvalues** are the variance of each individual principal component. The principal components are organized by their eigenvalues - the first principal component is the eigenvector with the largest eigenvalue, the second principal component is the eigenvector with the second largest eigenvalue, and so on.
+
+The `princomp()` function gives us the standard deviation of each principal component; We can square these to get the eigenvalues:
+
+```{r}
+# Calculate and pring eigenvalues
+eigenvalues = pca_1$sdev^2
+eigenvalues
+```
+
+We can use the eigenvalues to reproduce the reset of the `princomp()` output. The proportion of variance is the value of each eigenvalue divided by the sum of all the eigenvalues. The cumulative proportion is the cumulative sum of the proportions of variance. Since there are 5 components, the cumulative proportion of component 5 is 1 (i.e. all of the variance).
+
+```{r}
+# Calculate and print proportion of variance
+prop_var = eigenvalues/sum(eigenvalues); prop_var
+
+# Calculate cumulative proportion of variance
+cum_prop = cumsum(prop_var); cum_prop
+```
+
+Here, we see the first principal component explains 66% of the variance. The second explains 16%, which adds up to 82% with the first component, and so on up to component 5. We can visualize the cumulative variance explained with a scree plot:
 
 ```{r}
 # Generate scree plot
@@ -166,7 +188,7 @@ plot(pca_1$scores[,1], # Scores on component 1
      xlab="1st principal component",ylab="2nd principal component",main="Scores plot") # Axis and plot labels
 ```
 
-This generates a scatterplot showing us the value of each data point in principal components 1 (x) and 2 (y). Now lets add on the loadings:
+This generates a scatterplot showing us the value of each data point in principal components 1 (x) and 2 (y).
 
 ```{r}
 # Plot scores - components 1 and 2

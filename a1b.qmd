@@ -64,7 +64,9 @@ summary(sm, test = 'Wilks')
 
 By both the Hotelling's and Wilks' tests, our MANOVA is significant, indicating the snake species vary as a multivariate whole.
 
-What about our assumptions though? Our MANOVA assumptions are normality, linearity, and homogeneity of covariances. You've been told to assume the latter, so let's skip that one.
+What about our assumptions though? Our MANOVA assumptions are independence, normality, linearity, and homogeneity of covariances. You've been told to assume the latter, so let's skip that one. Independence states that measurements of each snake are independent from all others. For example, it would be violated if our data were related to each other - for example, if some of our snakes were closely related, or if the graduate students measuring them were using different methods. We don't have information about how this data was collected, so we cannot assess independence. We'll skip that one as well.
+
+Let's start by testing for normality:
 
 ```{r}
 # Testing normality
@@ -183,7 +185,7 @@ ms_b = stepclass(Species ~ M1+M2+M3+M4+M5+M6,data=snake,
 ms_b
 ```
 
-Backwards model selection works by removing variables from the full model. This means backwards selection should always return a model with a equal or more variables than forwards selection.
+Backwards model selection works by removing variables from the full model. This means backwards selection usually returns a model with equal or more variables than forwards selection.
 
 Lastly, we can run both:
 
@@ -250,6 +252,4 @@ Some things you may want to think about for your assignment:
 
 1\. How would you pick which model you think is best? What factors would you consider? Are there any factors you would consider other than those discussed in this tutorial?
 
-2\. LDA also assumes the data are independent. Do we know this assumption is respected? Why or why not? What would constitute it not being respected?
-
-3\. How would you interpret your statistical results biologically (can be in terms of the snakes, how you would study them, or both)? You don't have to be right, but don't be vague, and don't contradict your results.
+2\. How would you interpret your statistical results biologically (can be in terms of the snakes, how you would study them, or both)? You don't have to be right, but don't be vague, and don't contradict your results.

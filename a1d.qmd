@@ -235,7 +235,9 @@ In assignment 1b, we created 1 model with 6 variables, then tested if we could g
 
 ```{r}
 # Stepwise model selection - forward
-m8 = step(m7, direction = 'forward')
+m8 = step(lm(CNS ~1, data = data_l),
+          scope=(CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE),
+          direction='forward')
 summary(m8)
 ```
 
