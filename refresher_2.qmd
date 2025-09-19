@@ -1,0 +1,266 @@
+# R Refresher Part 2: Types of Data and Data Structures
+
+## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+
+There are many different types of objects in R. This section is designed to introduce you to them, and the basics of how to work with them.
+
+## Data Types
+
+R includes several different data types, all of which behave differently. The data type of an object can be checked using `class()`.
+
+### Numeric
+Numeric objects are numbers, which are used to perform arithmetic and associated mathematical functions. Other objects can be converted to numeric using `as.numeric()` and you can check if an object is numeric using `is.numeric()`. Integers are a subclass of numerics which lack decimals, and can be converted/checked using `as.integer()` and `is.integer()`.
+
+```{r}
+# 2. Types of Data and Data Structures-----------------------------------------------------
+
+# There are many types of data structures in R: vectors, matrices, 
+#dataframes, arrays, lists, functions etc.
+#that contain different types of data
+
+# 2.a) Types of Data -----
+# ~~~numeric 
+a <- c(2,4,7,8)
+
+# Check class
+class(a)
+
+# Convert to character
+test = as.character(a)
+as.numeric(test)
+
+# these are also integers
+is.integer(a)
+
+a# prints the object
+summary(a) #summarizes data
+
+# mathematical operations can be done:
+a + 1
+a - 1
+mean(a)# get the average
+```
+
+### Character
+Character objects are text strings which are bound and created by `""` or `''`. Mathematical functions do not work on them. Characters which contain only numerals can be translated to numerics as above, but will return `NA` if they contain anything other than a numeral. There is a wide range of functions designed to work on strings for a variety of purposes. Objects can be converted to character using `as.character()` or checked using `is.character`.
+
+
+```{r}
+# ~~~ character 
+b <- c("hello", "goodbye", "goodbye")
+b
+summary(b)
+
+# doesn't allow for mathematical operations
+mean(b)# get the average
+
+# Check the length of each
+nchar(b)
+
+# Check if is a character
+test # Note the quotation marks
+is.character(test) 
+
+# Substitution
+b_sub = gsub('good', '', b)
+b_sub
+```
+
+### Factors
+Factors are categorical variables which are used to divide data into groups. They can be created using `factor()`, translated using `as.factor()`, and checked using `is.factor()`. In many (but not all) cases they behave similarly to characters, but they also have numeric elements. Each group inside a factor is called a level, and is assigned a numeric value, which is shown upon printing the factor.
+
+```{r}
+# ~~~factor
+# factors act as categorical variables
+c <- as.factor(b)
+c
+
+# Levels can be set manually if a certain order is desired. They default to alphabetic/numeric order
+c = factor(b, levels = c('hello', 'goodbye'))
+c # Note the levels are different
+
+# Arithmetic doesn't work
+mean(c)
+
+# as.numeric outputs the levels
+as.numeric(c)
+
+# Summary
+summary(c)
+
+```
+
+### Logicals
+Logicals are true or false. They can be created by various logical tests using Boolean operators such as `==`, `!=`, `>`, `<`, `<=`, and `>=`, or by logical functions such as those associated with `is`, including those listed above. They can be converted using `as.logical` and tested (logically!) using `is.logical`. Logicals can be written as `TRUE` or `FALSE` and `T` or `F` interchangeably. Numerically, logicals are binary, with `TRUE == 1` and `FALSE == 0`. This behaviour can be used to perform arithmetic on logicals. 
+
+```{r}
+# ~~~ logical
+# true or false variables
+d <- a == b
+d
+
+# Boolean tests
+1 > 2
+1 < 2
+
+summary(d)
+mean(d)# logical operation converts F = 0, T = 1
+sum(d) # RS Note, you can use sum on logicals to get the number of TRUEs
+as.logical(1)
+
+# T and TRUE and F and FALSE are interchangeable
+T == TRUE
+```
+
+## Object Types
+In addition to the different types of data, R has different types of objects to contain those different types of data:
+
+### Scalars
+A scalar is a single object, such as a single number, character string, or T/F. There are no functions specifically associated with scalars. They are treated as vectors of length 1.
+
+### Vectors
+A vector is a one-dimensional sequence of values. Vectors can be of any data type. They are created using `c()`, and can be converted using `as.vector()` and tested using `is.vector()`. The number of elements in a vector can be determined using `length()`. Vectors are indexed using `[]` (see refresher section 4 for more). By default in R, performing a function on a vector applies it to all elements of the vector.
+
+```{r}
+# 2.b) Types of objects -------
+
+# different data types can be stored in different objects
+# ~~~ Vector: one-dimensional sequence of values
+
+# it can have numbers, characters, etc
+num_vector <- c(3,6,9,12,15)
+num_vector
+
+# check the length
+length(num_vector)
+
+# Indexing
+num_vector[1]
+num_vector[2]
+
+# Operations are applied to all elements
+num_vector+1
+is.numeric(num_vector)
+as.character(num_vector)
+
+# character vectors
+char_vector <- c("Data", "analysis", "fun")
+char_vector
+
+char_vector2 <- c("Data", "analysis", 1)
+# when we mix character with numbers, everything becomes character
+char_vector2
+
+#check data class stored within a vector:
+data.class(char_vector2)
+data.class(num_vector)
+
+# A scalar is a vector of 1
+is.vector(1)
+```
+
+### Matrices
+
+Matrices are basic two-dimensional data structures. Matrices are almost always numeric. Unlike data frames, matrices can only contain one data type. Matrices can be created using `matrix()`, translated using `as.matrix()`, and tested using `is.matrix()`. Matrices are indexed using `[row,column]` (see refresher section 4 for more).
+
+```{r}
+# ~~~ Matrix and data frames: 2 dimensions
+# matrices are usually numerical
+
+#calls for data, n rows, n cols
+my_matrix1 <-  matrix(1:6, 2, 3, byrow = T)# data, rows, columns
+my_matrix2 <-  rbind(num_vector, num_vector) # or 'rbind()', 'cbind()' and others; RS Note, column names must be the same
+my_matrix3 <-  cbind(my_matrix2, my_matrix2) # or 'rbind()', 'cbind()' and others
+
+# Character matrix
+matrix(c('a', 'b', 'c', 'd', 'e', 'f'), nrow = 2, ncol = 3)
+
+# Mixing makes everything character
+matrix(c('a', 'b', 'c', 'd', 2, 3), nrow = 2, ncol = 3)
+```
+
+### Data Frames
+
+Data frames are the workhorse two-dimensional data structures in R. Think of them like a standard table. Unlike matrices, each column in a data frame can be a different data type. Data frames can be indexed using `[row,column]` or `$column` (see refresher section 4 for more). Data frames are made using `data.frame()`, translated using `as.data.frame()`, and checked using `is.data.frame()`. 
+
+```{r}
+# ~~~ data.frames can contain numbers, characters or both
+my_df <- data.frame(test = char_vector, char_vector2)
+my_df
+
+# Column names can be set with names() or colnames()
+names(my_df) <- c("name", "order")
+my_df
+
+# Basic indexing
+my_df[,1]
+my_df$name
+
+# Translate a matrix
+my_matrix1
+as.data.frame(my_matrix1)
+
+```
+
+### Lists
+
+Lists are more freeform data structures in R which can be used to contain multiples of anything. Lists tend to be a bit more difficult to work with than other data types. They are indexed using `[[]]`, created using `list()`, translated using `as.list()` and checked using `is.list()`. Technically, data frames are a special type of list.
+
+```{r}
+# ~~~ lists are multidimensional objects of anything 
+# with any dimension
+my_list <- list(a, num_vector, char_vector, my_df)
+my_list
+
+#lists hold each of the elements in a "slot"
+# These slosts can be indexed using [[]]
+my_list[[2]]
+my_list[[2]][1] # We can stack square brackets to go deeper into a list
+
+# A data frame is a type of list
+is.list(my_df)
+```
+
+### Tibbles
+
+There are a few other types of more niche data structures you may come across, such as arrays and data tables. The most notable of these is the tibble - a special form of data frame which hails from the tidyverse. Tibbles print differently from data frames, and they have some unique properties which don't always play nice with other functions. It's good to know about them, and how to change them back to data frames if you run into such a situation.
+
+Tibbles are usually created by using a `dplyr` or `tidyr` function on a data frame, but can also be created by `tibble()`. They can be translated back to data frames using `as.data.frame()`.
+
+```{r}
+# Tibbles look a little different, particularly when printing large tibbles as compared to large data frames in the console
+my_tibble = tibble(my_df)
+my_tibble
+
+# Tibbles can be translated back using as.data.frame if required
+as.data.frame(my_tibble)
+```
+
+## Useful functions
+
+Below you can see some useful functions for dealing with data and object types. Play around and get to know them.
+
+```{r}
+# 2.c) useful functions for object types----
+#2 ~~~ figuring data types and structure
+class(my_df)
+data.class(my_df) #synonyms to classify data type or object type
+class(x)
+
+str(my_df) # see components of an object
+summary(my_df) # summarize each of the components of an object
+
+str(my_list)
+summary(my_list)
+
+object <- c(1:10)
+
+length(object) # number of elements or components
+c(object,object) # combine objects into a vector
+cbind(object, object) # combine objects as columns into an array (NOT A DATA FRAME UNLESS ONE OR BOTH INPUTS ARE DATA FRAMES!)
+rbind(object, object) # combine objects as rows into an array (NOT A DATA FRAME UNLESS ONE OR BOTH INPUTS ARE DATA FRAMES!)
+object     # prints the object
+rm(object) #removes object from environment
+object
+```
+

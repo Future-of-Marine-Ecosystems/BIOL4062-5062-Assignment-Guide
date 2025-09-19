@@ -1,0 +1,345 @@
+# R Refresher Part 6: Summarizing and Visualizing Data
+
+## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+
+This section covers basic summary statistics and plotting.
+
+## Viewing and summarizing data
+
+Base R contains a variety of functions for examining and summarizing data:
+
+```{r}
+# 6. Summarizing and visualizing data -------------------------------------------------------
+
+# Basic functions for summarizing your data
+# This are the basic functions to explore your data. Their names are pretty self-explanatory: 
+# mean(), var(), sd(), min(), max(), range(), sum(). 
+# They operate in the entire object
+
+num_vector <- rnorm(50, mean = 20, sd = 10)
+num_vector
+summary(num_vector) # the basics all together
+mean(num_vector)
+median(num_vector)
+var(num_vector)
+sd(num_vector)
+min(num_vector)
+max(num_vector)
+range(num_vector)
+quantile(num_vector)
+IQR(num_vector) # inter quarter range
+sum(num_vector)
+cumsum(num_vector) # cumulative sum
+
+```
+
+## Apply
+
+The family of `apply()` functions is designed to apply functions across the rows/columns of a matrix/data frame. They are a little old school nowadays (as opposed to the hip new tidyverse pipes covered in section 9), but consider using them in your workflows if they make sense to you. A lot of coding is about finding your own style. 
+
+```{r}
+
+# Hint: the function 'apply()' is a nice way to 
+#apply any kind of function to parts of you data frame, 
+#matrix, array. It basically work like this:
+# apply(X, MARGIN, FUN), where X is the object; 
+#MARGIN is 1(row) or 2(column); and FUN is the function 
+?apply # to explore examples 
+my_matrix1 <-  matrix(1:6, 2, 3, byrow = T)# data, rows, columns
+my_matrix1
+
+apply(my_matrix1, MARGIN=1, FUN=mean) # mean values for each row
+apply(my_matrix1, MARGIN=2, FUN=mean) # mean values for each column
+
+scho <- read.csv("Schoenemann.csv", header=T)
+
+# Exploring factor data with tapply
+scho # this is the csv data we imported from the Schoenemann dataset
+# available in the course excel files
+# the function 'tapply()' is the right tool for the job:
+# tapply(X, INDEX, FUN); same as before, but now INDEX 
+# is the factor
+
+#first, transform into factors
+scho$Location_f <- factor(scho$Location)
+scho$Order_f <- factor(scho$Order)
+
+
+
+tapply(scho$Fat, INDEX = scho$Location_f, FUN=mean)
+
+# or the standard deviation of Fat..
+tapply(scho$Fat, INDEX = scho$Location_f, FUN=sd)
+# and so on
+
+# Hint: Contingency tables - the 'table()' function
+# also indicates how many samples/category
+
+table(scho$Location_f) #This is particularly useful for plotting (see below)
+table(scho$Location_f, scho$Order_f)
+# this is even more useful when we have MORE than one category!!
+
+```
+
+## Base R Plotting
+
+Base R contains a variety of functions that can be used for plotting, see some examples below. R plots work a bit like building blocks. Once you generate a plot, you can use successive functions to add more elements onto the plot. 
+
+```{r}
+# 6b. Basic plotting  ------------------
+
+# Let's cover the very basics of plotting in R: again, 
+# we create objects, use functions and voilá!
+# We will not cover formatting details. 
+# It's a bit of work to get a nice plot in R (by nice plot I mean one ready for publication). 
+# Again, it's worthy anyway, because we get a script to generate the figure as many times you wish later. And you can share the code (or reuse it later)
+
+# Histograms and barplots: frequency
+hist(scho$Fat)
+hist(scho$Fat, breaks=20) # a little more detail
+hist(scho$Mass, breaks=20) # a little more detail
+
+# Barplots for number of cases
+barplot(table(scho$Location_f))
+
+# Scatterplots (x vs y)
+plot(scho$Fat, scho$Mass) # plot where x = Fat, y = Mass
+plot(scho$Mass ~ scho$Fat) # plot where x = Fat, y = Mass too
+scatter.smooth(scho$Mass ~ scho$Fat) # add a trend line
+
+# Basic formatting
+plot(scho$Fat, scho$Mass, col = "blue", cex = 1, pch = 3)
+# col = color (numbers or names, google options)
+# cex = relative size
+# pch = type of point - PLAY withe the options
+
+levels(scho$Order_f)
+
+# add only carnivores to see if there's a pattern
+plot(scho$Fat[which(scho$Order_f == "Carnivora")], 
+     scho$Mass[which(scho$Order_f == "Carnivora")], 
+     col = 2, cex = 1, pch = 19)
+
+# if I want this to go over my previous graph, 
+# I can add points
+plot(scho$Fat, scho$Mass, col = 1, cex = 1, pch = 19)
+points(scho$Fat[which(scho$Order_f == "Carnivora")], 
+     scho$Mass[which(scho$Order_f == "Carnivora")], 
+     col = 2, cex = 1, pch = 19)
+
+
+# Color points by category
+plot(scho$Fat, 
+     scho$Mass, col = scho$Order_f, cex = 1, pch = 19)
+#turns each factor level into a number that corresponds to a color
+
+# Box plot
+boxplot(scho$Mass)#one variable (numerical)
+boxplot(scho$Mass ~ scho$Location_f)# One numerical variable as a function of a categorical variable
+?boxplot
+
+# Density plots
+plot(density(scho$Fat))
+
+```
+
+## ggplot2
+
+Alternatively, ggplot2 is a plotting package which is part of the tidyverse family that is designed to build plots more quickly (and ideally, prettily). Base plot and ggplot2 is very much a stylistic difference - you can (and should experiment with) build the same plots in either, but you may have a preference one way or the other. ggplot2 is generally more restrictive than R base plot, which can be frustrating in some cases, but may also be beneficial in others, as it can prevent you from making certain mistakes (e.g. mixing up your data and your legend).
+
+```{r}
+
+# 6 BONUS ~~~ Brief intro to ggplot----
+# taken and modified from Rebecca Barter:
+# URL: http://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial/
+
+# 1. install & upload package
+# installl.packages("ggplot2")
+library(ggplot2)#first install this package
+
+# 2. BONUS! you can upload data directly
+gapminder <- read.csv("https://raw.githubusercontent.com/zief0002/miniature-garbanzo/main/data/gapminder.csv")
+# this will fail if you are not connected to internet though
+
+# 3. see what is in there
+head(gapminder)
+str(gapminder)
+
+
+
+# 4. Start plot:
+# ggplots are built in layers, to which you add elements
+# the first bit is a "canvas" that holds the x and y axis
+
+ggplot(gapminder, aes(x = income, y = life_exp))
+# we are telling the function to use the "gapminder dataset"
+# and to draw the x axis based on gdp/capita and y axis as life expectancy
+# but this is still a blank canvas
+
+# 5. Populate plot 
+# start adding things by following your "canvas function" by a
+# + sign:
+p<- ggplot(gapminder, aes(x = income, y = life_exp)) +
+  geom_point() # add a points layer on top
+
+
+# 6. Make things easier to see
+
+# you can modify the format of your points by adding 
+# specifications within  gemo_point() 
+# alpha = transparency (0 - 1)
+# col = color (explore RColor Palettes for options)
+# size = point size
+
+p +
+  geom_point(alpha = 0.5, col = "cornflowerblue", size = 0.5)
+
+# you can also color each point by a category:
+# here, because we are plotting color based on a variabe, we
+# add it to the aes() input
+# so that now points are colored by continent
+
+ggplot(gapminder, aes(x = income, y = life_exp, color = region)) +
+  geom_point(alpha = 0.5, size = 0.7)
+
+
+# you can also modify the size of points based on a variable
+# so that bigger points show larger populations
+
+ggplot(gapminder, aes(x = income, y = life_exp, , color = region, 
+                      size = population)) +
+  geom_point(alpha = 0.5)
+
+
+# To make things easier to see, we will look at
+# only one year at a time
+
+library(dplyr)
+# the dplyr package allows another way to access
+# bits of your data
+# this can be read as:
+# First, take "gapminder" data and THEN
+# filter out data for the americas
+gapminder_Am <- gapminder %>% filter(region == "Americas")
+summary(gapminder_Am)
+
+# first we replicate our previous plot
+# it is now a bit easier to see patterns
+
+ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  geom_point(alpha = 0.5)
+
+
+# because there is so much variation in income, it 
+# may be easier to see it in a logarithmic scale
+
+ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  geom_point(alpha = 0.5) +
+  scale_x_log10()# this prints the x axis in a log10
+
+# you can now add more informative titles using the
+# + labs() element
+
+ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  # add scatter points
+  geom_point(alpha = 0.5) +
+  # log-scale the x-axis
+  scale_x_log10() +
+  # change labels
+  labs(title = "Income versus life expectancy in the Americas",
+       x = "Income per capita (log scale)",
+       y = "Life expectancy",
+       size = "Popoulation",
+       color = "CO2 chage")
+
+
+# and make things prettier by adding the
+# + themes() options
+ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  # add scatter points
+  geom_point(alpha = 0.5) +
+  # log-scale the x-axis
+  scale_x_log10() +
+  # change labels
+  labs(title = "Income versus life expectancy in the Americas",
+       x = "Income per capita (log scale)",
+       y = "Life expectancy",
+       size = "Popoulation",
+       color = "CO2 chage")+
+       theme_classic()
+
+# add labels!
+# I want to know where Ecuador fits here
+ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  # add scatter points
+  geom_point(alpha = 0.5) +
+  # log-scale the x-axis
+  scale_x_log10() +
+  # change labels
+  labs(title = "Income versus life expectancy in the Americas",
+       x = "GDP per capita (log scale)",
+       y = "Life expectancy",
+       size = "Popoulation",
+       color = "Continent")+
+       theme_classic() +
+    geom_text( 
+    data=gapminder_Am %>% filter(country == "Ecuador"), 
+    # Filter data first
+    aes(label=country))
+  
+# save your plot 
+# first put it in an object:
+p <- ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  # add scatter points
+  geom_point(alpha = 0.5) +
+  # log-scale the x-axis
+  scale_x_log10() +
+  # change labels
+  labs(title = "Income versus life expectancy in 2007",
+       x = "Income per capita (log scale)",
+       y = "Life expectancy",
+       size = "Popoulation",
+       color = "Continent")+
+       theme_classic() +
+    geom_text( 
+    data=gapminder_Am %>% filter(country == "Ecuador"), 
+    # Filter data first
+    aes(label=country))
+  
+
+
+plot(p)
+
+
+# # Save a plot
+# ggsave("Graphical_outputs/beautiful_plot.png", p, 
+#        dpi = 500, width = 10, height = 10)
+
+
+
+# you can also overlap things:
+# here, we have the initial point graph + a smoother line
+ggplot(gapminder_Am, aes(x = income, y = life_exp, color = co2_change , size = population)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(se = FALSE, method = "loess", color = "grey30")
+
+# 7.b Different types of plots
+# instead of points, you can create a line plot
+# (note how contents in the aes() change)
+ggplot(gapminder, aes(x = income, y = life_exp,
+                      color = region)) +
+  geom_line(alpha = 0.5)
+
+
+
+# a boxplot
+# (try replacing "fill" by "col")
+ggplot(gapminder, aes(x = region, y = co2, 
+                      fill = region)) +
+  geom_boxplot()
+# a histogram
+# explore modifying the bindwidth
+
+ggplot(gapminder, aes(x = co2)) + 
+  geom_histogram(binwidth =10)
+```

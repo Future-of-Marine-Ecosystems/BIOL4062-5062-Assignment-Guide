@@ -1,0 +1,212 @@
+# R Refresher Part 4: Indexing
+
+## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+
+This section covers indexing, which are methods by which you can access subsets of a data structure. Indexing serves as key fundamental of coding, which is incredibly useful in a wide range of situations.
+
+## Square Brackets
+
+Most indexing in R is performed through the use of square brackets. as vectors are one-dimensional, they are indexed using a scalar value inside `[]`. Two-dimensional data structures are indexed via `[row,column]`. Two-dimensional data structures can also be indexed using just `[]`, in which they will go in order of individual elements, but this is more commonly done by mistake than to achieve as a desired outcome. Lists are indexed using `[[]]`. Square brackets can also be stacked together - for instance, `data_frame[1,][2]` would pull out the second element of the first column of the object `data_frame`. This is equivalent to `data_frame[1,2]`.
+
+```{r}
+# 4. Accessing bits of data: indexing ------------------------------------------
+
+# Ok, now you have your objects, your own data in R.
+# How do you access them?
+# First thing: make sure they exist...
+a <- c(2,4,7,8)
+num_vector <- c(3,6,9,12,15)
+my_matrix1 <-  matrix(1:6, 2, 3, byrow = T)# data, rows, columns
+char_vector <- c("Data", "analysis", "fun")
+char_vector2 <- c("Data", "analysis", 1)
+my_df <- data.frame(test = char_vector, char_vector2)
+my_list <- list(a, num_vector, char_vector, my_df)
+scho <- read.csv("Schoenemann.csv", header=T)
+
+num_vector
+my_matrix1
+my_list
+scho
+
+# Each type of object has a specific way to manipulating 
+# its values.
+# Let's start with vectors: square brackets []
+num_vector
+num_vector[1] # the first element
+num_vector[5] # the 5th element
+num_vector[8] # there's only five, right?
+
+# you can change specific entries of your vector:
+num_vector[1] <- 6
+
+num_vector[2] <- NA 
+
+num_vector
+
+# Matrices: square brackets and commas [,] i.e. [row, column]
+my_matrix1
+my_matrix1[1,1] # first cell, row 1, column 1
+my_matrix1[1,] # first row
+my_matrix1[,1] # first column
+my_matrix1[5,5] # out of bounds!
+
+
+# Lists: double square brackets [[]]
+my_list
+my_list[[1]] # that's our x
+my_list[[2]] # that's our num_vector
+my_list[[3]] # that's our matrix1
+my_list[[2]][2] # that's the second element of the vector
+my_list[[4]][,2] # that's the third column of the dataframe ...
+
+```
+
+## Dollar Sign
+The `$` operator in R divides objects into their component parts, and can be used to pull out a desired part of an object using its name. `$` indexes column names for 2 dimensional data structures, and pulls out individual named items of lists. `attach()` can be used to move the components of an object into the workspace, which can later be undone using `detach()`. See the example below for its usage. 
+
+```{r}
+# data frame: dollar sign $ to access the columns, typing the column names
+scho$Mass
+
+# or...you can use the functions 'attach()' and 'detach()':
+attach(scho) # scho was copied to the workspace; the column names became objects and we can simply access them by typing their names
+Mass
+
+# but remember to 'detach' your dataframe when your done:
+detach(scho)
+Mass # see? an error, R doesn't recognize it anymore
+
+# you can also call single datapoints of a dataframe:
+scho$Mass[5] # gives you the 5th mass entry
+scho$Mass[5] <- NA # assign a new value to that entry
+scho$Mass
+
+# RS Note: You can also use $ to create new columns
+scho$Potato = 'Potato'
+scho$Potato
+
+```
+
+## Indexing methods
+
+There are many, many, MANY different ways to index things in R, using numerical, categorical, character, and logical methods. There are also various functions designed specifically for indexing, such as `which()`. Take a look through all the examples below and think about what types of indexing feel the best for you, when you might use them, and what you might use them for.
+
+```{r}
+scho[5,] #gives you the 5th row
+
+scho[,5] #gives you the 5th column
+
+# RS Note: You can also index things you don't want instead of things you do want using != and -
+scho[,-5]
+
+# RS Note: You can also index using row/column name text
+scho[,'Potato']
+scho = scho[,colnames(scho) != 'Potato']
+
+# RS Note: I recommend avoiding using numbers to index as much as humanly possible
+# Using numbers to index like this is called hard coding
+# If your data changes, your code will no longer work as intended
+test = scho
+test[,5]
+test = cbind('Carrot', test)
+test[,5]
+
+
+
+# conditional indexing
+# sometimes you want to extract the datapoints that meet certain
+# conditions
+
+scho$Mass[which(scho$Mass < 100)]# get the values that meet a condition
+which(scho$Mass < 100)# get the index of rows that meet a condition
+
+which(is.na(scho$Mass)) # RS Note: Return indexes where scho$Mass = NA
+
+# you can create a new dataframe that includes only rows that
+# meet a certain condition:
+
+scho_big <- scho[-which(scho$Mass<100),]
+#this means that scho_big will include all the rows of scho
+# Except those whose weight is less than 100. 
+# the "-" sign excludes rows
+
+scho_clean <- scho[-which(is.na(scho$Mass)),]
+# here you are removing all rows that have NA'values
+
+# RS Note: There are different ways to do the same thing, remember there are no wrong answers!
+# Everyone has their own coding style/preferences. I would do the same thing like this:
+scho_clean2 <- scho[(is.na(scho$Mass)) == F,]
+
+scho_clean == scho_clean2 # Same result
+
+
+# you can also do a dataframe that only includes those instances:
+scho_small <- scho[which(scho$Mass<100),]
+
+
+
+# RS Section: Useful Indexers
+# Here are some useful indexing methods
+head(mtcars)
+
+# Rows
+mtcars[mtcars$cyl == 6,] # == means equal to
+mtcars[mtcars$cyl != 6,] # != means does not equal
+mtcars[mtcars$cyl <=6,] # <= means less than or equal to (< is just less than)
+mtcars[mtcars$cyl >=6,] # >= means greater than or equal to (< is just greater than)
+
+# which
+cyl6 = which(mtcars$cyl == 6)
+cyl6
+mtcars[cyl6,]
+
+# which.min and which.max
+minwt = which.min(mtcars$wt) 
+maxwt = which.max(mtcars$wt)
+minwt
+maxwt
+
+# good for finding minimums/maximums in data
+mtcars[minwt,]
+mtcars[maxwt,]
+
+# Which.min and which.max take the first result only, not for use on categorical data
+which.min(mtcars$cyl) 
+which.max(mtcars$cyl)
+which(mtcars$cyl == min(mtcars$cyl)) # use which instead for all results for categorical data
+
+# Text (string) metadata
+head(PlantGrowth)
+
+# grep matches partial strings
+trts = grep('trt', PlantGrowth$group)
+trts
+PlantGrowth[trts,]
+
+# grepl does the same, but outputs logical instead of numerical
+trtsl = grepl('trt', PlantGrowth$group)
+trtsl
+PlantGrowth[trtsl == TRUE,]
+
+# gsub replaces the specified string with another specifed string, useful for removing things
+gsub('trt', '', PlantGrowth$group)
+potatoes = gsub('trt', 'POTATO', PlantGrowth$group)
+ptatoes = gsub('O.*?', '', potatoes)
+potatoes
+ptatoes
+
+# %in%
+PlantGrowth[PlantGrowth$group %in% c('ctrl', 'trt1'),]
+
+# and
+PlantGrowth[(PlantGrowth$weight < 5) & (PlantGrowth$group == 'ctrl'),]
+
+# or
+PlantGrowth[(PlantGrowth$weight < 5) | (PlantGrowth$group == 'ctrl'),]
+
+# !
+PlantGrowth[!(PlantGrowth$group %in% c('ctrl', 'trt1')),]
+
+# -
+PlantGrowth[-trts,]
+```

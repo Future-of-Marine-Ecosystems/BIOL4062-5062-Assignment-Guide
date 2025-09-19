@@ -1,0 +1,64 @@
+# R Refresher Part 3: Importing Data in R
+
+## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+
+This section covers how to input data files into R, and some basic functions for looking at data
+
+## Importing .csv files
+
+Most files you'll likely load into R will be `.csv` files. These files can be easily opened and translated in Excel (BUT DON'T EDIT THEM IN EXCEL!). `.csv` files are comma delimited files, meaning if you open the file in the text editor, you'll see each row is a string of characters with each column separated by a comma. Because of this structure, `.csv` files don't play nice with commas inside data fields, as they will cause the field to split into multiple columns. This can happen if you have something like a comments section in your data, where you might use a comma for punctuation when writing a comment. Keep this in mind as it can cause you headaches if you're not careful.
+
+`.csv` files can be read into r using `read.csv()` and written into files using `write.csv()`. By default, `write.csv()` will output the row names of a data frame or matrix, which is generally not desired. You can use the `row.names = F` argument to prevent this.
+
+`head()`, `View()`, `colnames()`, `nrow()`, `ncol()`, and `dim()` are useful functions for looking at a dataset once you've loaded it in.
+
+```{r}
+# 3. Importing data in R ------------------------------------
+
+# 3.1 Let's import an external data file "Schoenemann".
+# First, make sure the files are placed in your directory folder 
+# directory
+
+getwd()
+dir()
+
+
+# From a Comma Delimited Text File (.csv)
+# first row contains variable names, comma is separator 
+scho <- read.csv("Schoenemann.csv", header=T)
+head(scho) #first 6 rows of a data frame
+head(scho$Order) # RS Note: head also works on other structures
+scho
+View(scho)
+colnames(scho)
+nrow(scho)
+ncol(scho)
+dim(scho)
+
+```
+
+## Importing other files
+
+`.csv` files are just one of many types of data files you may need to load into R. They are also only one type of delimited file you may need to load in. Other types of delimited data can be loaded in using the more general `read.table()` function, which allows you to specify the delimting character through the `sep` argument. Setting `sep = ','` is essentially equivalent to `read.csv()`. Other common uses include `sep = '\t'` to load in tab (space) delimited files, and `sep = ';'` to load in semicolon delimited files.
+
+```{r}
+# From a Tab delimited text file (.txt)
+scho_txt <- read.table("Schoenemann.csv", header=TRUE, sep = ',')
+scho_txt
+
+# 3.2 Make sure your data is correct
+# Some functions that help us to check if the data was 
+# input correctly: str(); dim(); head(); tail()
+
+str(scho) # internal structure of the data
+dim(scho) # dimensions (numbers of row and column)
+head(scho) # column names and first rows (are the column names correct?)
+tail(scho) # last rows
+summary(scho)
+
+# ~~~ saving data
+write.csv(scho, "Datasets/Schoenemann_edited.csv", row.names = F) # RS Note: You almost always want to run write.csv with row.names = F
+
+getwd()
+dir()
+```

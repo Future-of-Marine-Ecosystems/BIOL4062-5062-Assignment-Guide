@@ -1,0 +1,93 @@
+# R Refresher Part 5: Using Functions and Packages
+
+## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+
+This section covers the use of R functions as well as how to download, load in, and use R packages. We'll cover user-defined functions in Part 8.
+
+## Functions
+
+Functions are objects in R which are used to compress and run larger blocks of code all at once. For example, `mean(x)` is a faster way of doing `sum(x)/length(x)`. Of course, `sum()` and `length()` are also functions. If it ends in a paranthesis, its a function.
+
+The general structure of functions is `function(argument_1 = value_1,...argument_n = value_n)` Running a function will output some sort of value. You can find out what a function does using the Help tab in RStudio by running `?function`. If an argument has a value in the help tab, that is the default value of that argument - that means if you don't specify a value for that argument, it will use the value shown in the help tab. Just typing the name of a function with no parentheses will print the internal code of the function. 
+
+```{r}
+# 5. Functions and packages ----------------------------------
+
+# Functions are objects too. The basic structure of a function is:
+# function(argument1 = value, argument = value, ...)
+# everytime you have an object with followed by parentheses,
+# there is a function
+# Inside the parentheses you can place the function arguments
+
+# If you type the function's name with no parentheses 
+# you will get the code for the function:
+
+data.frame
+
+
+# Example: the function 'mean()' returns the mean value of a object
+num_vector <- c(3,6,9,12,15)
+mean(num_vector)
+# type the function with nothing inside the parentheses 
+#and get a error!
+mean()
+
+# Arguments can change the way a function behaves
+num_vector2 <- c(NA,6,9,12,15)
+mean(num_vector2)
+mean(num_vector2, na.rm = F) # Default
+mean(num_vector2, na.rm = T)
+
+# 3.1 There are SO MANY functions in R. How do we figure out 
+#how they work? 
+#HELP!
+help(mean)
+?mean
+
+# this will lead you to the help page with 
+#the description of the function, how you use it, 
+#what arguments it has, retuned values, references, 
+#examples...everything you need to know how any function works
+
+```
+
+## Packages
+
+Packages are groups of functions packaged together, which are generally built, maintained, and made publicly available by other R users. In order to use the functions in a package, the package must first be installed, and then libraried, which loads it into your R workspace. Most public packages are installed from the Comprehensive R Archive Network (CRAN), which is an online repository of R packages and their associated code and documentation which are stored in servers across the world. Alternatively, smaller, more niche packages may not be on the CRAN, and thus must be downloaded directly from GitHub.
+
+```{r}
+
+# 4.2 Where are the functions?
+# R has several base functions and many, 
+# many others created by users around the world.
+# Formally they are organized into modules, called packages. 
+# They come in a standardized way, with the help files, 
+# to help users understandand how to use them. 
+# We have access to virtually any kind of function in the CRAN 
+# repository.
+# A repository is a "place" where a lot of packages are stored
+# and from which they can be accessed
+# Examples inlcude CRAN and GitHub
+# First, let's see the packages you already have installed:
+installed.packages()
+
+# Let's install the package "vegan" that contains many useful ecological tools. We can do it by typing:
+install.packages("vegan")
+
+# or going in Tools>Install packages> 
+# Select a CRAN> select the package you want. 
+# Google is good to figure out which package has the function you want
+# Now, and everytime you start a new R session, you have to 
+# load the packages you will use. Go ahead and type
+
+library(vegan)
+help(package="vegan") # take a look in the package documentation
+
+citation("vegan")
+
+# install Packages from GitHub
+library(devtools)
+devtools::install_github("hadley/babynames", force = TRUE)
+library(babynames)
+```
+

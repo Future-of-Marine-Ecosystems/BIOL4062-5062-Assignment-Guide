@@ -1,0 +1,88 @@
+# R Refresher Part 1: First Movements
+
+## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+
+This section covers basic R workspace management.
+
+## Working Directories:
+
+Your working directory is the default file path your R session is working under. You can find your working directory using the `getwd()` command. If you're working in an R project, it will be set to the path of the project by default.
+
+```{r}
+# First of all, let's check our working directory 
+# (where we get files from and save our work in)
+getwd()
+```
+
+You can change your working directory if needed using `setwd()`.
+
+```{r}
+# you can change it using the function 'setwd()' and 
+# pasting the directory path in quotes inside the parentheses
+# note that in R we always use "/" or "\\" instead of "\" on mswindows systems
+
+# For example:
+# setwd("C:/Users/R3686/OneDrive - Dalhousie University/Documents/Teaching/Anaylsis of Biological Data/Refresher/")
+
+# You can also set up your working directory in Rstudio 
+#by clicking in Session>Set Working Directory>Choose Directory; 
+#or in R by clicking in File>Change Directory
+
+```
+
+You can see what is inside your working directory using `dir()`, and pull out specific files of interest using a pattern with `list.files()`
+
+```{r}
+# Let's take a look in what we have in our working directory
+dir()
+
+# Pick out all the .csv files
+list.files(pattern = '.csv')
+
+# If you are already sick of R, you can quit by typing:
+#q()
+
+```
+
+## Workspace Management
+
+You can save your R workspace into your current directory using `save.image()`, or save specific objects using `save()`. This is useful for saving results that might change due to randomization, or that may take a long time to generate, such as complex models. You can then load these objects back in later using `load()`.
+
+```{r}
+
+# You can save your work before you go (useful sometimes)
+save.image('Workspace.RData')#but remember to give it a useful name
+save(x, 'Workspace.RData')
+
+load('Workspace.RData')
+
+```
+
+Your R workspace is the environment which contains all of the R objects you've made. By default, everything in your R workspace is visible in the top-right panel in RStudio. You can list everything in your workspace using `ls()`, and delete individual objects using `rm()`. These commands can be combined using `rm(list=ls())` to completely clear your workspace.
+
+You can make objects in your workspace using `<-` or `=`. Object names can be anything - try to make them informative so that you'll know what they are. Remember, everything is case-sensitive in R. X is a different object from x.
+
+```{r}
+
+# Let's take a look in our workspace
+ls()
+
+# It's empty: no objects.Sure? what about x?
+x
+# See, there's no such object. Let's create one called x
+x <- 2
+
+x = 2
+
+# '<-' assigns values to objects, works the same as '='
+# here is our object x
+
+x
+
+
+# Let's take another look in our workspace. See all you objects there?
+ls()
+
+# RS Note: We can use ls to clear the entire workspace
+rm(list = ls())
+```

@@ -6,7 +6,7 @@ book:
   title: "**Assignment 1 Guide**"
   subtitle: "BIOL4062/5062: Analysis of Biological Data"
   author: "Reid Steele (Based on work by Ana Eguiguren)"
-  date: "2024-11-19"
+  date: "2025-09-19"
   cover-image: FOME_Primary_BlueGradient.png
   search: true
   navbar:
@@ -17,6 +17,17 @@ book:
   chapters:
     - index.qmd
     - guidelines.qmd
+    - part: "**R Refresher**"
+          chapters:
+        - refresher_1.qmd
+        - refresher_2.qmd
+        - refresher_3.qmd
+        - refresher_4.qmd
+        - refresher_5.qmd
+        - refresher_6.qmd
+        - refresher_7.qmd
+        - refresher_8.qmd
+        - refresher_9.qmd
     - part: "**Assignment 1**"
       chapters:
         - a1a.qmd

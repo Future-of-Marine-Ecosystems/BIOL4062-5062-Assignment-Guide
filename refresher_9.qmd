@@ -1,0 +1,110 @@
+# R Refresher Part 9: Useful tidyr and dplyr functions
+
+## Created by Reid Steele
+
+This section covers some useful functions from the tidyverse family, belonging to the `tidyr` and `dplyr` packages.
+
+## Joins
+
+Joins are useful for combining two data frames which have a common column. These are particularly useful when working with databases, which often have separate data and metadata files.
+
+```{r}
+##################################################################################################
+
+# 9. RS Section: Useful tidyr and dplyr functions
+library(tidyr)
+library(dplyr)
+
+# Joining
+band_members
+band_instruments
+
+# left_join matches values from first data frame and merges second data frame into it
+left_join(band_members, band_instruments, by = 'name')
+# right_join does the same but in reverse
+right_join(band_members, band_instruments, by = 'name')
+# full_join fully joins both data frames
+full_join(band_members, band_instruments, by = 'name')
+
+```
+
+## Wide and long form data
+
+Data is generally stored in one of two forms - long format, and wide format. 
+
+Wide format is likely the form you are used to. In wide format data, columns are used to distinguish different types of data. Most data you've seen or worked with in Excel is likely in wide format. It is called wide format because you have many columns and fewer rows.
+
+Long format data compresses all of the actual data values together into a single column, with different groups of data being distinguished with metadata identifiers. This makes a data structure with many rows and few columns - hence, long format. Long format data is common in databases, since it is much easier to add new rows to data structures than it is to add new columns. 
+
+You can switch between long and wide format data using the `pivot_longer` and `pivot_wider` `tidyr` functions. You may wish to do this because generally, base R functions and plotting work better with wide format data, while tidyverse and ggplot2 work better (or more often, exclusively) on long format data.
+
+```{r}
+
+# Wide and long form data:
+# Most data you have seen or worked with is likely in what is called 'wide format'
+# Wide format data is laid out in a grid format, and data is contained in multiple columns
+# Long format data compresses all data into a single column, which is defined by several metadata columns
+head(mtcars)
+# the mtcars dataset is in wide format - each individual data type has its own column, into which data is entered
+
+# pivot_longer changes data from wide format to long format
+mtcars_wide = cbind(car = rownames(mtcars), mtcars) # Make row names its own column so we can use it as a metadata column
+mtcars_wide
+
+# pivot mtcars_wide to long format
+metadata_cols = colnames(mtcars_wide)[colnames(mtcars_wide) != 'car'] # Separate out metadata column
+mtcars_long = pivot_longer(mtcars_wide, 
+                           cols = all_of(metadata_cols), 
+                           names_to = 'variable', values_to = 'value') # Pivot longer with metadata_cols as identifier
+head(mtcars_long)
+# Data is now in long format - the variable name is contained in the variable column, and the data value is contained in the value column
+
+# pivot back to wide format
+pivot_wider(mtcars_long, names_from = variable, values_from = value)
+
+# ggplot typically requires long format data, whereas something like apply may require wide format data
+
+```
+
+## Pipes
+
+The `%>%` operator is a special operator which can be used to chain multiple functions together. These chains are known as pipes. Pipes are very useful when combined with various `tidyverse` functions in order to quickly and easily summarize data and run calculations on data frames. This is a very powerful data analysis tool, which has essentially replaced `apply()` for many people. Take a look at some of the examples below.
+
+```{r}
+# dplyr pipes
+# The %>% operator in dplyr/tidyr passes data to the next function
+
+# filter filters logicals, similar to indexing
+mtcars_long %>% filter(variable == 'cyl')
+
+# This is the same as:
+filter(mtcars_long, variable == 'cyl')
+
+# %>% operators can be chained together
+# summarize calculates statistics
+mtcars_long %>% filter(variable == 'cyl') %>%
+  summarize(mean = mean(value))
+# This code filters to cyl and then calculates the mean
+
+# mutate adds columns
+mtcars_long %>% filter(variable == 'cyl') %>%
+  summarize(mean = mean(value)) %>%
+  mutate(stat = 'mean')
+
+# group_by groups by an identifying column or set of identifying columns for all subsequent actions
+mtcars_long %>% group_by(variable) %>% # Groups the data by variable
+  summarize(mean = mean(value), sd = sd(value), n = n()) %>% # Calculates mean, standard deviation, and n() for each variable
+  filter(variable != 'cyl') %>% # removes rows where variable == cyl
+  mutate(data_is = 'cars', CV = (sd/mean)*100) %>% # Adds a column that says data is from cars, and another column that calculates the CV
+  select(data_is, variable, CV) # Select chooses and reorders requested columns
+
+
+
+
+#####################################################################################
+##### I hope you have enjoyed this tutorial on the basics of R.
+##### I also hope that you take the journey to learn R, or other programming language.
+##### Let me know if I can help out.
+####################################################################################
+```
+
