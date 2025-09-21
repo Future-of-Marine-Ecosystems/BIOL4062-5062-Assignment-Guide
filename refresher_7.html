@@ -447,9 +447,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" id="toc-created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="nav-link active" data-scroll-target="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">7.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</a></li>
-  <li><a href="#running-linear-models" id="toc-running-linear-models" class="nav-link" data-scroll-target="#running-linear-models"><span class="header-section-number">7.2</span> Running linear models</a></li>
-  <li><a href="#plotting-linear-models" id="toc-plotting-linear-models" class="nav-link" data-scroll-target="#plotting-linear-models"><span class="header-section-number">7.3</span> Plotting linear models</a></li>
+  <li><a href="#running-linear-models" id="toc-running-linear-models" class="nav-link active" data-scroll-target="#running-linear-models"><span class="header-section-number">7.1</span> Running linear models</a></li>
+  <li><a href="#plotting-linear-models" id="toc-plotting-linear-models" class="nav-link" data-scroll-target="#plotting-linear-models"><span class="header-section-number">7.2</span> Plotting linear models</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/refresher_7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -476,13 +475,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">7.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</h2>
+<p><strong><em>Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</em></strong></p>
 <p>This section covers basic linear modelling in R.</p>
 <p><em>NOTE:</em> On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.</p>
-</section>
-<section id="running-linear-models" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="running-linear-models"><span class="header-section-number">7.2</span> Running linear models</h2>
+<section id="running-linear-models" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="running-linear-models"><span class="header-section-number">7.1</span> Running linear models</h2>
 <p>Linear modelling in R is done through the <code>lm()</code> function. The <code>lm()</code> function requires an x/y formula and data, which can be supplied directly via x/y vectors or through the data frame containing the data. Printing <code>lm()</code> and <code>summary(lm())</code> prints various results of interest from the model.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Linear models in R (the basics) --------------------------------------</span></span>
@@ -776,8 +773,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section id="plotting-linear-models" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="plotting-linear-models"><span class="header-section-number">7.3</span> Plotting linear models</h2>
+<section id="plotting-linear-models" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="plotting-linear-models"><span class="header-section-number">7.2</span> Plotting linear models</h2>
 <p>Linear models can be plotted in base R using the same syntax as <code>lm()</code>. You can add the regression line directly onto the plot using <code>abline(lm())</code>. In ggplot, you can use <code>stat_smooth()</code> or <code>geom_smooth()</code> with <code>method = 'lm'</code> to plot a linear model.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see this things in a plot:</span></span>

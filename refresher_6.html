@@ -447,11 +447,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" id="toc-created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="nav-link active" data-scroll-target="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">6.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</a></li>
-  <li><a href="#viewing-and-summarizing-data" id="toc-viewing-and-summarizing-data" class="nav-link" data-scroll-target="#viewing-and-summarizing-data"><span class="header-section-number">6.2</span> Viewing and summarizing data</a></li>
-  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply"><span class="header-section-number">6.3</span> Apply</a></li>
-  <li><a href="#base-r-plotting" id="toc-base-r-plotting" class="nav-link" data-scroll-target="#base-r-plotting"><span class="header-section-number">6.4</span> Base R Plotting</a></li>
-  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">6.5</span> ggplot2</a></li>
+  <li><a href="#viewing-and-summarizing-data" id="toc-viewing-and-summarizing-data" class="nav-link active" data-scroll-target="#viewing-and-summarizing-data"><span class="header-section-number">6.1</span> Viewing and summarizing data</a></li>
+  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply"><span class="header-section-number">6.2</span> Apply</a></li>
+  <li><a href="#base-r-plotting" id="toc-base-r-plotting" class="nav-link" data-scroll-target="#base-r-plotting"><span class="header-section-number">6.3</span> Base R Plotting</a></li>
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">6.4</span> ggplot2</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/refresher_6.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -478,13 +477,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">6.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</h2>
+<p><strong><em>Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</em></strong></p>
 <p>This section covers basic summary statistics and plotting.</p>
 <p><em>NOTE:</em> On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.</p>
-</section>
-<section id="viewing-and-summarizing-data" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="viewing-and-summarizing-data"><span class="header-section-number">6.2</span> Viewing and summarizing data</h2>
+<section id="viewing-and-summarizing-data" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="viewing-and-summarizing-data"><span class="header-section-number">6.1</span> Viewing and summarizing data</h2>
 <p>Base R contains a variety of functions for examining and summarizing data:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Summarizing and visualizing data -------------------------------------------------------</span></span>
@@ -497,78 +494,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>num_vector <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>num_vector</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 22.0258117 10.3635279 20.1956163 17.6715540 17.0711528 25.2003025
- [7] 19.5042408 21.1514885 36.3651186 10.3746303 19.5766219 14.4161707
-[13] 18.9965828 15.4888870 17.8720683 26.8631761  8.7377344 13.9356388
-[19] 26.0159186 18.3052360 30.3165761 13.5807899 28.8895472 21.9031519
-[25] 25.0832441 15.7776422 25.8225886 27.7755207 17.9665427 20.9621923
-[31] 15.5290704  0.8504513 27.8559608 22.7982151 23.2252920 18.2272554
-[37] 19.3784875 16.1957800 15.8187671 29.1222640 -1.2027180 38.7415439
-[43] 20.8896069 33.3876262  6.6013852 18.4124203 16.6442739 24.9440969
-[49]  6.8144309 50.0980814</code></pre>
+<pre><code> [1] 28.195915 22.710142 19.536487 16.257047 34.433970 17.203260 30.824204
+ [8] 11.961352 18.274999 25.307865 40.412295 28.757789 30.905044 18.182528
+[15] 17.797768 39.272300  6.322459 24.356599 32.917741 17.832835 12.791642
+[22] 30.874913 25.947417 19.272036 20.389286  5.590885 32.778569 18.311739
+[29] 25.811995 15.650032 14.722984 26.717635 12.299368  9.888306 35.617361
+[36] 13.248084 18.181038 24.011904  7.364608 -2.798028 38.283530 14.495470
+[43] -6.590805  8.653078 11.520223 22.275312 13.654667 31.596959 -3.095205
+[50] 23.734629</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(num_vector) <span class="co"># the basics all together</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -1.203  15.788  19.441  20.251  25.171  50.098 </code></pre>
+ -6.591  13.350  18.792  20.053  27.826  40.412 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20.25083</code></pre>
+<pre><code>[1] 20.05324</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 19.44136</code></pre>
+<pre><code>[1] 18.79189</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 82.46942</code></pre>
+<pre><code>[1] 117.1901</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.081268</code></pre>
+<pre><code>[1] 10.82544</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.202718</code></pre>
+<pre><code>[1] -6.590805</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.09808</code></pre>
+<pre><code>[1] 40.4123</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.202718 50.098081</code></pre>
+<pre><code>[1] -6.590805 40.412295</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       0%       25%       50%       75%      100% 
--1.202718 15.787923 19.441364 25.171038 50.098081 </code></pre>
+-6.590805 13.349729 18.791887 27.826345 40.412295 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(num_vector) <span class="co"># inter quarter range</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.383114</code></pre>
+<pre><code>[1] 14.47662</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(num_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1012.542</code></pre>
+<pre><code>[1] 1002.662</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(num_vector) <span class="co"># cumulative sum</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]   22.02581   32.38934   52.58496   70.25651   87.32766  112.52797
- [7]  132.03221  153.18369  189.54881  199.92344  219.50007  233.91624
-[13]  252.91282  268.40171  286.27377  313.13695  321.87468  335.81032
-[19]  361.82624  380.13148  410.44805  424.02884  452.91839  474.82154
-[25]  499.90479  515.68243  541.50502  569.28054  587.24708  608.20927
-[31]  623.73834  624.58880  652.44476  675.24297  698.46826  716.69552
-[37]  736.07401  752.26979  768.08855  797.21082  796.00810  834.74964
-[43]  855.63925  889.02688  895.62826  914.04068  930.68496  955.62905
-[49]  962.44348 1012.54156</code></pre>
+<pre><code> [1]   28.19592   50.90606   70.44254   86.69959  121.13356  138.33682
+ [7]  169.16103  181.12238  199.39738  224.70524  265.11754  293.87533
+[13]  324.78037  342.96290  360.76067  400.03296  406.35542  430.71202
+[19]  463.62976  481.46260  494.25424  525.12915  551.07657  570.34861
+[25]  590.73789  596.32878  629.10735  647.41909  673.23108  688.88111
+[31]  703.60410  730.32173  742.62110  752.50941  788.12677  801.37485
+[37]  819.55589  843.56779  850.93240  848.13437  886.41790  900.91337
+[43]  894.32257  902.97565  914.49587  936.77118  950.42585  982.02281
+[49]  978.92760 1002.66223</code></pre>
 </div>
 </div>
 </section>
-<section id="apply" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="apply"><span class="header-section-number">6.3</span> Apply</h2>
+<section id="apply" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="apply"><span class="header-section-number">6.2</span> Apply</h2>
 <p>The family of <code>apply()</code> functions is designed to apply functions across the rows/columns of a matrix/data frame. They are a little old school nowadays (as opposed to the hip new tidyverse pipes covered in section 9), but consider using them in your workflows if they make sense to you. A lot of coding is about finding your own style.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: the function 'apply()' is a nice way to </span></span>
@@ -730,8 +726,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is even more useful when we have MORE than one category!!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="base-r-plotting" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="base-r-plotting"><span class="header-section-number">6.4</span> Base R Plotting</h2>
+<section id="base-r-plotting" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="base-r-plotting"><span class="header-section-number">6.3</span> Base R Plotting</h2>
 <p>Base R contains a variety of functions that can be used for plotting, see some examples below. R plots work a bit like building blocks. Once you generate a plot, you can use successive functions to add more elements onto the plot.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6b. Basic plotting  ------------------</span></span>
@@ -885,8 +881,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ggplot2" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">6.5</span> ggplot2</h2>
+<section id="ggplot2" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">6.4</span> ggplot2</h2>
 <p>Alternatively, ggplot2 is a plotting package which is part of the tidyverse family that is designed to build plots more quickly (and ideally, prettily). Base plot and ggplot2 is very much a stylistic difference - you can (and should experiment with) build the same plots in either, but you may have a preference one way or the other. ggplot2 is generally more restrictive than R base plot, which can be frustrating in some cases, but may also be beneficial in others, as it can prevent you from making certain mistakes (e.g.&nbsp;mixing up your data and your legend).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 BONUS ~~~ Brief intro to ggplot----</span></span>

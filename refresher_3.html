@@ -447,9 +447,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" id="toc-created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="nav-link active" data-scroll-target="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">3.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</a></li>
-  <li><a href="#importing-.csv-files" id="toc-importing-.csv-files" class="nav-link" data-scroll-target="#importing-.csv-files"><span class="header-section-number">3.2</span> Importing .csv files</a></li>
-  <li><a href="#importing-other-files" id="toc-importing-other-files" class="nav-link" data-scroll-target="#importing-other-files"><span class="header-section-number">3.3</span> Importing other files</a></li>
+  <li><a href="#importing-.csv-files" id="toc-importing-.csv-files" class="nav-link active" data-scroll-target="#importing-.csv-files"><span class="header-section-number">3.1</span> Importing .csv files</a></li>
+  <li><a href="#importing-other-files" id="toc-importing-other-files" class="nav-link" data-scroll-target="#importing-other-files"><span class="header-section-number">3.2</span> Importing other files</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/refresher_3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -476,13 +475,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">3.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</h2>
+<p><strong><em>Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</em></strong></p>
 <p>This section covers how to input data files into R, and some basic functions for looking at data</p>
 <p><em>NOTE:</em> On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.</p>
-</section>
-<section id="importing-.csv-files" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="importing-.csv-files"><span class="header-section-number">3.2</span> Importing .csv files</h2>
+<section id="importing-.csv-files" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="importing-.csv-files"><span class="header-section-number">3.1</span> Importing .csv files</h2>
 <p>Most files you’ll likely load into R will be <code>.csv</code> files. These files can be easily opened and translated in Excel (BUT DON’T EDIT THEM IN EXCEL!). <code>.csv</code> files are comma delimited files, meaning if you open the file in the text editor, you’ll see each row is a string of characters with each column separated by a comma. Because of this structure, <code>.csv</code> files don’t play nice with commas inside data fields, as they will cause the field to split into multiple columns. This can happen if you have something like a comments section in your data, where you might use a comma for punctuation when writing a comment. Keep this in mind as it can cause you headaches if you’re not careful.</p>
 <p><code>.csv</code> files can be read into r using <code>read.csv()</code> and written into files using <code>write.csv()</code>. By default, <code>write.csv()</code> will output the row names of a data frame or matrix, which is generally not desired. You can use the <code>row.names = F</code> argument to prevent this.</p>
 <p><code>head()</code>, <code>View()</code>, <code>colnames()</code>, <code>nrow()</code>, <code>ncol()</code>, and <code>dim()</code> are useful functions for looking at a dataset once you’ve loaded it in.</p>
@@ -495,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/R3686/OneDrive - Dalhousie University/Documents/Teaching/Anaylsis of Biological Data/BIOL4062-5062-Assignment-Guide"</code></pre>
+<pre><code>[1] "/home/runner/work/BIOL4062-5062-Assignment-Guide/BIOL4062-5062-Assignment-Guide"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -511,8 +508,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [19] "index.html"                    "index.qmd"                    
 [21] "monkey.csv"                    "refresher_1.html"             
 [23] "refresher_1.qmd"               "refresher_2.html"             
-[25] "refresher_2.qmd"               "refresher_3.qmd"              
-[27] "refresher_3.rmarkdown"         "refresher_3_files"            
+[25] "refresher_2.qmd"               "refresher_3_files"            
+[27] "refresher_3.qmd"               "refresher_3.rmarkdown"        
 [29] "refresher_4.qmd"               "refresher_5.qmd"              
 [31] "refresher_6.qmd"               "refresher_7.qmd"              
 [33] "refresher_8.qmd"               "refresher_9.qmd"              
@@ -627,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 38   11.00  488.00   8.88  2.83  306.46  51.73
 39    3.80  189.00   5.50  1.68  114.16  18.16</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(scho)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View(scho)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(scho)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Order"    "Family"   "Genus"    "Species"  "Location" "Mass"    
@@ -647,8 +644,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="importing-other-files" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="importing-other-files"><span class="header-section-number">3.3</span> Importing other files</h2>
+<section id="importing-other-files" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="importing-other-files"><span class="header-section-number">3.2</span> Importing other files</h2>
 <p><code>.csv</code> files are just one of many types of data files you may need to load into R. They are also only one type of delimited file you may need to load in. Other types of delimited data can be loaded in using the more general <code>read.table()</code> function, which allows you to specify the delimting character through the <code>sep</code> argument. Setting <code>sep = ','</code> is essentially equivalent to <code>read.csv()</code>. Other common uses include <code>sep = '\t'</code> to load in tab (space) delimited files, and <code>sep = ';'</code> to load in semicolon delimited files.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From a Tab delimited text file (.txt)</span></span>
@@ -823,7 +820,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/R3686/OneDrive - Dalhousie University/Documents/Teaching/Anaylsis of Biological Data/BIOL4062-5062-Assignment-Guide"</code></pre>
+<pre><code>[1] "/home/runner/work/BIOL4062-5062-Assignment-Guide/BIOL4062-5062-Assignment-Guide"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -839,8 +836,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [19] "index.html"                    "index.qmd"                    
 [21] "monkey.csv"                    "refresher_1.html"             
 [23] "refresher_1.qmd"               "refresher_2.html"             
-[25] "refresher_2.qmd"               "refresher_3.qmd"              
-[27] "refresher_3.rmarkdown"         "refresher_3_files"            
+[25] "refresher_2.qmd"               "refresher_3_files"            
+[27] "refresher_3.qmd"               "refresher_3.rmarkdown"        
 [29] "refresher_4.qmd"               "refresher_5.qmd"              
 [31] "refresher_6.qmd"               "refresher_7.qmd"              
 [33] "refresher_8.qmd"               "refresher_9.qmd"              

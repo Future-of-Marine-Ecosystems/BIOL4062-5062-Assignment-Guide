@@ -447,9 +447,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" id="toc-created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="nav-link active" data-scroll-target="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">1.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</a></li>
-  <li><a href="#working-directories" id="toc-working-directories" class="nav-link" data-scroll-target="#working-directories"><span class="header-section-number">1.2</span> Working Directories:</a></li>
-  <li><a href="#workspace-management" id="toc-workspace-management" class="nav-link" data-scroll-target="#workspace-management"><span class="header-section-number">1.3</span> Workspace Management</a></li>
+  <li><a href="#working-directories" id="toc-working-directories" class="nav-link active" data-scroll-target="#working-directories"><span class="header-section-number">1.1</span> Working Directories:</a></li>
+  <li><a href="#workspace-management" id="toc-workspace-management" class="nav-link" data-scroll-target="#workspace-management"><span class="header-section-number">1.2</span> Workspace Management</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/refresher_1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -476,13 +475,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">1.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</h2>
+<p><strong><em>Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</em></strong></p>
 <p>This section covers basic R workspace management.</p>
 <p><em>NOTE:</em> On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.</p>
-</section>
-<section id="working-directories" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">1.2</span> Working Directories:</h2>
+<section id="working-directories" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">1.1</span> Working Directories:</h2>
 <p>Your working directory is the default file path your R session is working under. You can find your working directory using the <code>getwd()</code> command. If you’re working in an R project, it will be set to the path of the project by default.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First of all, let's check our working directory </span></span>
@@ -540,8 +537,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#q()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="workspace-management" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="workspace-management"><span class="header-section-number">1.3</span> Workspace Management</h2>
+<section id="workspace-management" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="workspace-management"><span class="header-section-number">1.2</span> Workspace Management</h2>
 <p>You can save your R workspace into your current directory using <code>save.image()</code>, or save specific objects using <code>save()</code>. This is useful for saving results that might change due to randomization, or that may take a long time to generate, such as complex models. You can then load these objects back in later using <code>load()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can save your work before you go (useful sometimes)</span></span>

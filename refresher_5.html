@@ -447,9 +447,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" id="toc-created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="nav-link active" data-scroll-target="#created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">5.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">5.2</span> Functions</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">5.3</span> Packages</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link active" data-scroll-target="#functions"><span class="header-section-number">5.1</span> Functions</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">5.2</span> Packages</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/refresher_5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -476,13 +475,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="created-by-mauricio-cantor-with-modifications-by-laura-j.-feyrer-ana-eguiguren-and-reid-steele"><span class="header-section-number">5.1</span> Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</h2>
+<p><strong><em>Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele</em></strong></p>
 <p>This section covers the use of R functions as well as how to download, load in, and use R packages. We’ll cover user-defined functions in Part 8.</p>
 <p><em>NOTE:</em> On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.</p>
-</section>
-<section id="functions" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="functions"><span class="header-section-number">5.2</span> Functions</h2>
+<section id="functions" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="functions"><span class="header-section-number">5.1</span> Functions</h2>
 <p>Functions are objects in R which are used to compress and run larger blocks of code all at once. For example, <code>mean(x)</code> is a faster way of doing <code>sum(x)/length(x)</code>. Of course, <code>sum()</code> and <code>length()</code> are also functions. If it ends in a paranthesis, its a function.</p>
 <p>The general structure of functions is <code>function(argument_1 = value_1,...argument_n = value_n)</code> Running a function will output some sort of value. You can find out what a function does using the Help tab in RStudio by running <code>?function</code>. If an argument has a value in the help tab, that is the default value of that argument - that means if you don’t specify a value for that argument, it will use the value shown in the help tab. Just typing the name of a function with no parentheses will print the internal code of the function.</p>
 <div class="cell">
@@ -662,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     value
 }
-&lt;bytecode: 0x000001f8ec856060&gt;
+&lt;bytecode: 0x000001f1b08550a0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: the function 'mean()' returns the mean value of a object</span></span>
@@ -706,8 +703,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#examples...everything you need to know how any function works</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="packages" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">5.3</span> Packages</h2>
+<section id="packages" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="packages"><span class="header-section-number">5.2</span> Packages</h2>
 <p>Packages are groups of functions packaged together, which are generally built, maintained, and made publicly available by other R users. In order to use the functions in a package, the package must first be installed, and then libraried, which loads it into your R workspace. Most public packages are installed from the Comprehensive R Archive Network (CRAN), which is an online repository of R packages and their associated code and documentation which are stored in servers across the world. Alternatively, smaller, more niche packages may not be on the CRAN, and thus must be downloaded directly from GitHub.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.2 Where are the functions?</span></span>

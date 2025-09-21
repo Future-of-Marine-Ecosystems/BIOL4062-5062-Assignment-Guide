@@ -447,10 +447,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#created-by-reid-steele" id="toc-created-by-reid-steele" class="nav-link active" data-scroll-target="#created-by-reid-steele"><span class="header-section-number">9.1</span> Created by Reid Steele</a></li>
-  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins"><span class="header-section-number">9.2</span> Joins</a></li>
-  <li><a href="#wide-and-long-form-data" id="toc-wide-and-long-form-data" class="nav-link" data-scroll-target="#wide-and-long-form-data"><span class="header-section-number">9.3</span> Wide and long form data</a></li>
-  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes"><span class="header-section-number">9.4</span> Pipes</a></li>
+  <li><a href="#joins" id="toc-joins" class="nav-link active" data-scroll-target="#joins"><span class="header-section-number">9.1</span> Joins</a></li>
+  <li><a href="#wide-and-long-form-data" id="toc-wide-and-long-form-data" class="nav-link" data-scroll-target="#wide-and-long-form-data"><span class="header-section-number">9.2</span> Wide and long form data</a></li>
+  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes"><span class="header-section-number">9.3</span> Pipes</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/refresher_9.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -477,13 +476,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="created-by-reid-steele" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="created-by-reid-steele"><span class="header-section-number">9.1</span> Created by Reid Steele</h2>
+<p><strong><em>Created by Reid Steele</em></strong></p>
 <p>This section covers some useful functions from the tidyverse family, belonging to the <code>tidyr</code> and <code>dplyr</code> packages.</p>
 <p><em>NOTE:</em> On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.</p>
-</section>
-<section id="joins" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="joins"><span class="header-section-number">9.2</span> Joins</h2>
+<section id="joins" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="joins"><span class="header-section-number">9.1</span> Joins</h2>
 <p>Joins are useful for combining two data frames which have a common column. These are particularly useful when working with databases, which often have separate data and metadata files.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">##################################################################################################</span></span>
@@ -557,8 +554,8 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 </section>
-<section id="wide-and-long-form-data" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="wide-and-long-form-data"><span class="header-section-number">9.3</span> Wide and long form data</h2>
+<section id="wide-and-long-form-data" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="wide-and-long-form-data"><span class="header-section-number">9.2</span> Wide and long form data</h2>
 <p>Data is generally stored in one of two forms - long format, and wide format.</p>
 <p>Wide format is likely the form you are used to. In wide format data, columns are used to distinguish different types of data. Most data you’ve seen or worked with in Excel is likely in wide format. It is called wide format because you have many columns and fewer rows.</p>
 <p>Long format data compresses all of the actual data values together into a single column, with different groups of data being distinguished with metadata identifiers. This makes a data structure with many rows and few columns - hence, long format. Long format data is common in databases, since it is much easier to add new rows to data structures than it is to add new columns.</p>
@@ -691,8 +688,8 @@ Volvo 142E           1    4    2</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot typically requires long format data, whereas something like apply may require wide format data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="pipes" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="pipes"><span class="header-section-number">9.4</span> Pipes</h2>
+<section id="pipes" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="pipes"><span class="header-section-number">9.3</span> Pipes</h2>
 <p>The <code>%&gt;%</code> operator is a special operator which can be used to chain multiple functions together. These chains are known as pipes. Pipes are very useful when combined with various <code>tidyverse</code> functions in order to quickly and easily summarize data and run calculations on data frames. This is a very powerful data analysis tool, which has essentially replaced <code>apply()</code> for many people. Take a look at some of the examples below.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr pipes</span></span>
