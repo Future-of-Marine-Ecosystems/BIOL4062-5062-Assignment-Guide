@@ -4,6 +4,8 @@
 
 This section covers basic summary statistics and plotting.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Viewing and summarizing data
 
 Base R contains a variety of functions for examining and summarizing data:
@@ -35,7 +37,7 @@ cumsum(num_vector) # cumulative sum
 
 ## Apply
 
-The family of `apply()` functions is designed to apply functions across the rows/columns of a matrix/data frame. They are a little old school nowadays (as opposed to the hip new tidyverse pipes covered in section 9), but consider using them in your workflows if they make sense to you. A lot of coding is about finding your own style. 
+The family of `apply()` functions is designed to apply functions across the rows/columns of a matrix/data frame. They are a little old school nowadays (as opposed to the hip new tidyverse pipes covered in section 9), but consider using them in your workflows if they make sense to you. A lot of coding is about finding your own style.
 
 ```{r}
 
@@ -83,7 +85,7 @@ table(scho$Location_f, scho$Order_f)
 
 ## Base R Plotting
 
-Base R contains a variety of functions that can be used for plotting, see some examples below. R plots work a bit like building blocks. Once you generate a plot, you can use successive functions to add more elements onto the plot. 
+Base R contains a variety of functions that can be used for plotting, see some examples below. R plots work a bit like building blocks. Once you generate a plot, you can use successive functions to add more elements onto the plot.
 
 ```{r}
 # 6b. Basic plotting  ------------------

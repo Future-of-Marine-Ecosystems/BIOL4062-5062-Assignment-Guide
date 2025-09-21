@@ -4,11 +4,14 @@
 
 There are many different types of objects in R. This section is designed to introduce you to them, and the basics of how to work with them.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Data Types
 
 R includes several different data types, all of which behave differently. The data type of an object can be checked using `class()`.
 
 ### Numeric
+
 Numeric objects are numbers, which are used to perform arithmetic and associated mathematical functions. Other objects can be converted to numeric using `as.numeric()` and you can check if an object is numeric using `is.numeric()`. Integers are a subclass of numerics which lack decimals, and can be converted/checked using `as.integer()` and `is.integer()`.
 
 ```{r}
@@ -42,8 +45,8 @@ mean(a)# get the average
 ```
 
 ### Character
-Character objects are text strings which are bound and created by `""` or `''`. Mathematical functions do not work on them. Characters which contain only numerals can be translated to numerics as above, but will return `NA` if they contain anything other than a numeral. There is a wide range of functions designed to work on strings for a variety of purposes. Objects can be converted to character using `as.character()` or checked using `is.character`.
 
+Character objects are text strings which are bound and created by `""` or `''`. Mathematical functions do not work on them. Characters which contain only numerals can be translated to numerics as above, but will return `NA` if they contain anything other than a numeral. There is a wide range of functions designed to work on strings for a variety of purposes. Objects can be converted to character using `as.character()` or checked using `is.character`.
 
 ```{r}
 # ~~~ character 
@@ -67,6 +70,7 @@ b_sub
 ```
 
 ### Factors
+
 Factors are categorical variables which are used to divide data into groups. They can be created using `factor()`, translated using `as.factor()`, and checked using `is.factor()`. In many (but not all) cases they behave similarly to characters, but they also have numeric elements. Each group inside a factor is called a level, and is assigned a numeric value, which is shown upon printing the factor.
 
 ```{r}
@@ -91,7 +95,8 @@ summary(c)
 ```
 
 ### Logicals
-Logicals are true or false. They can be created by various logical tests using Boolean operators such as `==`, `!=`, `>`, `<`, `<=`, and `>=`, or by logical functions such as those associated with `is`, including those listed above. They can be converted using `as.logical` and tested (logically!) using `is.logical`. Logicals can be written as `TRUE` or `FALSE` and `T` or `F` interchangeably. Numerically, logicals are binary, with `TRUE == 1` and `FALSE == 0`. This behaviour can be used to perform arithmetic on logicals. 
+
+Logicals are true or false. They can be created by various logical tests using Boolean operators such as `==`, `!=`, `>`, `<`, `<=`, and `>=`, or by logical functions such as those associated with `is`, including those listed above. They can be converted using `as.logical` and tested (logically!) using `is.logical`. Logicals can be written as `TRUE` or `FALSE` and `T` or `F` interchangeably. Numerically, logicals are binary, with `TRUE == 1` and `FALSE == 0`. This behaviour can be used to perform arithmetic on logicals.
 
 ```{r}
 # ~~~ logical
@@ -113,12 +118,15 @@ T == TRUE
 ```
 
 ## Object Types
+
 In addition to the different types of data, R has different types of objects to contain those different types of data:
 
 ### Scalars
+
 A scalar is a single object, such as a single number, character string, or T/F. There are no functions specifically associated with scalars. They are treated as vectors of length 1.
 
 ### Vectors
+
 A vector is a one-dimensional sequence of values. Vectors can be of any data type. They are created using `c()`, and can be converted using `as.vector()` and tested using `is.vector()`. The number of elements in a vector can be determined using `length()`. Vectors are indexed using `[]` (see refresher section 4 for more). By default in R, performing a function on a vector applies it to all elements of the vector.
 
 ```{r}
@@ -181,7 +189,7 @@ matrix(c('a', 'b', 'c', 'd', 2, 3), nrow = 2, ncol = 3)
 
 ### Data Frames
 
-Data frames are the workhorse two-dimensional data structures in R. Think of them like a standard table. Unlike matrices, each column in a data frame can be a different data type. Data frames can be indexed using `[row,column]` or `$column` (see refresher section 4 for more). Data frames are made using `data.frame()`, translated using `as.data.frame()`, and checked using `is.data.frame()`. 
+Data frames are the workhorse two-dimensional data structures in R. Think of them like a standard table. Unlike matrices, each column in a data frame can be a different data type. Data frames can be indexed using `[row,column]` or `$column` (see refresher section 4 for more). Data frames are made using `data.frame()`, translated using `as.data.frame()`, and checked using `is.data.frame()`.
 
 ```{r}
 # ~~~ data.frames can contain numbers, characters or both
@@ -229,7 +237,7 @@ Tibbles are usually created by using a `dplyr` or `tidyr` function on a data fra
 
 ```{r}
 # Tibbles look a little different, particularly when printing large tibbles as compared to large data frames in the console
-my_tibble = tibble(my_df)
+my_tibble = tibble::tibble(my_df)
 my_tibble
 
 # Tibbles can be translated back using as.data.frame if required
@@ -240,12 +248,12 @@ as.data.frame(my_tibble)
 
 Below you can see some useful functions for dealing with data and object types. Play around and get to know them.
 
-```{r}
+```{r, error = T}
 # 2.c) useful functions for object types----
 #2 ~~~ figuring data types and structure
 class(my_df)
 data.class(my_df) #synonyms to classify data type or object type
-class(x)
+x = 2; class(x)
 
 str(my_df) # see components of an object
 summary(my_df) # summarize each of the components of an object
@@ -263,4 +271,3 @@ object     # prints the object
 rm(object) #removes object from environment
 object
 ```
-

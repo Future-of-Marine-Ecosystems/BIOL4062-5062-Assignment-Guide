@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 1 Guide - 4&nbsp; Assignment 1d: Multiple Linear Regression</title>
+<title>13&nbsp; Assignment 1d: Multiple Linear Regression – **Assignment 1 Guide**</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -83,7 +83,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -92,14 +98,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -107,19 +141,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./FOME_Primary_BlueGradient.png" alt="" class="navbar-logo">
+    <img src="./FOME_Small.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title"><strong>Assignment 1 Guide</strong></span>
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./–Assignment-1-Guide–.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           <div id="quarto-search" class="" title="Search"></div>
@@ -127,27 +161,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1d.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">**Assignment 1d:** Multiple Linear Regression</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1d.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -164,41 +190,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text"><strong>Assignment 1</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>R Refresher</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./refresher_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Refresher Part 1: First Movements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Refresher Part 2: Types of Data and Data Structures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Refresher Part 3: Importing Data in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Refresher Part 4: Indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R Refresher Part 5: Using Functions and Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Refresher Part 6: Summarizing and Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R Refresher Part 7: Linear Modelling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Refresher Part 8: Programming Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Refresher Part 9: Useful tidyr and dplyr functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Assignment 1</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./a1a.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1b.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1c.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1d.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1e.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -206,39 +297,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link active" data-scroll-target="#looking-at-the-data"><span class="header-section-number">4.1</span> Looking at the data</a></li>
-  <li><a href="#considering-transformations" id="toc-considering-transformations" class="nav-link" data-scroll-target="#considering-transformations"><span class="header-section-number">4.2</span> Considering Transformations</a></li>
-  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link" data-scroll-target="#simple-linear-regression"><span class="header-section-number">4.3</span> Simple Linear Regression</a></li>
-  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression"><span class="header-section-number">4.4</span> Multiple Linear Regression</a></li>
-  <li><a href="#checking-assumptions" id="toc-checking-assumptions" class="nav-link" data-scroll-target="#checking-assumptions"><span class="header-section-number">4.5</span> Checking Assumptions</a>
+  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link active" data-scroll-target="#looking-at-the-data"><span class="header-section-number">13.1</span> Looking at the data</a></li>
+  <li><a href="#considering-transformations" id="toc-considering-transformations" class="nav-link" data-scroll-target="#considering-transformations"><span class="header-section-number">13.2</span> Considering Transformations</a></li>
+  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link" data-scroll-target="#simple-linear-regression"><span class="header-section-number">13.3</span> Simple Linear Regression</a></li>
+  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression"><span class="header-section-number">13.4</span> Multiple Linear Regression</a></li>
+  <li><a href="#checking-assumptions" id="toc-checking-assumptions" class="nav-link" data-scroll-target="#checking-assumptions"><span class="header-section-number">13.5</span> Checking Assumptions</a>
   <ul class="collapse">
-  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="header-section-number">4.5.1</span> Independence</a></li>
-  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">4.5.2</span> Linearity</a></li>
-  <li><a href="#homoscedasticity" id="toc-homoscedasticity" class="nav-link" data-scroll-target="#homoscedasticity"><span class="header-section-number">4.5.3</span> Homoscedasticity</a></li>
-  <li><a href="#normality" id="toc-normality" class="nav-link" data-scroll-target="#normality"><span class="header-section-number">4.5.4</span> Normality</a></li>
-  <li><a href="#what-if-my-assumptions-arent-respected" id="toc-what-if-my-assumptions-arent-respected" class="nav-link" data-scroll-target="#what-if-my-assumptions-arent-respected"><span class="header-section-number">4.5.5</span> What if my assumptions aren’t respected?</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="header-section-number">13.5.1</span> Independence</a></li>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">13.5.2</span> Linearity</a></li>
+  <li><a href="#homoscedasticity" id="toc-homoscedasticity" class="nav-link" data-scroll-target="#homoscedasticity"><span class="header-section-number">13.5.3</span> Homoscedasticity</a></li>
+  <li><a href="#normality" id="toc-normality" class="nav-link" data-scroll-target="#normality"><span class="header-section-number">13.5.4</span> Normality</a></li>
+  <li><a href="#what-if-my-assumptions-arent-respected" id="toc-what-if-my-assumptions-arent-respected" class="nav-link" data-scroll-target="#what-if-my-assumptions-arent-respected"><span class="header-section-number">13.5.5</span> What if my assumptions aren’t respected?</a></li>
   </ul></li>
-  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">4.6</span> Model Selection</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a>
-  <ul class="collapse">
-  <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">5.1</span> Tips for your Assignment:</a></li>
-  </ul></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">13.6</span> Model Selection</a></li>
+  <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">13.7</span> Tips for your Assignment:</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1d.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1d.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1d.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></h1>
 </div>
 
 
@@ -251,12 +339,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<p>This assignment is all about linear regression. Linear regression is used to model linear relationships between a dependent (response) variable and one or more independent (predictor) variables. Multiple linear regression involves multiple independent variables.</p>
-<p>For this tutorial we’re going to use <code>Schoenemann.csv</code>.</p>
-<section id="looking-at-the-data" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">4.1</span> Looking at the data</h2>
+
+<p>This assignment is all about multiple linear regression. Linear regression is used to model relationships between a dependent (response) variable and one or more independent (predictor) variables. Multiple linear regression involves multiple predictor variables.</p>
+<p>For this tutorial we’re going to use <code>Schoenemann.csv</code>, derived from the data in <a href="https://doi.org/10.1159/000073759">this</a> paper.</p>
+<section id="looking-at-the-data" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">13.1</span> Looking at the data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">'Schoenemann.csv'</span>)</span>
@@ -284,10 +374,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 39 12</code></pre>
 </div>
 </div>
-<p>The Schoenemann dataset contains 39 observations of 12 variables, describing to the morphometry of different species of mammals, along with metadata describing them. Let’s start by getting rid of the metadata. We won’t need it for this assignment.</p>
+<p>The Schoenemann dataset contains 39 observations of 12 variables, describing to the morphometry of different species of mammals, along with taxonomic and location information. Let’s start by getting rid of the non-morphological data. We won’t need it for this assignment.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove metadata</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> data[,<span class="fu">which</span>(<span class="fu">colnames</span>(data) <span class="sc">==</span> <span class="st">'Mass'</span>)<span class="sc">:</span><span class="fu">ncol</span>(data)] <span class="co"># I do it this way to avoid hard coding</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> data[,<span class="fu">which</span>(<span class="fu">colnames</span>(data) <span class="sc">==</span> <span class="st">'Mass'</span>)<span class="sc">:</span><span class="fu">ncol</span>(data)] <span class="co"># I do it this way to avoid hard coding a number which may change</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check if it worked</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -301,41 +391,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6 6040.0 1013.0 5027.0  58.31 36.19 2920.69 517.78</code></pre>
 </div>
 </div>
-<p>Now we only have numeric data left. Let’s take a look at the data graphically.</p>
+<p>Now we only have the numeric morphologicall data left. Let’s take a look at the data graphically.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Looking at the data</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the data</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through columns to create histograms</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(data)){<span class="fu">hist</span>(data[,i], <span class="at">main =</span> <span class="fu">colnames</span>(data)[i])} <span class="co"># Name histogram according to column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(data)){<span class="fu">hist</span>(data[,i], <span class="at">main =</span> <span class="fu">colnames</span>(data)[i], <span class="at">xlab =</span> <span class="st">""</span>)} <span class="co"># Name histogram according to column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-3-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-3-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="considering-transformations" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="considering-transformations"><span class="header-section-number">4.2</span> Considering Transformations</h2>
-<p>We can see that all these data are exponentially distributed - there is much more data at small values, and the data at higher values is spread out. If we run our regressions on this data, our assumptions are going to be violated:</p>
+<section id="considering-transformations" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="considering-transformations"><span class="header-section-number">13.2</span> Considering Transformations</h2>
+<p>We can see that these data have many more small values, and the data at higher values has higher variance [try e.g.&nbsp;plot(data$Mass, data$Fat) to see this]. If we run our regressions on these data, the assumption of heteroscedasticity is going to be violated:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a test model and check assumptions</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> <span class="fu">lm</span>(CNS <span class="sc">~</span> Mass <span class="sc">+</span> Fat <span class="sc">+</span> FFWT <span class="sc">+</span> HEART <span class="sc">+</span> MUSCLE <span class="sc">+</span> BONE, <span class="at">data =</span> data)</span>
@@ -345,12 +467,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual histogram</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(test), <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQplot</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistical test for normality</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -362,8 +492,8 @@ data:  residuals(test)
 W = 0.87473, p-value = 0.0004494</code></pre>
 </div>
 </div>
-<p>Those diagnostics look… less than ideal.</p>
-<p>This is a textbook case of when to apply a log transformation - remember logging is the opposite of exponentiating:</p>
+<p>These diagnostics look… less than ideal.</p>
+<p>This is a textbook case of when to apply a log transformation to standardize variance - remember logging is the opposite of exponentiating:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply log transformation</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data_l <span class="ot">=</span> <span class="fu">log</span>(data)</span>
@@ -382,38 +512,70 @@ W = 0.87473, p-value = 0.0004494</code></pre>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Looking at the data</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data_l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through columns to create histograms</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(data_l)){<span class="fu">hist</span>(data_l[,i], <span class="at">main =</span> <span class="fu">colnames</span>(data_l)[i])} <span class="co"># Name histogram according to column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(data_l)){<span class="fu">hist</span>(data_l[,i], <span class="at">main =</span> <span class="fu">colnames</span>(data_l)[i], <span class="at">xlab =</span> <span class="st">""</span>)} <span class="co"># Name histogram according to column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now our data looks much more uniform.</p>
-<p><strong>Always remember that transforming your data incorrectly or unnecessarily can do more harm than good.</strong> How do you decide if it is helpful to transform your data? What is the purpose of transforming your data? Think carefully about these questions for your assignment when you’re deciding whether to transform the data for your assignment.</p>
+<p><strong>Always remember that transforming your data incorrectly or unnecessarily can do more harm than good.</strong> How do you decide if it is helpful to transform your data? What is the purpose of transforming your data? Think carefully about these questions for your assignment when you’re deciding whether to transform any data.</p>
 </section>
-<section id="simple-linear-regression" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="simple-linear-regression"><span class="header-section-number">4.3</span> Simple Linear Regression</h2>
-<p>Now that our data is good to go, we’re going to run some simple linear regressions to predict central nervous system mass (CNS). Simple linear regressions only have one predictor variable. Linear regression is run using the <code>lm()</code> command:</p>
+<section id="simple-linear-regression" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="simple-linear-regression"><span class="header-section-number">13.3</span> Simple Linear Regression</h2>
+<p>Now that our data is good to go, we’re going to run some simple linear regressions on the logged data to predict central nervous system mass (CNS). Simple linear regressions only have one predictor variable, so we will run separate models for each predictor. Linear regression is run using the <code>lm()</code> command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run simple linear regressions - Mass</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(CNS <span class="sc">~</span> Mass, <span class="at">data =</span> data_l) <span class="co"># run model</span></span>
@@ -563,43 +725,67 @@ F-statistic: 804.4 on 1 and 37 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CNS <span class="sc">~</span> Mass, <span class="at">data =</span> data_l, <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># plot points</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m1, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Plot model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot simple linear regressions - Fat</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CNS <span class="sc">~</span> Fat, <span class="at">data =</span> data_l, <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># plot points</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m2, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Plot model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot simple linear regressions - FFWT</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CNS <span class="sc">~</span> FFWT, <span class="at">data =</span> data_l, <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># plot points</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m3, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Plot model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot simple linear regressions - HEART</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CNS <span class="sc">~</span> HEART, <span class="at">data =</span> data_l, <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># plot points</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m4, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Plot model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot simple linear regressions - MUSCLE</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CNS <span class="sc">~</span> MUSCLE, <span class="at">data =</span> data_l, <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># plot points</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m5, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Plot model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot simple linear regressions - BONE</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CNS <span class="sc">~</span> BONE, <span class="at">data =</span> data_l, <span class="at">pch =</span> <span class="dv">16</span>) <span class="co"># plot points</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m6, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">'red'</span>) <span class="co"># Plot model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>All of the regression slopes are positive. This makes sense - larger animals tend to have larger brains.</p>
+</div>
+<p>All of the regression slopes are positive. This makes sense - larger animals tend to have larger brains. Remember to always think about whether your results make biological sense.</p>
 </section>
-<section id="multiple-linear-regression" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="multiple-linear-regression"><span class="header-section-number">4.4</span> Multiple Linear Regression</h2>
+<section id="multiple-linear-regression" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="multiple-linear-regression"><span class="header-section-number">13.4</span> Multiple Linear Regression</h2>
 <p>We’ve made 6 models using 1 variable. Now, let’s try making 1 model with 6 variables:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run full model</span></span>
@@ -632,13 +818,13 @@ Multiple R-squared:  0.9727,    Adjusted R-squared:  0.9676
 F-statistic: 190.1 on 6 and 32 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>Our full model has a very(!) high R<sup>2</sup> value, and contrary to the simple linear regressions where every predictor was significant, none of our predictors are considered significant in the final model at <span class="math inline">\(\alpha\)</span> = 0.05. Why do you think that is?</p>
+<p>Our full model has a very(!) high R<sup>2</sup> value, and, in contrast to the simple linear regressions where every predictor was significant, none of our predictors are considered significant in the final model at <span class="math inline">\(\alpha\)</span> = 0.05. Why do you think that is?</p>
 </section>
-<section id="checking-assumptions" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="checking-assumptions"><span class="header-section-number">4.5</span> Checking Assumptions</h2>
+<section id="checking-assumptions" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="checking-assumptions"><span class="header-section-number">13.5</span> Checking Assumptions</h2>
 <p>Now that we’ve run our full model, it’s time to check its assumptions. Those assumptions are <strong>Independence, Linearity, Homoscedasticity, and Normality.</strong> By now, you should be familiar with what these all mean, but let’s run through them anyways:</p>
-<section id="independence" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="independence"><span class="header-section-number">4.5.1</span> Independence</h3>
+<section id="independence" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="independence"><span class="header-section-number">13.5.1</span> Independence</h3>
 <p>The assumption of independence states that the value of each data point (‘datum’, if you will) is independent of all other data points. Some of the ways in which it could be violated may not be testable (e.g.&nbsp;if they have to do with how the data was collected), but what we <em>can</em> test for is <strong>autocorrelation</strong>. Autocorrelation translates to self correlation (auto = self). We can test for autocorrelation statistically using a Durbin-Watson test, and visually using an autocorrelation function on the residuals:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -667,13 +853,17 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Autocorrelation function</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(<span class="fu">residuals</span>(m7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The Durbin-Watson test returns an insignificant p-value, indicating no autocorrelation structure is present. The ACF plots the correlation coefficient of the data against itself using lags. Lag 0 correlates the data against itself, which is always 1. Lag 1 correlates each data point against the point after it, and so on. All of the correlation coefficients are between the blue lines, so again, we have no autocorrelation structure, and we can say independence is respected.</p>
 </section>
-<section id="linearity" class="level3" data-number="4.5.2">
-<h3 data-number="4.5.2" class="anchored" data-anchor-id="linearity"><span class="header-section-number">4.5.2</span> Linearity</h3>
+<section id="linearity" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="linearity"><span class="header-section-number">13.5.2</span> Linearity</h3>
 <p>The assumption of linearity states that the response variable consistently scales linearly with its predictors. We can test for linearity statistically using Ramsey’s RESET test on our model:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run RESET test</span></span>
@@ -688,8 +878,8 @@ RESET = 0.12784, df1 = 2, df2 = 30, p-value = 0.8805</code></pre>
 </div>
 <p>In this case, the p-value is not significant, meaning the assumption of linearity is respected.</p>
 </section>
-<section id="homoscedasticity" class="level3" data-number="4.5.3">
-<h3 data-number="4.5.3" class="anchored" data-anchor-id="homoscedasticity"><span class="header-section-number">4.5.3</span> Homoscedasticity</h3>
+<section id="homoscedasticity" class="level3" data-number="13.5.3">
+<h3 data-number="13.5.3" class="anchored" data-anchor-id="homoscedasticity"><span class="header-section-number">13.5.3</span> Homoscedasticity</h3>
 <p>The assumption of homoscedasticity is that the variance in the data is independent of the value of the data - i.e.&nbsp;the variance in the data is consistent. We can test this statistically using the Breusch-Pagan test, and visually by plotting the model residuals against the fitted values.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run Breusch-Pagan test</span></span>
@@ -704,34 +894,54 @@ BP = 15.974, df = 6, p-value = 0.01389</code></pre>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residuals vs fitted</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m7<span class="sc">$</span>residuals <span class="sc">~</span> m7<span class="sc">$</span>fitted.values, <span class="at">pch =</span> <span class="dv">16</span>); <span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Can also be done using plot.lm, ?plot.lm for details</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m7, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The Breusch-Pagan returns a significant p-value, indicating the assumption of homoscedasticity is violated. We can see in the residuals versus fitted plot that the variance in the data is smaller at low values than it is at higher values (the points on the left of the plot are clustered more closely than they are on the right). Let’s come back to this later.</p>
 </section>
-<section id="normality" class="level3" data-number="4.5.4">
-<h3 data-number="4.5.4" class="anchored" data-anchor-id="normality"><span class="header-section-number">4.5.4</span> Normality</h3>
+<section id="normality" class="level3" data-number="13.5.4">
+<h3 data-number="13.5.4" class="anchored" data-anchor-id="normality"><span class="header-section-number">13.5.4</span> Normality</h3>
 <p>The assumption of normality states that the residuals of our model should be normally distributed. If they aren’t, that would indicate that our model is biased towards overprediction or underprediction in some way. As we did earlier in the transformation section, we can check for normality visually by looking at histograms and QQ plots of our residuals, and statistically by running a Shapiro-Wilk test on the residuals.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual histogram</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(m7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># QQplot</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(m7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Can also use plot.lm for qqplot</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m7, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1d_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1d_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistical test for normality</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(m7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -743,50 +953,87 @@ data:  residuals(m7)
 W = 0.95391, p-value = 0.1113</code></pre>
 </div>
 </div>
-<p>The Shapiro-Wilk test p-value is not significant (though it treads close), meaning the assumption of normality is respected. The residual histogram largely looks normal, and the QQ plot tails start to pull off the line at high and low values, possibly indicating outliers are causing us some trouble, but not enough to violate the assumption.</p>
+<p>The Shapiro-Wilk test p-value is not significant (though it comes close), meaning the assumption of normality is respected. The residual histogram largely looks normal, and the QQ plot tails start to pull off the line at high and low values, possibly indicating outliers are causing us some trouble, but not enough to violate the assumption.</p>
 </section>
-<section id="what-if-my-assumptions-arent-respected" class="level3" data-number="4.5.5">
-<h3 data-number="4.5.5" class="anchored" data-anchor-id="what-if-my-assumptions-arent-respected"><span class="header-section-number">4.5.5</span> What if my assumptions aren’t respected?</h3>
-<p>The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We’ve already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using <code>plot.lm()</code> identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want.</p>
+<section id="what-if-my-assumptions-arent-respected" class="level3" data-number="13.5.5">
+<h3 data-number="13.5.5" class="anchored" data-anchor-id="what-if-my-assumptions-arent-respected"><span class="header-section-number">13.5.5</span> What if my assumptions aren’t respected?</h3>
+<p>The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We’ve already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using <code>plot.lm()</code> identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want, although in general it is good practice to only remove outliers where absolutely necessary, as they may contain important biological or other information.</p>
 <p>Keep in mind that data transformations and removing outliers both represent trade-offs. Removing outliers may help meet your model assumptions, but you may also be removing data that reflects reality from your model. In that case, is it really helping you to remove outliers? Similarly, transforming your data may help you meet your assumptions, but in a case like this, transforming our data further or in a different way could end up violating other assumptions. Sometimes the best way to deal with violated assumptions is simply to state that they are violated and think about what that means for the interpretation of your model. Play around with all these different ideas, and come up with what you think is best. At the end of the day, a lot of statistical choices are judgement calls, with no perfect right answer.</p>
 </section>
 </section>
-<section id="model-selection" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">4.6</span> Model Selection</h2>
+<section id="model-selection" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">13.6</span> Model Selection</h2>
 <p>In assignment 1b, we created 1 model with 6 variables, then tested if we could get a similarly effective mode using fewer variables - i.e.&nbsp;a more <strong>efficient</strong> model. Let’s do the same thing here:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise model selection - forward</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>m8 <span class="ot">=</span> <span class="fu">step</span>(m7, <span class="at">direction =</span> <span class="st">'forward'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>m8 <span class="ot">=</span> <span class="fu">step</span>(<span class="fu">lm</span>(CNS <span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> data_l),</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">scope=</span>(CNS <span class="sc">~</span> Mass <span class="sc">+</span> Fat <span class="sc">+</span> FFWT <span class="sc">+</span> HEART <span class="sc">+</span> MUSCLE <span class="sc">+</span> BONE),</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">direction=</span><span class="st">'forward'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Start:  AIC=-80.52
-CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE</code></pre>
+<pre><code>Start:  AIC=47.92
+CNS ~ 1
+
+         Df Sum of Sq     RSS     AIC
++ MUSCLE  1    122.51   4.086 -83.984
++ FFWT    1    121.96   4.634 -79.074
++ HEART   1    121.82   4.780 -77.869
++ Mass    1    121.65   4.948 -76.519
++ BONE    1    121.03   5.567 -71.921
++ Fat     1    112.27  14.327 -35.056
+&lt;none&gt;                126.595  47.920
+
+Step:  AIC=-83.98
+CNS ~ MUSCLE
+
+        Df Sum of Sq    RSS     AIC
++ HEART  1  0.233798 3.8522 -84.282
++ Mass   1  0.212536 3.8735 -84.067
+&lt;none&gt;               4.0860 -83.984
++ Fat    1  0.152823 3.9332 -83.470
++ FFWT   1  0.139313 3.9467 -83.337
++ BONE   1  0.021542 4.0645 -82.190
+
+Step:  AIC=-84.28
+CNS ~ MUSCLE + HEART
+
+       Df Sum of Sq    RSS     AIC
++ Mass  1   0.35155 3.5007 -86.014
++ Fat   1   0.29737 3.5549 -85.415
++ FFWT  1   0.23682 3.6154 -84.756
+&lt;none&gt;              3.8522 -84.282
++ BONE  1   0.10287 3.7494 -83.337
+
+Step:  AIC=-86.01
+CNS ~ MUSCLE + HEART + Mass
+
+       Df Sum of Sq    RSS     AIC
+&lt;none&gt;              3.5007 -86.014
++ Fat   1  0.040574 3.4601 -84.468
++ FFWT  1  0.018388 3.4823 -84.219
++ BONE  1  0.000458 3.5002 -84.019</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = CNS ~ Mass + Fat + FFWT + HEART + MUSCLE + BONE, 
-    data = data_l)
+lm(formula = CNS ~ MUSCLE + HEART + Mass, data = data_l)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.72690 -0.12073  0.00376  0.08672  0.85638 
+-0.74267 -0.11882 -0.00818  0.10790  0.84702 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) -0.61138    1.18496  -0.516   0.6094  
-Mass        -0.46867    2.14250  -0.219   0.8282  
-Fat         -0.06818    0.15489  -0.440   0.6628  
-FFWT        -0.02606    2.30347  -0.011   0.9910  
-HEART        0.41894    0.21913   1.912   0.0649 .
-MUSCLE       1.03524    0.61123   1.694   0.1000  
-BONE        -0.06339    0.32054  -0.198   0.8445  
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)  -0.1840     0.8704  -0.211  0.83383   
+MUSCLE        1.2436     0.4254   2.923  0.00603 **
+HEART         0.3855     0.1997   1.931  0.06166 . 
+Mass         -0.8197     0.4372  -1.875  0.06919 . 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.3286 on 32 degrees of freedom
-Multiple R-squared:  0.9727,    Adjusted R-squared:  0.9676 
-F-statistic: 190.1 on 6 and 32 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.3163 on 35 degrees of freedom
+Multiple R-squared:  0.9723,    Adjusted R-squared:   0.97 
+F-statistic: 410.2 on 3 and 35 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Running forward model selection cuts the model down to 3 variables. As with 1b, we can also do backward:</p>
@@ -1087,12 +1334,10 @@ Model selection table
 Models ranked by AIC(x) </code></pre>
 </div>
 </div>
-<p>Here, we’re ranking models by AIC. AIC balances fit with model complexity. Lower values of AIC are considered better. Generally, 2 is used as a rule of thumb for AIC - if delta AIC is &gt;2, the lower AIC model is considered better. If delat AIC is &lt;2, the support for the best model is weak, and the models could even be considered “tied”.</p>
+<p>Here, we’re ranking models by AIC. AIC balances fit with model complexity. Lower values of AIC are considered better. Generally, 2 is used as a rule of thumb for delta AIC: if delta AIC is &gt;2, the model with the higher AIC value has little support. If delta AIC is &lt;2, there is at least some support for the model with the higher AIC.</p>
 </section>
-<section id="section" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> </h1>
-<section id="tips-for-your-assignment" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">5.1</span> Tips for your Assignment:</h2>
+<section id="tips-for-your-assignment" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">13.7</span> Tips for your Assignment:</h2>
 <p>Some things you may want to think about for your assignment:</p>
 <ol type="1">
 <li><p>What role is collinearity playing in your assignment? Is it something you should be concerned about? Why or why not?</p></li>
@@ -1101,7 +1346,6 @@ Models ranked by AIC(x) </code></pre>
 </ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1146,6 +1390,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -1214,13 +1485,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1255,18 +1528,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1298,11 +1560,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1312,8 +1613,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1325,7 +1635,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1369,6 +1802,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1394,6 +1828,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1455,13 +1915,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./a1c.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span>
+      <a href="./a1c.html" class="pagination-link" aria-label="**Assignment 1c:** Cluster Analysis and Multidimensional Scaling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./a1e.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./a1e.html" class="pagination-link" aria-label="**Assignment 1e:** Bayesian Data Analysis">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1469,4 +1929,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1d.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

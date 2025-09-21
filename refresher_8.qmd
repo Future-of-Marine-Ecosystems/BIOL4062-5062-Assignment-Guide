@@ -4,6 +4,8 @@
 
 This section covers basic programming fundamentals in R, such as loops, user-defined functions, and if/else statements.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## User-defined functions
 
 In addition to the functions included in base R and in packages, you can also create your own functions to help streamline and share your code (or even make your own package!). Functions are created using the `function()` command, with the syntax `function(arguments){code}`. Functions will refer to their arguments as variables internal to them, even if they do not exist in the environment. If they do exist in the environment, the function will prioritize its arguments before the global environment. Functions should almost always end in the `return()` command, which tells the function what to output when it is run.
@@ -102,7 +104,7 @@ dice_rolling_money(5, 3, 50)
 
 ## for loops
 
-`for()` loops are coding structures designed to repeatedly execute code over a range. Their syntax is `for(index in range){code}`. When run, the `for()` loop will repeat the code with the value of the index variable (typically denoted `i`, but it can be anything) set to every value contained in the range. 
+`for()` loops are coding structures designed to repeatedly execute code over a range. Their syntax is `for(index in range){code}`. When run, the `for()` loop will repeat the code with the value of the index variable (typically denoted `i`, but it can be anything) set to every value contained in the range.
 
 ```{r}
 # 8. II. Programming fundamentals - For Loops -----------------------------------
@@ -193,10 +195,9 @@ for(i in seq(1:3)){
   
 }
 
-
+plot(p[[1]])
+plot(p[[2]])
 plot(p[[3]])
-
-plot(p)
 ```
 
 ## if, else, and ifelse
@@ -247,4 +248,3 @@ dice_rolling_pair <- function(n_rolls){
 dice_rolling_pair(2)
 
 ```
-

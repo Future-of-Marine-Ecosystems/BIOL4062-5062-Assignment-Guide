@@ -4,6 +4,8 @@
 
 This section covers basic linear modelling in R.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Running linear models
 
 Linear modelling in R is done through the `lm()` function. The `lm()` function requires an x/y formula and data, which can be supplied directly via x/y vectors or through the data frame containing the data. Printing `lm()` and `summary(lm())` prints various results of interest from the model.
@@ -23,8 +25,8 @@ help(lm)
 # Basically we need a formula and data. 
 # Here's another way of getting data that is associated
 
-# with a package:
-install.packages("agridat")
+# # with a package:
+# install.packages("agridat")
 
 # if slow connection try running : options(timeout = 400)
 
@@ -92,6 +94,7 @@ par(mfrow=c(2,2))
 plot(rice_mod)# here all graphs are plotted together
 
 # ggplot
+library(ggplot2)
 ggplot(rice, aes(x = straw, y = grain)) + geom_point() + stat_smooth(method = 'lm')
 
 # We can use other kinds of models 

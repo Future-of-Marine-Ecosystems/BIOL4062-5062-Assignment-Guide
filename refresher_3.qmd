@@ -4,6 +4,8 @@
 
 This section covers how to input data files into R, and some basic functions for looking at data
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Importing .csv files
 
 Most files you'll likely load into R will be `.csv` files. These files can be easily opened and translated in Excel (BUT DON'T EDIT THEM IN EXCEL!). `.csv` files are comma delimited files, meaning if you open the file in the text editor, you'll see each row is a string of characters with each column separated by a comma. Because of this structure, `.csv` files don't play nice with commas inside data fields, as they will cause the field to split into multiple columns. This can happen if you have something like a comments section in your data, where you might use a comma for punctuation when writing a comment. Keep this in mind as it can cause you headaches if you're not careful.
@@ -56,8 +58,8 @@ head(scho) # column names and first rows (are the column names correct?)
 tail(scho) # last rows
 summary(scho)
 
-# ~~~ saving data
-write.csv(scho, "Datasets/Schoenemann_edited.csv", row.names = F) # RS Note: You almost always want to run write.csv with row.names = F
+# # ~~~ saving data
+# write.csv(scho, "Datasets/Schoenemann_edited.csv", row.names = F) # RS Note: You almost always want to run write.csv with row.names = F
 
 getwd()
 dir()

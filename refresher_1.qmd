@@ -4,6 +4,8 @@
 
 This section covers basic R workspace management.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Working Directories:
 
 Your working directory is the default file path your R session is working under. You can find your working directory using the `getwd()` command. If you're working in an R project, it will be set to the path of the project by default.
@@ -51,10 +53,10 @@ You can save your R workspace into your current directory using `save.image()`, 
 ```{r}
 
 # You can save your work before you go (useful sometimes)
-save.image('Workspace.RData')#but remember to give it a useful name
-save(x, 'Workspace.RData')
-
-load('Workspace.RData')
+# save.image('Workspace.RData')#but remember to give it a useful name
+# save(x, 'Workspace.RData')
+# 
+# load('Workspace.RData')
 
 ```
 
@@ -62,7 +64,7 @@ Your R workspace is the environment which contains all of the R objects you've m
 
 You can make objects in your workspace using `<-` or `=`. Object names can be anything - try to make them informative so that you'll know what they are. Remember, everything is case-sensitive in R. X is a different object from x.
 
-```{r}
+```{r, error = T}
 
 # Let's take a look in our workspace
 ls()

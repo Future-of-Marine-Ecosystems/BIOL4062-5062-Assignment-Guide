@@ -4,13 +4,15 @@
 
 This section covers the use of R functions as well as how to download, load in, and use R packages. We'll cover user-defined functions in Part 8.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Functions
 
 Functions are objects in R which are used to compress and run larger blocks of code all at once. For example, `mean(x)` is a faster way of doing `sum(x)/length(x)`. Of course, `sum()` and `length()` are also functions. If it ends in a paranthesis, its a function.
 
-The general structure of functions is `function(argument_1 = value_1,...argument_n = value_n)` Running a function will output some sort of value. You can find out what a function does using the Help tab in RStudio by running `?function`. If an argument has a value in the help tab, that is the default value of that argument - that means if you don't specify a value for that argument, it will use the value shown in the help tab. Just typing the name of a function with no parentheses will print the internal code of the function. 
+The general structure of functions is `function(argument_1 = value_1,...argument_n = value_n)` Running a function will output some sort of value. You can find out what a function does using the Help tab in RStudio by running `?function`. If an argument has a value in the help tab, that is the default value of that argument - that means if you don't specify a value for that argument, it will use the value shown in the help tab. Just typing the name of a function with no parentheses will print the internal code of the function.
 
-```{r}
+```{r, error = T}
 # 5. Functions and packages ----------------------------------
 
 # Functions are objects too. The basic structure of a function is:
@@ -71,8 +73,8 @@ Packages are groups of functions packaged together, which are generally built, m
 # First, let's see the packages you already have installed:
 installed.packages()
 
-# Let's install the package "vegan" that contains many useful ecological tools. We can do it by typing:
-install.packages("vegan")
+# # Let's install the package "vegan" that contains many useful ecological tools. We can do it by typing:
+# install.packages("vegan")
 
 # or going in Tools>Install packages> 
 # Select a CRAN> select the package you want. 
@@ -87,7 +89,6 @@ citation("vegan")
 
 # install Packages from GitHub
 library(devtools)
-devtools::install_github("hadley/babynames", force = TRUE)
+# devtools::install_github("hadley/babynames", force = TRUE)
 library(babynames)
 ```
-

@@ -18,7 +18,7 @@ book:
     - index.qmd
     - guidelines.qmd
     - part: "**R Refresher**"
-          chapters:
+      chapters:
         - refresher_1.qmd
         - refresher_2.qmd
         - refresher_3.qmd

@@ -28,5 +28,32 @@
   },
   "guidelines.qmd": {
     "guidelines.html": "b0c0ffca"
+  },
+  "refresher_1.qmd": {
+    "refresher_1.html": "208be57a"
+  },
+  "refresher_2.qmd": {
+    "refresher_2.html": "83eeeeeb"
+  },
+  "refresher_3.qmd": {
+    "refresher_3.html": "9ddbaba7"
+  },
+  "refresher_4.qmd": {
+    "refresher_4.html": "b464dc67"
+  },
+  "refresher_5.qmd": {
+    "refresher_5.html": "4a5324ac"
+  },
+  "refresher_6.qmd": {
+    "refresher_6.html": "97995f32"
+  },
+  "refresher_7.qmd": {
+    "refresher_7.html": "f70e686a"
+  },
+  "refresher_8.qmd": {
+    "refresher_8.html": "98ab02f6"
+  },
+  "refresher_9.qmd": {
+    "refresher_9.html": "a8aa3ac2"
   }
 }

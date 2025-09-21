@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment 1 Guide - 1&nbsp; Assignment 1a: Principal Components Analysis</title>
+<title>10&nbsp; Assignment 1a: Principal Components Analysis – **Assignment 1 Guide**</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./a1b.html" rel="next">
-<link href="./guidelines.html" rel="prev">
+<link href="./refresher_9.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +83,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -92,6 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -105,9 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     <img src="./FOME_Small.png" alt="" class="navbar-logo">
     </a>
@@ -115,9 +122,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title"><strong>Assignment 1 Guide</strong></span>
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./–Assignment-1-Guide–.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./--Assignment-1-Guide--.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           <div id="quarto-search" class="" title="Search"></div>
@@ -125,27 +132,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1a.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">**Assignment 1a:** Principal Components Analysis</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1a.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -162,41 +161,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text"><strong>Assignment 1</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>R Refresher</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./refresher_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Refresher Part 1: First Movements</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Refresher Part 2: Types of Data and Data Structures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Refresher Part 3: Importing Data in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">R Refresher Part 4: Indexing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R Refresher Part 5: Using Functions and Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Refresher Part 6: Summarizing and Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R Refresher Part 7: Linear Modelling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Refresher Part 8: Programming Fundamentals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refresher_9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Refresher Part 9: Useful tidyr and dplyr functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Assignment 1</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./a1a.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1b.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1c.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><strong>Assignment 1c:</strong> Cluster Analysis and Multidimensional Scaling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><strong>Assignment 1d:</strong> Multiple Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./a1e.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title"><strong>Assignment 1e:</strong> Bayesian Data Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,32 +268,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link active" data-scroll-target="#looking-at-the-data"><span class="header-section-number">1.1</span> Looking at the Data</a></li>
-  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations"><span class="header-section-number">1.2</span> Transformations</a></li>
-  <li><a href="#running-pca" id="toc-running-pca" class="nav-link" data-scroll-target="#running-pca"><span class="header-section-number">1.3</span> Running PCA</a>
+  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link active" data-scroll-target="#looking-at-the-data"><span class="header-section-number">10.1</span> Looking at the Data</a></li>
+  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations"><span class="header-section-number">10.2</span> Transformations</a></li>
+  <li><a href="#running-pca" id="toc-running-pca" class="nav-link" data-scroll-target="#running-pca"><span class="header-section-number">10.3</span> Running PCA</a>
   <ul class="collapse">
-  <li><a href="#covariance-matrix" id="toc-covariance-matrix" class="nav-link" data-scroll-target="#covariance-matrix"><span class="header-section-number">1.3.1</span> Covariance Matrix</a></li>
-  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">1.3.2</span> Correlation Matrix</a></li>
-  <li><a href="#alternative-methods" id="toc-alternative-methods" class="nav-link" data-scroll-target="#alternative-methods"><span class="header-section-number">1.3.3</span> Alternative Methods</a></li>
+  <li><a href="#covariance-matrix" id="toc-covariance-matrix" class="nav-link" data-scroll-target="#covariance-matrix"><span class="header-section-number">10.3.1</span> Covariance Matrix</a></li>
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">10.3.2</span> Correlation Matrix</a></li>
+  <li><a href="#alternative-methods" id="toc-alternative-methods" class="nav-link" data-scroll-target="#alternative-methods"><span class="header-section-number">10.3.3</span> Alternative Methods</a></li>
   </ul></li>
-  <li><a href="#varimax-rotation-optional" id="toc-varimax-rotation-optional" class="nav-link" data-scroll-target="#varimax-rotation-optional"><span class="header-section-number">1.4</span> Varimax Rotation (Optional)</a></li>
-  <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">1.5</span> Tips for your assignment:</a></li>
+  <li><a href="#varimax-rotation-optional" id="toc-varimax-rotation-optional" class="nav-link" data-scroll-target="#varimax-rotation-optional"><span class="header-section-number">10.4</span> Varimax Rotation (Optional)</a></li>
+  <li><a href="#tips-for-your-assignment" id="toc-tips-for-your-assignment" class="nav-link" data-scroll-target="#tips-for-your-assignment"><span class="header-section-number">10.5</span> Tips for your assignment:</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1a.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1a.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1a.html"><strong>Assignment 1</strong></a></li><li class="breadcrumb-item"><a href="./a1a.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><strong>Assignment 1a:</strong> Principal Components Analysis</span></h1>
 </div>
 
 
@@ -242,12 +306,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>Assignment 1a focuses on Principal Components Analysis (PCA). Think of PCA as a method of finding associations between data series.</p>
 <p>For this tutorial, we’re going to use the dataset in <code>fishcatch.csv</code>.</p>
-<section id="looking-at-the-data" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">1.1</span> Looking at the Data</h2>
+<section id="looking-at-the-data" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">10.1</span> Looking at the Data</h2>
 <p>With any data analysis, step 1 is always to look at your data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
@@ -274,29 +340,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate boxplots</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data[,<span class="sc">-</span><span class="dv">1</span>]) <span class="co"># Exclude haul</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at data distribution</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># par(mfrow = c(3,2)) # 1 column 5 row grid plot</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>mackerel, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>bluefin, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>sardine, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>squid, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>limpet, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A few things are immediately obvious from looking at our data:</p>
@@ -305,8 +395,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>3. The species all have relatively different distributions, none of which look normal.</p>
 <p>Are these issues? How do we fix them?</p>
 </section>
-<section id="transformations" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="transformations"><span class="header-section-number">1.2</span> Transformations</h2>
+<section id="transformations" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="transformations"><span class="header-section-number">10.2</span> Transformations</h2>
 <p>Look back at the PCA lecture. What are potential problems with PCA?</p>
 <p>1. Covariance Matrix PCA requires data to be in the same units</p>
 <p>2. Normality is desirable, but not essential</p>
@@ -326,23 +416,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># par(mfrow = c(3,2)) # 1 column 5 row grid plot</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data_log<span class="sc">$</span>mackerel, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data_log<span class="sc">$</span>bluefin, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data_log<span class="sc">$</span>sardine, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data_log<span class="sc">$</span>squid, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data_log<span class="sc">$</span>limpet, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>These look much better. We can also confirm this statistically:</p>
@@ -394,7 +504,11 @@ W = 0.96437, p-value = 0.5082</code></pre>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate boxplots</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Note that we can only log the data if there are no zeroes:</p>
@@ -426,16 +540,20 @@ W = 0.96437, p-value = 0.5082</code></pre>
 z$out[z$group == : Outlier (-Inf) in boxplot 1 is not drawn</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If the increment is too big, we eliminate the variance in our data. If the increment is to small, we create an outlier.</p>
 </section>
-<section id="running-pca" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="running-pca"><span class="header-section-number">1.3</span> Running PCA</h2>
+<section id="running-pca" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="running-pca"><span class="header-section-number">10.3</span> Running PCA</h2>
 <p>Now that we’ve checked and transformed our data, we’re ready to run PCA. There are two kinds of PCA: We can run PCA on the Covariance Matrix, or the Correlation Matrix.</p>
-<section id="covariance-matrix" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="covariance-matrix"><span class="header-section-number">1.3.1</span> Covariance Matrix</h3>
+<section id="covariance-matrix" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="covariance-matrix"><span class="header-section-number">10.3.1</span> Covariance Matrix</h3>
 <p>We can run PCA on the covariance matrix as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Covariance</span></span>
@@ -449,18 +567,49 @@ Proportion of Variance 0.6607195 0.1612035 0.1496458 0.02562199 0.002809263
 Cumulative Proportion  0.6607195 0.8219229 0.9715687 0.99719074 1.000000000</code></pre>
 </div>
 </div>
-<p>Running a summary on our PCA gives us the standard deviation of each principal component, the proportion of variance explained by each principal component, and the cumulative variance explained as we add each component. Here, we see the first principal component explains 66% of the variance. The second explains 16%, which adds up to 82% with the first component, and so on up to component 5. We can visualize the cumulative variance explained with a scree plot:</p>
+<p>Running a summary on our PCA gives us the standard deviation of each principal component, the proportion of variance explained by each principal component, and the cumulative variance explained as we add each component.</p>
+<p>Each principal component is an <strong>eigenvector</strong> of the correlation/covariance matrix (remember from lecture that the <em>j</em>th principal component is the <em>j</em>th eigenvector of the correlation/covariance matrix). The <strong>eigenvalues</strong> are the variance of each individual principal component. The principal components are organized by their eigenvalues - the first principal component is the eigenvector with the largest eigenvalue, the second principal component is the eigenvector with the second largest eigenvalue, and so on.</p>
+<p>The <code>princomp()</code> function gives us the standard deviation of each principal component; We can square these to get the eigenvalues:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate scree plot</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1, <span class="at">type =</span> <span class="st">'l'</span>) <span class="co"># Scree is built into the plot for PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and pring eigenvalues</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>eigenvalues <span class="ot">=</span> pca_1<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>eigenvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Comp.1     Comp.2     Comp.3     Comp.4     Comp.5 
+7.87102905 1.92038712 1.78270294 0.30523005 0.03346623 </code></pre>
+</div>
+</div>
+<p>We can use the eigenvalues to reproduce the reset of the <code>princomp()</code> output. The proportion of variance is the value of each eigenvalue divided by the sum of all the eigenvalues. The cumulative proportion is the cumulative sum of the proportions of variance. Since there are 5 components, the cumulative proportion of component 5 is 1 (i.e.&nbsp;all of the variance).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print proportion of variance</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>prop_var <span class="ot">=</span> eigenvalues<span class="sc">/</span><span class="fu">sum</span>(eigenvalues); prop_var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Comp.1      Comp.2      Comp.3      Comp.4      Comp.5 
+0.660719468 0.161203465 0.149645813 0.025621991 0.002809263 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate cumulative proportion of variance</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cum_prop <span class="ot">=</span> <span class="fu">cumsum</span>(prop_var); cum_prop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Comp.1    Comp.2    Comp.3    Comp.4    Comp.5 
+0.6607195 0.8219229 0.9715687 0.9971907 1.0000000 </code></pre>
+</div>
+</div>
+<p>Here, we see the first principal component explains 66% of the variance. The second explains 16%, which adds up to 82% with the first component, and so on up to component 5. We can visualize the cumulative variance explained with a scree plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate scree plot</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1, <span class="at">type =</span> <span class="st">'l'</span>) <span class="co"># Scree is built into the plot for PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We see most of the variance is explained by component 1, then a similar lesser amount is explained by 2 and 3, followed by another drop to 4 and 5.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print loadings</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">loadings</span>(pca_1),<span class="at">cutoff=</span><span class="fl">0.00</span>) <span class="co">#all loadings!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print loadings</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">loadings</span>(pca_1),<span class="at">cutoff=</span><span class="fl">0.00</span>) <span class="co">#all loadings!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -480,8 +629,8 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 <p>The PCA loadings are the correlations between the variables and each component. Here, we see bluefin and squid are strongly negatively correlated with component 1, while mackerel, sardine, and limpet are weakly positively correlated with component 1. We can continue this type of interpretation through the other components as well.</p>
 <p>Our PCA object also contains the PCA scores for each individual data point:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print PCA scores</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pca_1<span class="sc">$</span>scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print PCA scores</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pca_1<span class="sc">$</span>scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Comp.1     Comp.2     Comp.3     Comp.4      Comp.5
 [1,] -3.551007 -2.2507718  0.6725187 -0.1223707 -0.06754585
@@ -494,121 +643,141 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 </div>
 <p>Scores are the value of each data point on each principal component. Lets try plotting them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>This generates a scatterplot showing us the value of each data point in principal components 1 (x) and 2 (y). Now lets add on the loadings:</p>
+</div>
+<p>This generates a scatterplot showing us the value of each data point in principal components 1 (x) and 2 (y).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>], <span class="co"># Draw to PC1 loading in X</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>], <span class="co"># Draw to PC2 loading in Y</span></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>],pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>],<span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">cex=</span><span class="fl">1.0</span> ,<span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>], <span class="co"># Draw to PC1 loading in X</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>], <span class="co"># Draw to PC2 loading in Y</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>],pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>],<span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">cex=</span><span class="fl">1.0</span> ,<span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The arrows are a little small, so let’s add a scaling factor:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>What about the haul number? Does that have an effect? Let’s try adding that on as well:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>colfunc <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">'orangered1'</span>, <span class="st">'turquoise2'</span>))</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_1<span class="sc">$</span>scores)), <span class="co"># Color points by haul using our color palette</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>colfunc <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">'orangered1'</span>, <span class="st">'turquoise2'</span>))</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_1<span class="sc">$</span>scores)), <span class="co"># Color points by haul using our color palette</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Since we used color for haul, we need to add a legend:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot layout</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>), <span class="co"># 1 row, 2 columns</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="co"># Width</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Height</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>colfunc <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">'orangered1'</span>, <span class="st">'turquoise2'</span>))</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_1<span class="sc">$</span>scores)), <span class="co"># Color points by haul using our color palette</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate legend</span></span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>legend_image <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(<span class="fu">matrix</span>(<span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_1<span class="sc">$</span>scores)), <span class="at">ncol=</span><span class="dv">1</span>))</span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">type =</span> <span class="st">'n'</span>, <span class="at">axes =</span> F,<span class="at">xlab =</span> <span class="st">''</span>, <span class="at">ylab =</span> <span class="st">''</span>, <span class="at">main =</span> <span class="st">'Haul'</span>)</span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y =</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">l=</span><span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">25</span>,<span class="at">l=</span><span class="dv">5</span>))</span>
-<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rasterImage</span>(legend_image, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot layout</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>), <span class="co"># 1 row, 2 columns</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="co"># Width</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Height</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>colfunc <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">'orangered1'</span>, <span class="st">'turquoise2'</span>))</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_1<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>     pca_1<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_1<span class="sc">$</span>scores)), <span class="co"># Color points by haul using our color palette</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>       pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate legend</span></span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>legend_image <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(<span class="fu">matrix</span>(<span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_1<span class="sc">$</span>scores)), <span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">type =</span> <span class="st">'n'</span>, <span class="at">axes =</span> F,<span class="at">xlab =</span> <span class="st">''</span>, <span class="at">ylab =</span> <span class="st">''</span>, <span class="at">main =</span> <span class="st">'Haul'</span>)</span>
+<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y =</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">l=</span><span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">25</span>,<span class="at">l=</span><span class="dv">5</span>))</span>
+<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rasterImage</span>(legend_image, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now we have a completed scores plot with loadings arrows. How would you interpret this plot?</p>
 </section>
-<section id="correlation-matrix" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="correlation-matrix"><span class="header-section-number">1.3.2</span> Correlation Matrix</h3>
+<section id="correlation-matrix" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="correlation-matrix"><span class="header-section-number">10.3.2</span> Correlation Matrix</h3>
 <p>Now let’s try the correlation matrix. The correlation matrix performs the same analysis, but on standardized data. The princomp() function does this for us if we set cor = T:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Correlation</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>pca_2 <span class="ot">=</span> <span class="fu">princomp</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">cor =</span> T)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Correlation</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>pca_2 <span class="ot">=</span> <span class="fu">princomp</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">cor =</span> T)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                          Comp.1    Comp.2     Comp.3     Comp.4     Comp.5
@@ -616,9 +785,9 @@ Standard deviation     1.595782 1.2503536 0.70708572 0.57220519 0.25041296
 Proportion of Variance 0.509304 0.3126768 0.09999404 0.06548376 0.01254133
 Cumulative Proportion  0.509304 0.8219809 0.92197491 0.98745867 1.00000000</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In case you don't believe me, heres the covariance matrix if we pre-standardize the data</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>pca_test <span class="ot">=</span> <span class="fu">princomp</span>(<span class="fu">scale</span>(data_log[<span class="sc">-</span><span class="dv">1</span>]))</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In case you don't believe me, heres the covariance matrix if we pre-standardize the data</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>pca_test <span class="ot">=</span> <span class="fu">princomp</span>(<span class="fu">scale</span>(data_log[<span class="sc">-</span><span class="dv">1</span>]))</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                          Comp.1    Comp.2     Comp.3     Comp.4     Comp.5
@@ -629,13 +798,17 @@ Cumulative Proportion  0.509304 0.8219809 0.92197491 0.98745867 1.00000000</code
 </div>
 <p>Now we can go through the same pattern of analyses as we did for covariance:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate scree plot</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_2, <span class="at">type =</span> <span class="st">'l'</span>) <span class="co"># Scree is built into the plot for PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate scree plot</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_2, <span class="at">type =</span> <span class="st">'l'</span>) <span class="co"># Scree is built into the plot for PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print loadings</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">loadings</span>(pca_2),<span class="at">cutoff=</span><span class="fl">0.00</span>) <span class="co">#all loadings!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print loadings</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">loadings</span>(pca_2),<span class="at">cutoff=</span><span class="fl">0.00</span>) <span class="co">#all loadings!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -651,184 +824,227 @@ SS loadings       1.0    1.0    1.0    1.0    1.0
 Proportion Var    0.2    0.2    0.2    0.2    0.2
 Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot layout</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>), <span class="co"># 1 row, 2 columns</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="co"># Width</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Height</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>colfunc <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">'orangered1'</span>, <span class="st">'turquoise2'</span>))</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_2<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>     pca_2<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_2<span class="sc">$</span>scores)), <span class="co"># Color points by haul using our color palette</span></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>       pca_2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
-<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>       pca_2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
-<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
-<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span>
-<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate legend</span></span>
-<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a>legend_image <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(<span class="fu">matrix</span>(<span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_2<span class="sc">$</span>scores)), <span class="at">ncol=</span><span class="dv">1</span>))</span>
-<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">type =</span> <span class="st">'n'</span>, <span class="at">axes =</span> F,<span class="at">xlab =</span> <span class="st">''</span>, <span class="at">ylab =</span> <span class="st">''</span>, <span class="at">main =</span> <span class="st">'Haul'</span>)</span>
-<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y =</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">l=</span><span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">25</span>,<span class="at">l=</span><span class="dv">5</span>))</span>
-<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rasterImage</span>(legend_image, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot layout</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>), <span class="co"># 1 row, 2 columns</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="co"># Width</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># Height</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a color palette</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>colfunc <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">'orangered1'</span>, <span class="st">'turquoise2'</span>))</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_2<span class="sc">$</span>scores[,<span class="dv">1</span>], <span class="co"># Scores on component 1</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>     pca_2<span class="sc">$</span>scores[,<span class="dv">2</span>], <span class="co"># Scores on component 3</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># Point 16 (colored circle)</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_2<span class="sc">$</span>scores)), <span class="co"># Color points by haul using our color palette</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st principal component"</span>,<span class="at">ylab=</span><span class="st">"2nd principal component"</span>,<span class="at">main=</span><span class="st">"Scores plot"</span>) <span class="co"># Axis and plot labels</span></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings to plot</span></span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="dv">3</span> <span class="co"># Scaling factor</span></span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">3.2</span> <span class="co"># Scaling factor for text</span></span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>, <span class="co"># Draw arrows from zero</span></span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>       pca_2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC1 * scaling factor loading in X</span></span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>       pca_2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf, <span class="co"># Draw to PC2 * scaling factor loading in Y</span></span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">"black"</span>, <span class="at">length =</span> <span class="fl">0.1</span>) <span class="co"># Arrow color and arrowhead length</span></span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pca_2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,pca_2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft, <span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">cex=</span><span class="fl">1.0</span>, <span class="at">col=</span><span class="st">"black"</span>) <span class="co"># Add text labels for each variable</span></span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate legend</span></span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>legend_image <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(<span class="fu">matrix</span>(<span class="fu">colfunc</span>(<span class="fu">nrow</span>(pca_2<span class="sc">$</span>scores)), <span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">type =</span> <span class="st">'n'</span>, <span class="at">axes =</span> F,<span class="at">xlab =</span> <span class="st">''</span>, <span class="at">ylab =</span> <span class="st">''</span>, <span class="at">main =</span> <span class="st">'Haul'</span>)</span>
+<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y =</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">l=</span><span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">25</span>,<span class="at">l=</span><span class="dv">5</span>))</span>
+<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rasterImage</span>(legend_image, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>How would you interpret this plot? Does it differ from the covariance plot?</p>
 </section>
-<section id="alternative-methods" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="alternative-methods"><span class="header-section-number">1.3.3</span> Alternative Methods</h3>
+<section id="alternative-methods" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="alternative-methods"><span class="header-section-number">10.3.3</span> Alternative Methods</h3>
 <p>There are a few other ways you can generate, and/or plot your PCAs if you prefer.</p>
-<section id="biplot" class="level4" data-number="1.3.3.1">
-<h4 data-number="1.3.3.1" class="anchored" data-anchor-id="biplot"><span class="header-section-number">1.3.3.1</span> Biplot</h4>
+<section id="biplot" class="level4" data-number="10.3.3.1">
+<h4 data-number="10.3.3.1" class="anchored" data-anchor-id="biplot"><span class="header-section-number">10.3.3.1</span> Biplot</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploring biplot</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_1) <span class="co"># Covariance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploring biplot</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_1) <span class="co"># Covariance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_2) <span class="co"># Correlation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_2) <span class="co"># Correlation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="ggplot" class="level4" data-number="1.3.3.2">
-<h4 data-number="1.3.3.2" class="anchored" data-anchor-id="ggplot"><span class="header-section-number">1.3.3.2</span> ggplot</h4>
+<section id="ggplot" class="level4" data-number="10.3.3.2">
+<h4 data-number="10.3.3.2" class="anchored" data-anchor-id="ggplot"><span class="header-section-number">10.3.3.2</span> ggplot</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot version - Covariance</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># turn PCA scores into data frame</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>pca_1_plot <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Haul =</span> data_log<span class="sc">$</span>Haul, pca_1<span class="sc">$</span>scores) </span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn PCA loadings into data frame (This gets a little complicated)</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>pca_1_loadings <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">as.numeric</span>(pca_1<span class="sc">$</span>loadings), </span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">dim</span>(pca_1<span class="sc">$</span>loadings)[<span class="dv">1</span>], <span class="fu">dim</span>(pca_1<span class="sc">$</span>loadings)[<span class="dv">2</span>]))</span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_1_loadings) <span class="ot">=</span> <span class="fu">colnames</span>(pca_1_plot)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_1_plot, <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">color =</span> Haul)) <span class="sc">+</span></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scores</span></span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_colour_distiller</span>(<span class="at">palette =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
-<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loadings</span></span>
-<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> pca_1_loadings, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>,<span class="at">xend =</span> Comp<span class="fl">.1</span> , <span class="at">yend =</span> Comp<span class="fl">.2</span>), </span>
-<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">"cm"</span>), <span class="at">type =</span> <span class="st">"open"</span>, <span class="at">angle =</span> <span class="dv">25</span>), </span>
-<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> </span>
-<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
-<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pca_1_loadings, <span class="at">color =</span> <span class="st">'darkblue'</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, <span class="at">nudge_y =</span> <span class="fl">0.2</span>, <span class="co"># Labels</span></span>
-<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">label =</span> <span class="fu">colnames</span>(data_log)[<span class="sc">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot version - Covariance</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co"># turn PCA scores into data frame</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>pca_1_plot <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Haul =</span> data_log<span class="sc">$</span>Haul, pca_1<span class="sc">$</span>scores) </span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn PCA loadings into data frame (This gets a little complicated)</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>pca_1_loadings <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">as.numeric</span>(pca_1<span class="sc">$</span>loadings), </span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">dim</span>(pca_1<span class="sc">$</span>loadings)[<span class="dv">1</span>], <span class="fu">dim</span>(pca_1<span class="sc">$</span>loadings)[<span class="dv">2</span>]))</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_1_loadings) <span class="ot">=</span> <span class="fu">colnames</span>(pca_1_plot)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_1_plot, <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">color =</span> Haul)) <span class="sc">+</span></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scores</span></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_colour_distiller</span>(<span class="at">palette =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loadings</span></span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> pca_1_loadings, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>,<span class="at">xend =</span> Comp<span class="fl">.1</span> , <span class="at">yend =</span> Comp<span class="fl">.2</span>), </span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">"cm"</span>), <span class="at">type =</span> <span class="st">"open"</span>, <span class="at">angle =</span> <span class="dv">25</span>), </span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> </span>
+<span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
+<span id="cb62-25"><a href="#cb62-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pca_1_loadings, <span class="at">color =</span> <span class="st">'darkblue'</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, <span class="at">nudge_y =</span> <span class="fl">0.2</span>, <span class="co"># Labels</span></span>
+<span id="cb62-26"><a href="#cb62-26" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">label =</span> <span class="fu">colnames</span>(data_log)[<span class="sc">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot version - Correlation</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># turn PCA scores into data frame</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>pca_2_plot <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Haul =</span> data_log<span class="sc">$</span>Haul, pca_2<span class="sc">$</span>scores) </span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn PCA loadings into data frame</span></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>pca_2_loadings <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">as.numeric</span>(pca_2<span class="sc">$</span>loadings), </span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">dim</span>(pca_2<span class="sc">$</span>loadings)[<span class="dv">1</span>], <span class="fu">dim</span>(pca_2<span class="sc">$</span>loadings)[<span class="dv">2</span>]))</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_2_loadings) <span class="ot">=</span> <span class="fu">colnames</span>(pca_2_plot)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_2_plot, <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">color =</span> Haul)) <span class="sc">+</span></span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scores</span></span>
-<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_colour_distiller</span>(<span class="at">palette =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
-<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loadings</span></span>
-<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> pca_2_loadings, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>,<span class="at">xend =</span> Comp<span class="fl">.1</span> , <span class="at">yend =</span> Comp<span class="fl">.2</span>), </span>
-<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">"cm"</span>), <span class="at">type =</span> <span class="st">"open"</span>, <span class="at">angle =</span> <span class="dv">25</span>), </span>
-<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> </span>
-<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
-<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pca_2_loadings, <span class="at">color =</span> <span class="st">'darkblue'</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, <span class="at">nudge_y =</span> <span class="fl">0.2</span>, <span class="co"># Labels</span></span>
-<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">label =</span> <span class="fu">colnames</span>(data_log)[<span class="sc">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot version - Correlation</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># turn PCA scores into data frame</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>pca_2_plot <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Haul =</span> data_log<span class="sc">$</span>Haul, pca_2<span class="sc">$</span>scores) </span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn PCA loadings into data frame</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>pca_2_loadings <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="fu">as.numeric</span>(pca_2<span class="sc">$</span>loadings), </span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">dim</span>(pca_2<span class="sc">$</span>loadings)[<span class="dv">1</span>], <span class="fu">dim</span>(pca_2<span class="sc">$</span>loadings)[<span class="dv">2</span>]))</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_2_loadings) <span class="ot">=</span> <span class="fu">colnames</span>(pca_2_plot)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_2_plot, <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">color =</span> Haul)) <span class="sc">+</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scores</span></span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_colour_distiller</span>(<span class="at">palette =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loadings</span></span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> pca_2_loadings, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>,<span class="at">xend =</span> Comp<span class="fl">.1</span> , <span class="at">yend =</span> Comp<span class="fl">.2</span>), </span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>, <span class="st">"cm"</span>), <span class="at">type =</span> <span class="st">"open"</span>, <span class="at">angle =</span> <span class="dv">25</span>), </span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> </span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Labels</span></span>
+<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pca_2_loadings, <span class="at">color =</span> <span class="st">'darkblue'</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, <span class="at">nudge_y =</span> <span class="fl">0.2</span>, <span class="co"># Labels</span></span>
+<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> Comp<span class="fl">.1</span>, <span class="at">y =</span> Comp<span class="fl">.2</span>, <span class="at">label =</span> <span class="fu">colnames</span>(data_log)[<span class="sc">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can also run PCA using the prcomp() function instead of princomp(), setting scale = T if you want the correlation matrix. You can then use autoplot() with the ggfortify package to plot the results.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot v2</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Covariance</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>pca_1a <span class="ot">=</span> <span class="fu">prcomp</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run autoplot</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(pca_1a, <span class="at">data =</span> data_log, <span class="at">color =</span> <span class="st">'Hauls'</span>, <span class="at">loadings =</span> T, <span class="at">loadings.label =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot v2</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Covariance</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>pca_1a <span class="ot">=</span> <span class="fu">prcomp</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run autoplot</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(pca_1a, <span class="at">data =</span> data_log, <span class="at">color =</span> <span class="st">'Hauls'</span>, <span class="at">loadings =</span> T, <span class="at">loadings.label =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information.
+ℹ The deprecated feature was likely used in the ggfortify package.
+  Please report the issue at &lt;https://github.com/sinhrks/ggfortify/issues&gt;.</code></pre>
+</div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Correlation</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>pca_2a <span class="ot">=</span> <span class="fu">prcomp</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale =</span> T)</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run autoplot</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(pca_2a, <span class="at">data =</span> data_log, <span class="at">color =</span> <span class="st">'Hauls'</span>, <span class="at">loadings =</span> T, <span class="at">loadings.label =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCA - Correlation</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>pca_2a <span class="ot">=</span> <span class="fu">prcomp</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">scale =</span> T)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run autoplot</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(pca_2a, <span class="at">data =</span> data_log, <span class="at">color =</span> <span class="st">'Hauls'</span>, <span class="at">loadings =</span> T, <span class="at">loadings.label =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
+</div>
 </section>
 </section>
 </section>
-<section id="varimax-rotation-optional" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="varimax-rotation-optional"><span class="header-section-number">1.4</span> Varimax Rotation (Optional)</h2>
+<section id="varimax-rotation-optional" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="varimax-rotation-optional"><span class="header-section-number">10.4</span> Varimax Rotation (Optional)</h2>
 <p>Varimax rotation attempts to improve the interpretability of PCA results by lining up loadings with the axes. This can be useful, particularly with large numbers of variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scaling factors</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="fl">2.5</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">2.8</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Varimax rotation - Covariance</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">=</span> <span class="fu">varimax</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>v1_scores <span class="ot">=</span> pca_1<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">%*%</span>v1<span class="sc">$</span>rotmat</span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v1_scores[,<span class="dv">1</span>],v1_scores[,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">15</span>, <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(v1_scores)),</span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st varimax component"</span>,<span class="at">ylab=</span><span class="st">"2nd varimax component"</span>,<span class="at">main=</span><span class="st">"varimax scores plot"</span>)</span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings</span></span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>,v1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf,v1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf,<span class="at">col=</span><span class="st">"black"</span>)</span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(v1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,v1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft,<span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">asp=</span><span class="dv">1</span>,<span class="at">cex=</span><span class="fl">1.0</span> ,<span class="at">col=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scaling factors</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">=</span> <span class="fl">2.5</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>sft <span class="ot">=</span> <span class="fl">2.8</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Varimax rotation - Covariance</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">=</span> <span class="fu">varimax</span>(pca_1<span class="sc">$</span>loadings[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>v1_scores <span class="ot">=</span> pca_1<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">%*%</span>v1<span class="sc">$</span>rotmat</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v1_scores[,<span class="dv">1</span>],v1_scores[,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">15</span>, <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(v1_scores)),</span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st varimax component"</span>,<span class="at">ylab=</span><span class="st">"2nd varimax component"</span>,<span class="at">main=</span><span class="st">"varimax scores plot"</span>)</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>,v1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf,v1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf,<span class="at">col=</span><span class="st">"black"</span>)</span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(v1<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,v1<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft,<span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">asp=</span><span class="dv">1</span>,<span class="at">cex=</span><span class="fl">1.0</span> ,<span class="at">col=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Varimax rotation - Correlation</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">=</span> <span class="fu">varimax</span>(pca_2<span class="sc">$</span>loadings[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>v2_scores <span class="ot">=</span> pca_2<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">%*%</span>v2<span class="sc">$</span>rotmat</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v2_scores[,<span class="dv">1</span>],v2_scores[,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">15</span>, <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(v2_scores)),</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st varimax component"</span>,<span class="at">ylab=</span><span class="st">"2nd varimax component"</span>,<span class="at">main=</span><span class="st">"varimax scores plot"</span>)</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings</span></span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>,v2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf,v2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf,<span class="at">col=</span><span class="st">"black"</span>)</span>
-<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(v2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,v2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft,<span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">asp=</span><span class="dv">1</span>,<span class="at">cex=</span><span class="fl">1.0</span> ,<span class="at">col=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Varimax rotation - Correlation</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">=</span> <span class="fu">varimax</span>(pca_2<span class="sc">$</span>loadings[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>v2_scores <span class="ot">=</span> pca_2<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">%*%</span>v2<span class="sc">$</span>rotmat</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scores - components 1 and 2</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v2_scores[,<span class="dv">1</span>],v2_scores[,<span class="dv">2</span>],<span class="at">pch=</span><span class="dv">15</span>, <span class="at">col =</span> <span class="fu">colfunc</span>(<span class="fu">nrow</span>(v2_scores)),</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"1st varimax component"</span>,<span class="at">ylab=</span><span class="st">"2nd varimax component"</span>,<span class="at">main=</span><span class="st">"varimax scores plot"</span>)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add loadings</span></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">0</span>,<span class="dv">0</span>,v2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sf,v2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sf,<span class="at">col=</span><span class="st">"black"</span>)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(v2<span class="sc">$</span>loadings[,<span class="dv">1</span>]<span class="sc">*</span>sft,v2<span class="sc">$</span>loadings[,<span class="dv">2</span>]<span class="sc">*</span>sft,<span class="fu">names</span>(data_log[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">asp=</span><span class="dv">1</span>,<span class="at">cex=</span><span class="fl">1.0</span> ,<span class="at">col=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="a1a_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="a1a_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Note that it’s pretty hard to tell the hauls apart using this color scale. Make sure your plots are always clear and readable.</p>
 </section>
-<section id="tips-for-your-assignment" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">1.5</span> Tips for your assignment:</h2>
+<section id="tips-for-your-assignment" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">10.5</span> Tips for your assignment:</h2>
 <p>Some things you may want to think about for your assignment:</p>
 <p>1. Do your covariance and correlation plots differ? Do you think one is better suited to answering your research question? Why? Is your answer conceptual, or does it have to do with the results? Both?</p>
 <p>2. How would you quantitatively examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?</p>
@@ -879,6 +1095,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -947,13 +1190,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -988,18 +1233,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1031,11 +1265,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1045,8 +1318,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1058,7 +1340,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1102,6 +1507,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1127,6 +1533,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1188,13 +1620,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./guidelines.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><strong>Assignment Guidelines</strong></span>
+      <a href="./refresher_9.html" class="pagination-link" aria-label="R Refresher Part 9: Useful tidyr and dplyr functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R Refresher Part 9: Useful tidyr and dplyr functions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./a1b.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./a1b.html" class="pagination-link" aria-label="**Assignment 1b:** Linear Discriminant Analysis">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><strong>Assignment 1b:</strong> Linear Discriminant Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1202,4 +1634,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Future-of-Marine-Ecosystems/BIOL4062-5062-Assignment-Guide/edit/main/a1a.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

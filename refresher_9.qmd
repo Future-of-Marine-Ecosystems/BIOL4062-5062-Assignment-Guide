@@ -4,6 +4,8 @@
 
 This section covers some useful functions from the tidyverse family, belonging to the `tidyr` and `dplyr` packages.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Joins
 
 Joins are useful for combining two data frames which have a common column. These are particularly useful when working with databases, which often have separate data and metadata files.
@@ -30,11 +32,11 @@ full_join(band_members, band_instruments, by = 'name')
 
 ## Wide and long form data
 
-Data is generally stored in one of two forms - long format, and wide format. 
+Data is generally stored in one of two forms - long format, and wide format.
 
 Wide format is likely the form you are used to. In wide format data, columns are used to distinguish different types of data. Most data you've seen or worked with in Excel is likely in wide format. It is called wide format because you have many columns and fewer rows.
 
-Long format data compresses all of the actual data values together into a single column, with different groups of data being distinguished with metadata identifiers. This makes a data structure with many rows and few columns - hence, long format. Long format data is common in databases, since it is much easier to add new rows to data structures than it is to add new columns. 
+Long format data compresses all of the actual data values together into a single column, with different groups of data being distinguished with metadata identifiers. This makes a data structure with many rows and few columns - hence, long format. Long format data is common in databases, since it is much easier to add new rows to data structures than it is to add new columns.
 
 You can switch between long and wide format data using the `pivot_longer` and `pivot_wider` `tidyr` functions. You may wish to do this because generally, base R functions and plotting work better with wide format data, while tidyverse and ggplot2 work better (or more often, exclusively) on long format data.
 
@@ -107,4 +109,3 @@ mtcars_long %>% group_by(variable) %>% # Groups the data by variable
 ##### Let me know if I can help out.
 ####################################################################################
 ```
-

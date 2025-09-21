@@ -4,11 +4,13 @@
 
 This section covers indexing, which are methods by which you can access subsets of a data structure. Indexing serves as key fundamental of coding, which is incredibly useful in a wide range of situations.
 
+*NOTE:* On refresher pages, some code lines will be commented out to avoid file structure issues surrounding saving files, downloading packages, and changing working directories.
+
 ## Square Brackets
 
 Most indexing in R is performed through the use of square brackets. as vectors are one-dimensional, they are indexed using a scalar value inside `[]`. Two-dimensional data structures are indexed via `[row,column]`. Two-dimensional data structures can also be indexed using just `[]`, in which they will go in order of individual elements, but this is more commonly done by mistake than to achieve as a desired outcome. Lists are indexed using `[[]]`. Square brackets can also be stacked together - for instance, `data_frame[1,][2]` would pull out the second element of the first column of the object `data_frame`. This is equivalent to `data_frame[1,2]`.
 
-```{r}
+```{r, error = T}
 # 4. Accessing bits of data: indexing ------------------------------------------
 
 # Ok, now you have your objects, your own data in R.
@@ -62,9 +64,10 @@ my_list[[4]][,2] # that's the third column of the dataframe ...
 ```
 
 ## Dollar Sign
-The `$` operator in R divides objects into their component parts, and can be used to pull out a desired part of an object using its name. `$` indexes column names for 2 dimensional data structures, and pulls out individual named items of lists. `attach()` can be used to move the components of an object into the workspace, which can later be undone using `detach()`. See the example below for its usage. 
 
-```{r}
+The `$` operator in R divides objects into their component parts, and can be used to pull out a desired part of an object using its name. `$` indexes column names for 2 dimensional data structures, and pulls out individual named items of lists. `attach()` can be used to move the components of an object into the workspace, which can later be undone using `detach()`. See the example below for its usage.
+
+```{r, error = T}
 # data frame: dollar sign $ to access the columns, typing the column names
 scho$Mass
 
