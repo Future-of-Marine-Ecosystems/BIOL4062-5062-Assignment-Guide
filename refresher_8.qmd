@@ -1,6 +1,6 @@
 # R Refresher Part 8: Programming Fundamentals
 
-## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+***Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele***
 
 This section covers basic programming fundamentals in R, such as loops, user-defined functions, and if/else statements.
 

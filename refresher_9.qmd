@@ -1,6 +1,6 @@
 # R Refresher Part 9: Useful tidyr and dplyr functions
 
-## Created by Reid Steele
+***Created by Reid Steele***
 
 This section covers some useful functions from the tidyverse family, belonging to the `tidyr` and `dplyr` packages.
 

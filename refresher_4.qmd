@@ -1,6 +1,6 @@
 # R Refresher Part 4: Indexing
 
-## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+***Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele***
 
 This section covers indexing, which are methods by which you can access subsets of a data structure. Indexing serves as key fundamental of coding, which is incredibly useful in a wide range of situations.
 

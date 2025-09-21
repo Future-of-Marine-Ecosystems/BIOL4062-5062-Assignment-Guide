@@ -1,6 +1,6 @@
 # R Refresher Part 2: Types of Data and Data Structures
 
-## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+***Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele***
 
 There are many different types of objects in R. This section is designed to introduce you to them, and the basics of how to work with them.
 

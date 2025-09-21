@@ -1,6 +1,6 @@
 # R Refresher Part 5: Using Functions and Packages
 
-## Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele
+***Created by Mauricio Cantor, with modifications by Laura J. Feyrer, Ana Eguiguren, and Reid Steele***
 
 This section covers the use of R functions as well as how to download, load in, and use R packages. We'll cover user-defined functions in Part 8.
 
