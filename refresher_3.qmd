@@ -31,7 +31,7 @@ scho <- read.csv("Schoenemann.csv", header=T)
 head(scho) #first 6 rows of a data frame
 head(scho$Order) # RS Note: head also works on other structures
 scho
-View(scho)
+# View(scho)
 colnames(scho)
 nrow(scho)
 ncol(scho)
