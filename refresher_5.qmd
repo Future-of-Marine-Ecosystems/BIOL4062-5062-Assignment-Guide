@@ -71,7 +71,7 @@ Packages are groups of functions packaged together, which are generally built, m
 # and from which they can be accessed
 # Examples inlcude CRAN and GitHub
 # First, let's see the packages you already have installed:
-installed.packages()
+head(installed.packages())
 
 # # Let's install the package "vegan" that contains many useful ecological tools. We can do it by typing:
 # install.packages("vegan")
