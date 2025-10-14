@@ -98,7 +98,7 @@ mtcars_long %>% group_by(variable) %>% # Groups the data by variable
   summarize(mean = mean(value), sd = sd(value), n = n()) %>% # Calculates mean, standard deviation, and n() for each variable
   filter(variable != 'cyl') %>% # removes rows where variable == cyl
   mutate(data_is = 'cars', CV = (sd/mean)*100) %>% # Adds a column that says data is from cars, and another column that calculates the CV
-  select(data_is, variable, CV) # Select chooses and reorders requested columns
+  dplyr::select(variable, CV) # Select chooses and reorders requested columns
 
 
 
