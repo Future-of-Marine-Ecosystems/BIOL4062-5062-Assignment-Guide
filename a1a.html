@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,14 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-194232c968a292054ad9c2d54c766ee0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7e34ecb6a0e7991f0346b0751d4a7c3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -721,6 +721,7 @@ z$out[z$group == : Outlier (-Inf) in boxplot 1 is not drawn</code></pre>
 </div>
 </div>
 <p>If the increment is too big, we eliminate the variance in our data. If the increment is to small, we create an outlier.</p>
+<p>If you don’t have any zeroes, you don’t have to bother with this at all.</p>
 </section>
 <section id="running-pca" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="running-pca"><span class="header-section-number">10.3</span> Running PCA</h2>
@@ -752,7 +753,7 @@ Cumulative Proportion  0.6607195 0.8219229 0.9715687 0.99719074 1.000000000</cod
 7.87102905 1.92038712 1.78270294 0.30523005 0.03346623 </code></pre>
 </div>
 </div>
-<p>We can use the eigenvalues to reproduce the reset of the <code>princomp()</code> output. The proportion of variance is the value of each eigenvalue divided by the sum of all the eigenvalues. The cumulative proportion is the cumulative sum of the proportions of variance. Since there are 5 components, the cumulative proportion of component 5 is 1 (i.e.&nbsp;all of the variance).</p>
+<p>We can use the eigenvalues to reproduce the rest of the <code>princomp()</code> output. The proportion of variance is the value of each eigenvalue divided by the sum of all the eigenvalues. The cumulative proportion is the cumulative sum of the proportions of variance. Since there are 5 components, the cumulative proportion of component 5 is 1 (i.e.&nbsp;all of the variance).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and print proportion of variance</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>prop_var <span class="ot">=</span> eigenvalues<span class="sc">/</span><span class="fu">sum</span>(eigenvalues); prop_var</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1166,6 +1167,7 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 </div>
 </div>
 </div>
+<p>Note that it’s pretty hard to tell the hauls apart using this color scale. Make sure your plots are always clear and readable.</p>
 </section>
 </section>
 </section>
@@ -1214,13 +1216,12 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 </div>
 </div>
 </div>
-<p>Note that it’s pretty hard to tell the hauls apart using this color scale. Make sure your plots are always clear and readable.</p>
 </section>
 <section id="tips-for-your-assignment" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">10.5</span> Tips for your assignment:</h2>
 <p>Some things you may want to think about for your assignment:</p>
 <p>1. Do your covariance and correlation plots differ? Do you think one is better suited to answering your research question? Why? Is your answer conceptual, or does it have to do with the results? Both?</p>
-<p>2. How would you quantitatively examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?</p>
+<p>2. How would you <strong>quantitatively</strong> examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?</p>
 <p>3. How would you interpret your statistical results biologically? You don’t have to be right, but don’t be vague, and don’t contradict your results.</p>
 
 
