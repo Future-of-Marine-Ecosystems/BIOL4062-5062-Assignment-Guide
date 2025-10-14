@@ -119,6 +119,8 @@ boxplot(log(data_test$limpet), # Warning because of -Inf
 
 If the increment is too big, we eliminate the variance in our data. If the increment is to small, we create an outlier.
 
+If you don't have any zeroes, you don't have to bother with this at all.
+
 ## Running PCA
 
 Now that we've checked and transformed our data, we're ready to run PCA. There are two kinds of PCA: We can run PCA on the Covariance Matrix, or the Correlation Matrix.
@@ -145,7 +147,7 @@ eigenvalues = pca_1$sdev^2
 eigenvalues
 ```
 
-We can use the eigenvalues to reproduce the reset of the `princomp()` output. The proportion of variance is the value of each eigenvalue divided by the sum of all the eigenvalues. The cumulative proportion is the cumulative sum of the proportions of variance. Since there are 5 components, the cumulative proportion of component 5 is 1 (i.e. all of the variance).
+We can use the eigenvalues to reproduce the rest of the `princomp()` output. The proportion of variance is the value of each eigenvalue divided by the sum of all the eigenvalues. The cumulative proportion is the cumulative sum of the proportions of variance. Since there are 5 components, the cumulative proportion of component 5 is 1 (i.e. all of the variance).
 
 ```{r}
 # Calculate and print proportion of variance
@@ -428,6 +430,8 @@ pca_2a = prcomp(data_log[,-1], scale = T)
 autoplot(pca_2a, data = data_log, color = 'Hauls', loadings = T, loadings.label = T)
 ```
 
+Note that it's pretty hard to tell the hauls apart using this color scale. Make sure your plots are always clear and readable.
+
 ## Varimax Rotation (Optional)
 
 Varimax rotation attempts to improve the interpretability of PCA results by lining up loadings with the axes. This can be useful, particularly with large numbers of variables.
@@ -462,14 +466,12 @@ arrows(0,0,v2$loadings[,1]*sf,v2$loadings[,2]*sf,col="black")
 text(v2$loadings[,1]*sft,v2$loadings[,2]*sft,names(data_log[,-1]),asp=1,cex=1.0 ,col="black")
 ```
 
-Note that it's pretty hard to tell the hauls apart using this color scale. Make sure your plots are always clear and readable.
-
 ## Tips for your assignment:
 
 Some things you may want to think about for your assignment:
 
 1\. Do your covariance and correlation plots differ? Do you think one is better suited to answering your research question? Why? Is your answer conceptual, or does it have to do with the results? Both?
 
-2\. How would you quantitatively examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?
+2\. How would you **quantitatively** examine the effect of haul on the PCA scores above? Is it associated with any of the principal components?
 
 3\. How would you interpret your statistical results biologically? You don't have to be right, but don't be vague, and don't contradict your results.
