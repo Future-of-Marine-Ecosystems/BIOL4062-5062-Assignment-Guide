@@ -1,6 +1,6 @@
 # **Assignment 1b:** Linear Discriminant Analysis
 
-Assignment 1b focuses on Linear Discriminant Analysis (LDA), also known as Canonical Variate Analysis. LDA is used to disclose relationships between groups, create models to differentiate between groups based on data, and discern the contribution of different variables to a model's ability do discriminate between groups.
+Assignment 1b focuses on Linear Discriminant Analysis (LDA), also known as Canonical Variate Analysis. LDA is used to discern relationships between groups, create models to differentiate between groups based on data, and discern the contribution of different variables to a model's ability to discriminate between groups.
 
 For this tutorial, we'll be using `snake.csv`.
 
