@@ -564,7 +564,7 @@ window.Quarto = {
 6 6040.0 1013.0 5027.0  58.31 36.19 2920.69 517.78</code></pre>
 </div>
 </div>
-<p>Now we only have the numeric morphologicall data left. Let’s take a look at the data graphically.</p>
+<p>Now we only have the numeric morphological data left. Let’s take a look at the data graphically.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the data</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -630,7 +630,7 @@ window.Quarto = {
 </section>
 <section id="considering-transformations" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="considering-transformations"><span class="header-section-number">13.2</span> Considering Transformations</h2>
-<p>We can see that these data have many more small values, and the data at higher values has higher variance [try e.g.&nbsp;plot(data$Mass, data$Fat) to see this]. If we run our regressions on these data, the assumption of heteroscedasticity is going to be violated:</p>
+<p>We can see that these data have many more small values, and the data at higher values has higher variance [try e.g.&nbsp;<code>plot(data$Mass, data$Fat)</code> to see this]. If we run our regressions on these data, the assumption of heteroscedasticity is going to be violated:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a test model and check assumptions</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">=</span> <span class="fu">lm</span>(CNS <span class="sc">~</span> Mass <span class="sc">+</span> Fat <span class="sc">+</span> FFWT <span class="sc">+</span> HEART <span class="sc">+</span> MUSCLE <span class="sc">+</span> BONE, <span class="at">data =</span> data)</span>
@@ -1130,7 +1130,7 @@ W = 0.95391, p-value = 0.1113</code></pre>
 </section>
 <section id="what-if-my-assumptions-arent-respected" class="level3" data-number="13.5.5">
 <h3 data-number="13.5.5" class="anchored" data-anchor-id="what-if-my-assumptions-arent-respected"><span class="header-section-number">13.5.5</span> What if my assumptions aren’t respected?</h3>
-<p>The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We’ve already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using <code>plot.lm()</code> identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want, although in general it is good practice to only remove outliers where absolutely necessary, as they may contain important biological or other information.</p>
+<p>The typical fixes for violated assumptions are data transformations, and the removal of outliers. In our case, we pass all assumptions except for homoscedasticity. We’ve already transformed our data to meet the assumption of normality, so further transformation is likely off the table, though we could potentially try different transformations. We could also try outlier removal - our model diagnostics using <code>plot.lm()</code> identify three outliers - 19, 20, and 28. Feel free to play around with removing outliers if you want, although in general it is good practice to only remove outliers where absolutely necessary, as they may contain important information, biological or otherwise.</p>
 <p>Keep in mind that data transformations and removing outliers both represent trade-offs. Removing outliers may help meet your model assumptions, but you may also be removing data that reflects reality from your model. In that case, is it really helping you to remove outliers? Similarly, transforming your data may help you meet your assumptions, but in a case like this, transforming our data further or in a different way could end up violating other assumptions. Sometimes the best way to deal with violated assumptions is simply to state that they are violated and think about what that means for the interpretation of your model. Play around with all these different ideas, and come up with what you think is best. At the end of the day, a lot of statistical choices are judgement calls, with no perfect right answer.</p>
 </section>
 </section>

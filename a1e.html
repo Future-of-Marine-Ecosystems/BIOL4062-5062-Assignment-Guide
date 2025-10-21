@@ -593,7 +593,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <pre><code>Loading required package: Rcpp</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>This is rstanarm version 2.32.1</code></pre>
+<pre><code>This is rstanarm version 2.32.2</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>- See https://mc-stan.org/rstanarm/articles/priors for changes to default priors!</code></pre>
@@ -639,8 +639,8 @@ This is shinystan version 2.6.0</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 8.7e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.87 seconds.
+Chain 1: Gradient evaluation took 3e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.3 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -657,9 +657,9 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.119 seconds (Warm-up)
-Chain 1:                0.135 seconds (Sampling)
-Chain 1:                0.254 seconds (Total)
+Chain 1:  Elapsed Time: 0.054 seconds (Warm-up)
+Chain 1:                0.056 seconds (Sampling)
+Chain 1:                0.11 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 2).
@@ -682,15 +682,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.124 seconds (Warm-up)
-Chain 2:                0.126 seconds (Sampling)
-Chain 2:                0.25 seconds (Total)
+Chain 2:  Elapsed Time: 0.058 seconds (Warm-up)
+Chain 2:                0.058 seconds (Sampling)
+Chain 2:                0.116 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 1.2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 3: Gradient evaluation took 1.3e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -707,15 +707,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.114 seconds (Warm-up)
-Chain 3:                0.112 seconds (Sampling)
-Chain 3:                0.226 seconds (Total)
+Chain 3:  Elapsed Time: 0.055 seconds (Warm-up)
+Chain 3:                0.055 seconds (Sampling)
+Chain 3:                0.11 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 1.7e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.17 seconds.
+Chain 4: Gradient evaluation took 1.1e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -732,9 +732,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.107 seconds (Warm-up)
-Chain 4:                0.124 seconds (Sampling)
-Chain 4:                0.231 seconds (Total)
+Chain 4:  Elapsed Time: 0.056 seconds (Warm-up)
+Chain 4:                0.057 seconds (Sampling)
+Chain 4:                0.113 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2) <span class="co"># Summary</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -761,20 +761,20 @@ wantsMoreyes -0.8    0.1 -1.0  -0.8  -0.7
 
 Fit Diagnostics:
            mean   sd   10%   50%   90%
-mean_PPD 31.7    1.6 29.7  31.7  33.8 
+mean_PPD 31.7    1.6 29.8  31.7  33.8 
 
 The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help('summary.stanreg')).
 
 MCMC diagnostics
               mcse Rhat n_eff
-(Intercept)   0.0  1.0  2000 
-age25-29      0.0  1.0  2223 
-age30-39      0.0  1.0  1972 
-age40-49      0.0  1.0  2108 
-educationlow  0.0  1.0  3267 
-wantsMoreyes  0.0  1.0  2741 
-mean_PPD      0.0  1.0  3526 
-log-posterior 0.0  1.0  1896 
+(Intercept)   0.0  1.0  2112 
+age25-29      0.0  1.0  2217 
+age30-39      0.0  1.0  1985 
+age40-49      0.0  1.0  2232 
+educationlow  0.0  1.0  2840 
+wantsMoreyes  0.0  1.0  3340 
+mean_PPD      0.0  1.0  4008 
+log-posterior 0.0  1.0  1982 
 
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 </div>
@@ -823,7 +823,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>m2<span class="sc">$</span>coefficients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)     age25-29     age30-39     age40-49 educationlow wantsMoreyes 
-  -0.8132413    0.3941799    0.9152236    1.1979315   -0.3273369   -0.8358786 </code></pre>
+  -0.8074720    0.3852035    0.9059729    1.1965149   -0.3309075   -0.8373037 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model posteriors</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m2)</span>
@@ -841,7 +841,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 </div>
 </div>
 </div>
-<p>How would you interpret these plots? Note the asymmetry in the histograms, in contrast to typical frequentist approaches</p>
+<p>How would you interpret these plots? Note the asymmetry in the histograms, in contrast to typical frequentist approaches.</p>
 </section>
 <section id="adding-priors" class="level2" data-number="14.4">
 <h2 data-number="14.4" class="anchored" data-anchor-id="adding-priors"><span class="header-section-number">14.4</span> Adding Priors</h2>
@@ -855,8 +855,8 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <pre><code>
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 1.9e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+Chain 1: Gradient evaluation took 2.2e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.22 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -873,15 +873,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.125 seconds (Warm-up)
-Chain 1:                0.075 seconds (Sampling)
-Chain 1:                0.2 seconds (Total)
+Chain 1:  Elapsed Time: 0.068 seconds (Warm-up)
+Chain 1:                0.041 seconds (Sampling)
+Chain 1:                0.109 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1.2e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 2: Gradient evaluation took 1.1e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -898,15 +898,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.143 seconds (Warm-up)
-Chain 2:                0.081 seconds (Sampling)
-Chain 2:                0.224 seconds (Total)
+Chain 2:  Elapsed Time: 0.076 seconds (Warm-up)
+Chain 2:                0.041 seconds (Sampling)
+Chain 2:                0.117 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 1.2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 3: Gradient evaluation took 1e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -923,15 +923,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.149 seconds (Warm-up)
-Chain 3:                0.076 seconds (Sampling)
-Chain 3:                0.225 seconds (Total)
+Chain 3:  Elapsed Time: 0.075 seconds (Warm-up)
+Chain 3:                0.04 seconds (Sampling)
+Chain 3:                0.115 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'binomial' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 1.2e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 4: Gradient evaluation took 1.1e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -948,9 +948,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.138 seconds (Warm-up)
-Chain 4:                0.077 seconds (Sampling)
-Chain 4:                0.215 seconds (Total)
+Chain 4:  Elapsed Time: 0.065 seconds (Warm-up)
+Chain 4:                0.041 seconds (Sampling)
+Chain 4:                0.106 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3) <span class="co"># Summary</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -983,14 +983,14 @@ The mean_ppd is the sample average posterior predictive distribution of the outc
 
 MCMC diagnostics
               mcse Rhat n_eff
-(Intercept)   0.0  1.0  6155 
-age25-29      0.0  1.0  8012 
-age30-39      0.0  1.0  5705 
-age40-49      0.0  1.0  6973 
-educationlow  0.0  1.0  6159 
-wantsMoreyes  0.0  1.0  6637 
-mean_PPD      0.0  1.0  4478 
-log-posterior 0.0  1.0  1705 
+(Intercept)   0.0  1.0  5707 
+age25-29      0.0  1.0  6191 
+age30-39      0.0  1.0  5566 
+age40-49      0.0  1.0  5619 
+educationlow  0.0  1.0  5502 
+wantsMoreyes  0.0  1.0  6485 
+mean_PPD      0.0  1.0  4655 
+log-posterior 0.0  1.0  1961 
 
 For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 </div>
@@ -1031,7 +1031,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>m3<span class="sc">$</span>coefficients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)     age25-29     age30-39     age40-49 educationlow wantsMoreyes 
-  -1.2000178    0.2193902    1.4822722    1.9948027   -0.9705390   -0.2819636 </code></pre>
+  -1.2006093    0.2206785    1.4809422    1.9946454   -0.9701147   -0.2818982 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model posteriors</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m3)</span>
@@ -1050,7 +1050,7 @@ For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure
 </div>
 </div>
 <p>What has changed versus the model without priors?</p>
-<p>You can also look at all of your Stan model results using <code>shinystan</code> by running <code>launch_shinystan(model)</code>. Try it out on your end (it doesn’t work in markdown)</p>
+<p>You can also look at all of your Stan model results using <code>shinystan</code> by running <code>launch_shinystan(model)</code>. Try it out on your end (it doesn’t work in markdown).</p>
 </section>
 <section id="tips-for-your-assignment" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="tips-for-your-assignment"><span class="header-section-number">14.5</span> Tips for your Assignment:</h2>
