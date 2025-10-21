@@ -105,7 +105,7 @@ mcmc_areas(posterior, pars = names(m2$coefficients),
            prob = 0.95) + plot_title
 ```
 
-How would you interpret these plots? Note the asymmetry in the histograms, in contrast to typical frequentist approaches
+How would you interpret these plots? Note the asymmetry in the histograms, in contrast to typical frequentist approaches.
 
 ## Adding Priors
 
@@ -146,7 +146,7 @@ mcmc_areas(posterior, pars = names(m3$coefficients),
 
 What has changed versus the model without priors?
 
-You can also look at all of your Stan model results using `shinystan` by running `launch_shinystan(model)`. Try it out on your end (it doesn't work in markdown)
+You can also look at all of your Stan model results using `shinystan` by running `launch_shinystan(model)`. Try it out on your end (it doesn't work in markdown).
 
 ## Tips for your Assignment:
 
