@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Assignment 1b focuses on Linear Discriminant Analysis (LDA), also known as Canonical Variate Analysis. LDA is used to disclose relationships between groups, create models to differentiate between groups based on data, and discern the contribution of different variables to a model’s ability do discriminate between groups.</p>
+<p>Assignment 1b focuses on Linear Discriminant Analysis (LDA), also known as Canonical Variate Analysis. LDA is used to discern relationships between groups, create models to differentiate between groups based on data, and discern the contribution of different variables to a model’s ability to discriminate between groups.</p>
 <p>For this tutorial, we’ll be using <code>snake.csv</code>.</p>
 <section id="looking-at-the-data" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">11.1</span> Looking at the data</h2>
@@ -712,41 +712,41 @@ M6 -0.17208517</code></pre>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ResultantSpp=</span><span class="fu">as.character</span>(ldaf2<span class="sc">$</span>class))) <span class="co"># Pull predicted species (i.e. species with the higher posterior probability)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    A                    B   ResultantSpp
-1     0.897801237948675    0.102198762051325          A  
-2     0.957033498274347   0.0429665017256533          A  
-3   0.00486396795570835    0.995136032044292          B  
-4     0.939579607872302   0.0604203921276982          A  
-5     0.999020574119129 0.000979425880871105          A  
-6     0.958283942083953   0.0417160579160474          A  
-7     0.859914694048174    0.140085305951826          A  
+1     0.897801237948676    0.102198762051324          A  
+2     0.957033498274347    0.042966501725653          A  
+3   0.00486396795570831    0.995136032044292          B  
+4     0.939579607872302   0.0604203921276978          A  
+5     0.999020574119129 0.000979425880871091          A  
+6     0.958283942083953    0.041716057916047          A  
+7     0.859914694048175    0.140085305951825          A  
 8     0.079027668947901    0.920972331052099          B  
 9     0.250711809994117    0.749288190005883          B  
-10    0.277233534989758    0.722766465010243          B  
-11   0.0654339037846645    0.934566096215336          B  
-12 8.13045175684641e-05    0.999918695482432          B  
-13  0.00857331675606217    0.991426683243938          B  
+10    0.277233534989757    0.722766465010243          B  
+11   0.0654339037846643    0.934566096215336          B  
+12 8.13045175684628e-05    0.999918695482432          B  
+13  0.00857331675606215    0.991426683243938          B  
 14    0.119793120831736    0.880206879168264          B  
 15    0.868897347918874    0.131102652081126          A  
 16    0.291404395123414    0.708595604876586          B  
 17    0.580893601645515    0.419106398354485          A  
 18    0.407526292222816    0.592473707777184          B  
-19   0.0971393472407664    0.902860652759234          B  
-20   0.0629455676122023    0.937054432387798          B  
-21   0.0262176442553782    0.973782355744622          B  
+19    0.097139347240766    0.902860652759234          B  
+20   0.0629455676122021    0.937054432387798          B  
+21    0.026217644255378    0.973782355744622          B  
 22   0.0110464412594654    0.988953558740534          B  
 23    0.379676706769168    0.620323293230832          B  
-24  0.00300786068222621    0.996992139317774          B  
-25   0.0331152011340242    0.966884798865976          B  
-26  0.00270158005931189    0.997298419940688          B  
-27   0.0161164609849136    0.983883539015086          B  
-28  0.00346528534198867    0.996534714658011          B  
+24   0.0030078606822262    0.996992139317774          B  
+25   0.0331152011340239    0.966884798865976          B  
+26  0.00270158005931187    0.997298419940688          B  
+27   0.0161164609849135    0.983883539015087          B  
+28  0.00346528534198864    0.996534714658011          B  
 29    0.761253716426844    0.238746283573156          A  
-30   0.0597294571669353    0.940270542833065          B  
-31  0.00139900114299065    0.998600998857009          B  
-32    0.014630451548708    0.985369548451292          B  
+30   0.0597294571669352    0.940270542833065          B  
+31  0.00139900114299064    0.998600998857009          B  
+32   0.0146304515487079    0.985369548451292          B  
 33   0.0215114427320868    0.978488557267913          B  
-34  0.00359029891803416    0.996409701081966          B  
-35 8.92739861715449e-05    0.999910726013828          B  </code></pre>
+34  0.00359029891803413    0.996409701081966          B  
+35 8.92739861715444e-05    0.999910726013828          B  </code></pre>
 </div>
 </div>
 <p>How does this differ from the predictions from our first model?</p>
@@ -809,14 +809,14 @@ M6 -0.17208517</code></pre>
 <pre><code>correctness rate: 0.85714;  in: "M6";  variables (1): M6 
 
  hr.elapsed min.elapsed sec.elapsed 
-        0.0         0.0         0.5 </code></pre>
+      0.000       0.000       0.695 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>ms_f</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>method      : lda 
 final model : Species ~ M6
-&lt;environment: 0x00000217bb334340&gt;
+&lt;environment: 0x557a4d5b70f8&gt;
 
 correctness rate = 0.8571 </code></pre>
 </div>
@@ -844,14 +844,14 @@ correctness rate = 0.8571 </code></pre>
 correctness rate: 0.85714;  out: "M5";  variables (5): M1, M2, M3, M4, M6 
 
  hr.elapsed min.elapsed sec.elapsed 
-       0.00        0.00        0.57 </code></pre>
+      0.000       0.000       0.648 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ms_b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>method      : lda 
 final model : Species ~ M1 + M2 + M3 + M4 + M6
-&lt;environment: 0x00000217b3366b68&gt;
+&lt;environment: 0x557a4a7bf3f8&gt;
 
 correctness rate = 0.8571 </code></pre>
 </div>
@@ -878,14 +878,14 @@ correctness rate = 0.8571 </code></pre>
 <pre><code>correctness rate: 0.85714;  in: "M6";  variables (1): M6 
 
  hr.elapsed min.elapsed sec.elapsed 
-       0.00        0.00        0.43 </code></pre>
+        0.0         0.0         0.5 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model selection result</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>ms_d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>method      : lda 
 final model : Species ~ M6
-&lt;environment: 0x00000217b8684500&gt;
+&lt;environment: 0x557a4c7218e0&gt;
 
 correctness rate = 0.8571 </code></pre>
 </div>
